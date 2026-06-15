@@ -1,0 +1,97 @@
+import { useRef } from 'react'
+import { BOOK_BLOCKS, BOOK_PANELS } from '../../data/bookPages'
+import { SITE } from '../../data/site'
+import { useBookAnimation } from '../../hooks/useBookAnimation'
+
+export function BookAnimation() {
+  const rootRef = useRef<HTMLElement>(null)
+  useBookAnimation(rootRef)
+
+  return (
+    <section className="hf-book-anim" id="book" data-hf-book aria-label="Humans First book experience" ref={rootRef}>
+      <div className="hf-track" id="hf-track">
+        <div className="hf-stage">
+          <div className="hf-hairline" id="hf-hairline" aria-hidden="true" />
+
+          <div className="hf-visual" id="hf-visual">
+            <div className="hf-approach-line" id="hf-approach-line" aria-hidden="true" />
+            <div className="hf-approach-dot" id="hf-approach-dot" aria-hidden="true" />
+            <div className="hf-circle" id="hf-circle" aria-hidden="true" />
+            <div className="hf-book-scene" id="hf-bookScene">
+              <div className="hf-book" id="hf-book">
+                <div className="hf-back-board" aria-hidden="true" />
+                <div className="hf-page-stack" aria-hidden="true">
+                  {Array.from({ length: 12 }).map((_, i) => (
+                    <span key={i} className="hf-page-layer" />
+                  ))}
+                </div>
+                <div className="hf-spine" aria-hidden="true" />
+                <div className="hf-fore-edge" aria-hidden="true" />
+
+                <div className="hf-sheet hf-page-base">
+                  <div className="hf-page-content" id="hf-pageBase" />
+                </div>
+                <div className="hf-sheet hf-turn" id="hf-turn">
+                  <div className="hf-page-content" id="hf-pageTurn" />
+                </div>
+
+                <div className="hf-sheet hf-cover" id="hf-cover">
+                  <img src={SITE.bookCoverUrl} alt="Humans First, Machines Second book cover" />
+                </div>
+
+                <div className="hf-gloss" aria-hidden="true" />
+                <button className="hf-cta" id="hf-cta" type="button">
+                  <span className="dot" />
+                  What it is
+                </button>
+              </div>
+            </div>
+            <button className="hf-flip-btn" id="hf-flipBtn" type="button" hidden>
+              Tap to Flip
+            </button>
+          </div>
+
+          <p className="hf-tap-hint is-prominent" id="hf-tapHint" aria-hidden="true">
+            <span className="hf-tap-icon" aria-hidden="true" />
+            Tap the book to explore
+          </p>
+
+          <div className="hf-blocks" id="hf-blocks">
+            {BOOK_BLOCKS.map((block) => (
+              <div key={block.position} className={`hf-block ${block.position}`}>
+                <div className="hf-ico">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d={block.iconPath} />
+                  </svg>
+                </div>
+                <h3>{block.title}</h3>
+                <p>{block.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="hf-copy">
+            {BOOK_PANELS.map((panel) => (
+              <div key={panel.index} className="hf-panel" data-index={panel.index}>
+                <h3>
+                  <span className="hf-heading-highlight">{panel.title}</span>
+                </h3>
+                <p className="hf-panel-sub">{panel.subtitle}</p>
+                <p>{panel.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="hf-hero-cap" id="hf-heroCap">
+            <h2>Humans First, Machines Second</h2>
+            <div className="sub">Vineet Nayar · 30 Sparks to Reimagine Winning</div>
+          </div>
+
+          <div className="hf-cue" id="hf-cue">
+            Scroll to explore
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

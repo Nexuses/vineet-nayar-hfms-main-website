@@ -1,0 +1,171 @@
+import { useCallback, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
+import { WALL_SEED, WALL_WORDS, createSeedNotes, createWallNote, type WallNote } from '../../data/wall'
+
+const NOTE_WIDTH = 148
+const NOTE_HEIGHT = 132
+
+function clampNotePosition(x: number, y: number, boardWidth: number, boardHeight: number) {
+  const maxX = Math.max(0, ((boardWidth - NOTE_WIDTH) / boardWidth) * 100)
+  const maxY = Math.max(0, ((boardHeight - NOTE_HEIGHT) / boardHeight) * 100)
+  return {
+    x: Math.min(maxX, Math.max(0, x)),
+    y: Math.min(maxY, Math.max(0, y)),
+  }
+}
+
+type DraggableNoteProps = {
+  note: WallNote
+  boardRef: React.RefObject<HTMLDivElement | null>
+  onMove: (id: string, x: number, y: number) => void
+}
+
+function DraggableNote({ note, boardRef, onMove }: DraggableNoteProps) {
+  const dragRef = useRef<{ offsetX: number; offsetY: number } | null>(null)
+  const [dragging, setDragging] = useState(false)
+
+  const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (!boardRef.current) return
+    event.currentTarget.setPointerCapture(event.pointerId)
+    const noteRect = event.currentTarget.getBoundingClientRect()
+    dragRef.current = {
+      offsetX: event.clientX - noteRect.left,
+      offsetY: event.clientY - noteRect.top,
+    }
+    setDragging(true)
+  }
+
+  const handlePointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (!dragRef.current || !boardRef.current) return
+    const boardRect = boardRef.current.getBoundingClientRect()
+    const x = ((event.clientX - boardRect.left - dragRef.current.offsetX) / boardRect.width) * 100
+    const y = ((event.clientY - boardRect.top - dragRef.current.offsetY) / boardRect.height) * 100
+    const next = clampNotePosition(x, y, boardRect.width, boardRect.height)
+    onMove(note.id, next.x, next.y)
+  }
+
+  const handlePointerUp = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (!dragRef.current) return
+    dragRef.current = null
+    setDragging(false)
+    event.currentTarget.releasePointerCapture(event.pointerId)
+  }
+
+  return (
+    <div
+      className={`sticky-note${dragging ? ' is-dragging' : ''}`}
+      style={{
+        left: `${note.x}%`,
+        top: `${note.y}%`,
+        transform: `rotate(${note.rotation}deg)`,
+      }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
+    >
+      <span className="text">{note.word}</span>
+      <span className="author">{note.name}</span>
+    </div>
+  )
+}
+
+export function WallWidget() {
+  const boardRef = useRef<HTMLDivElement>(null)
+  const [notes, setNotes] = useState<WallNote[]>(() => createSeedNotes())
+  const [count, setCount] = useState(WALL_SEED.length)
+  const [word, setWord] = useState('')
+  const [name, setName] = useState('')
+
+  const moveNote = useCallback((id: string, x: number, y: number) => {
+    setNotes((prev) => prev.map((note) => (note.id === id ? { ...note, x, y } : note)))
+  }, [])
+
+  const addNote = () => {
+    const trimmed = word.trim()
+    if (!trimmed) return
+
+    const note = createWallNote(trimmed, name.trim(), notes.length)
+    setNotes((prev) => [note, ...prev])
+    setCount((c) => c + 1)
+    setWord('')
+    setName('')
+  }
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault()
+    addNote()
+  }
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      addNote()
+    }
+  }
+
+  return (
+    <section className="hf-wall-widget" id="wall" data-hf-wall aria-label="The Humans First Wall">
+      <div className="hf-wall-wrap">
+        <p className="hf-wall-kicker reveal">The Humans First Wall</p>
+        <h2 className="display hf-wall-q reveal">
+          <span className="hf-wall-q-lead">What part of being human will you</span>
+          <span className="hand-highlight">never give up?</span>
+        </h2>
+        <p className="hf-wall-intro reveal">
+          You&apos;ll answer it in your own handwriting, beside a few hundred strangers answering the same. A card
+          gets thrown away. A wall becomes a memory, and a record of what humans refuse to lose in the age of AI.
+        </p>
+        <div className="hf-wall-chip-row reveal" data-hf-wall-chips>
+          {WALL_WORDS.map((chip) => (
+            <button
+              key={chip}
+              type="button"
+              className="hf-wall-chip"
+              onClick={() => {
+                setWord(chip)
+              }}
+            >
+              {chip}
+            </button>
+          ))}
+        </div>
+
+        <div className="whiteboard reveal" ref={boardRef} data-hf-wall-board>
+          {notes.map((note) => (
+            <DraggableNote key={note.id} note={note} boardRef={boardRef} onMove={moveNote} />
+          ))}
+
+          <form className="wall-input" data-hf-wall-form onSubmit={handleSubmit}>
+            <input
+              className="hf-wall-word"
+              data-hf-wall-word
+              maxLength={22}
+              placeholder="Your word…"
+              aria-label="Your word"
+              value={word}
+              onChange={(e) => setWord(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+            <input
+              className="hf-wall-name"
+              data-hf-wall-name
+              maxLength={18}
+              placeholder="Sign your name"
+              aria-label="Your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+            <button className="hf-wall-submit" type="submit">
+              Add to the wall
+            </button>
+          </form>
+        </div>
+
+        <p className="hf-wall-count reveal">
+          <b data-hf-wall-count>{count}</b> answers and counting across India.
+        </p>
+      </div>
+    </section>
+  )
+}
