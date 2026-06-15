@@ -58,6 +58,7 @@
 
 .hf-wall-widget .hf-wall-q .hand-highlight {
   margin-top: 12px;
+  margin-inline: auto;
   white-space: nowrap;
 }
 

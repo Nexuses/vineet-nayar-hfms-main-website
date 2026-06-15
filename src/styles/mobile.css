@@ -370,6 +370,7 @@
 
   main .hf-wall-q .hand-highlight {
     margin-top: 12px;
+    margin-inline: auto;
   }
 
   #cities .section-title .hand-highlight {
