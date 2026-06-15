@@ -294,15 +294,9 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
 
     function updateFlipBtn() {
       if (!flipBtn) return
-      if (!isMobile()) {
-        flipBtn.hidden = true
-        flipBtn.disabled = true
-        return
-      }
-
-      flipBtn.hidden = false
-      flipBtn.disabled = mobileAnimating
-      flipBtn.textContent = 'Tap to Flip'
+      flipBtn.disabled = !isMobile() || mobileAnimating
+      flipBtn.tabIndex = isMobile() ? 0 : -1
+      flipBtn.setAttribute('aria-hidden', isMobile() ? 'false' : 'true')
     }
 
     function updateTapHint(step: number) {
@@ -579,8 +573,9 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
       book!.tabIndex = -1
       if (tapHint) tapHint.hidden = true
       if (flipBtn) {
-        flipBtn.hidden = true
         flipBtn.disabled = true
+        flipBtn.tabIndex = -1
+        flipBtn.setAttribute('aria-hidden', 'true')
       }
       scrollProgress = 0
       onScroll()

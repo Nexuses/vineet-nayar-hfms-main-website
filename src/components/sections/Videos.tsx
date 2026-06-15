@@ -9,7 +9,13 @@ export function Videos() {
   )
   const [revealed, setRevealed] = useState(false)
   const defaultFeatured = useRef(featuredIndex)
-  const mobileUI = useRef(window.matchMedia('(max-width: 820px)'))
+  const mobileUI = useRef<MediaQueryList | null>(null)
+
+  useEffect(() => {
+    mobileUI.current = window.matchMedia('(max-width: 820px)')
+  }, [])
+
+  const isMobileUI = () => mobileUI.current?.matches ?? false
 
   useEffect(() => {
     const grid = gridRef.current
@@ -28,7 +34,7 @@ export function Videos() {
   useEffect(() => {
     const grid = gridRef.current
     const onMouseLeave = () => {
-      if (mobileUI.current.matches) return
+      if (isMobileUI()) return
       setFeaturedIndex(defaultFeatured.current)
     }
     grid?.addEventListener('mouseleave', onMouseLeave)
@@ -37,7 +43,7 @@ export function Videos() {
 
   const handleCardClick = (index: number, event: React.MouseEvent) => {
     const card = VIDEOS[index]
-    if (mobileUI.current.matches) {
+    if (isMobileUI()) {
       if ((event.target as HTMLElement).closest('.play')) {
         event.stopPropagation()
         window.open(card.youtubeUrl, '_blank')
@@ -52,7 +58,7 @@ export function Videos() {
   const handleCardKeyDown = (index: number, event: React.KeyboardEvent) => {
     if (event.key !== 'Enter' && event.key !== ' ') return
     event.preventDefault()
-    if (mobileUI.current.matches) {
+    if (isMobileUI()) {
       setFeaturedIndex(index)
       return
     }
@@ -98,10 +104,10 @@ export function Videos() {
             role="button"
             data-youtube={video.youtubeUrl}
             onMouseEnter={() => {
-              if (!mobileUI.current.matches) setFeaturedIndex(index)
+              if (!isMobileUI()) setFeaturedIndex(index)
             }}
             onFocus={() => {
-              if (!mobileUI.current.matches) setFeaturedIndex(index)
+              if (!isMobileUI()) setFeaturedIndex(index)
             }}
             onClick={(e) => handleCardClick(index, e)}
             onKeyDown={(e) => handleCardKeyDown(index, e)}

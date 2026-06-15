@@ -46,7 +46,7 @@ export function BookAnimation() {
                 </button>
               </div>
             </div>
-            <button className="hf-flip-btn" id="hf-flipBtn" type="button" hidden>
+            <button className="hf-flip-btn" id="hf-flipBtn" type="button" aria-label="Tap to flip the book">
               Tap to Flip
             </button>
           </div>

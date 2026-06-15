@@ -713,6 +713,7 @@
     transition: opacity 0.3s ease, transform 0.2s ease;
     z-index: 10;
     white-space: nowrap;
+    pointer-events: auto;
   }
 
   .hf-book-anim .hf-flip-btn:disabled {
@@ -811,6 +812,7 @@
 
 .hf-book-anim .hf-flip-btn {
   display: none;
+  pointer-events: none;
 }
 
 .hf-book-anim .hf-tap-hint {

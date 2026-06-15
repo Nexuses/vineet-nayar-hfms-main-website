@@ -1,7 +1,8 @@
-import { Link, useLocation } from 'react-router-dom'
-import { ASSETS, NAV_LINKS } from '../../data/site'
-import { useModal } from '../../context/ModalContext'
-import { isNavLinkActive, resolveNavHref } from '../../utils/nav'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { ASSETS, NAV_LINKS } from '@/data/site'
+import { useModal } from '@/context/ModalContext'
+import { isNavLinkActive, resolveNavHref } from '@/utils/nav'
 
 interface HeaderProps {
   onToggleMenu: () => void
@@ -10,16 +11,16 @@ interface HeaderProps {
 
 export function Header({ onToggleMenu, menuOpen }: HeaderProps) {
   const { openJoin } = useModal()
-  const location = useLocation()
+  const router = useRouter()
   const leftLinks = NAV_LINKS.filter((l) => l.side === 'left')
   const rightLinks = NAV_LINKS.filter((l) => l.side === 'right')
 
   const renderNavLink = (link: (typeof NAV_LINKS)[number]) => {
-    const active = isNavLinkActive(link, location.pathname)
+    const active = isNavLinkActive(link, router.pathname)
 
     if (link.isRoute) {
       return (
-        <Link key={link.href} to={link.href} className={active ? 'active' : undefined}>
+        <Link key={link.href} href={link.href} className={active ? 'active' : undefined}>
           {link.label}
         </Link>
       )
@@ -28,7 +29,7 @@ export function Header({ onToggleMenu, menuOpen }: HeaderProps) {
     return (
       <a
         key={link.href}
-        href={resolveNavHref(link, location.pathname)}
+        href={resolveNavHref(link, router.pathname)}
         data-section-link={link.sectionId}
         className={active ? 'active' : undefined}
       >
@@ -43,7 +44,7 @@ export function Header({ onToggleMenu, menuOpen }: HeaderProps) {
         <span className="nav-orb" aria-hidden="true" />
         <div className="nav-group nav-left">{leftLinks.map(renderNavLink)}</div>
 
-        <Link to="/" className="brand" aria-label="The Humans First Series home">
+        <Link href="/" className="brand" aria-label="The Humans First Series home">
           <img className="brand-logo" src={ASSETS.logo} alt="Humans First Series" />
         </Link>
 

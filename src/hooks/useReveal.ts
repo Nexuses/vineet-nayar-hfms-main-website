@@ -1,5 +1,5 @@
+import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
 
 function getRevealGroup(element: Element) {
   return (
@@ -92,7 +92,7 @@ function initRevealGroups() {
 }
 
 export function useReveal() {
-  const location = useLocation()
+  const router = useRouter()
 
   useEffect(() => {
     ensureHeroVisible()
@@ -134,5 +134,5 @@ export function useReveal() {
       window.removeEventListener('hf-book-complete', revealInViewport)
       window.removeEventListener('load', onLoad)
     }
-  }, [location.pathname])
+  }, [router.pathname])
 }

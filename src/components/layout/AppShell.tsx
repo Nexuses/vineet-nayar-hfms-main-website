@@ -1,15 +1,16 @@
-import { Outlet, useLocation } from 'react-router-dom'
-import { FEATURES } from '../../data/site'
-import { useCursorGlow } from '../../hooks/useCursorGlow'
-import { useHandHighlightFit } from '../../hooks/useHandHighlightFit'
-import { useMagnetic } from '../../hooks/useMagnetic'
-import { useMobileMenu } from '../../hooks/useMobileMenu'
-import { useNavSpy } from '../../hooks/useNavSpy'
-import { useReveal } from '../../hooks/useReveal'
-import { useScrollProgress } from '../../hooks/useScrollProgress'
-import { useTiltCard } from '../../hooks/useTiltCard'
-import { JoinModal } from '../modals/JoinModal'
-import { VideoModal } from '../modals/VideoModal'
+import { useRouter } from 'next/router'
+import type { ReactNode } from 'react'
+import { FEATURES } from '@/data/site'
+import { useCursorGlow } from '@/hooks/useCursorGlow'
+import { useHandHighlightFit } from '@/hooks/useHandHighlightFit'
+import { useMagnetic } from '@/hooks/useMagnetic'
+import { useMobileMenu } from '@/hooks/useMobileMenu'
+import { useNavSpy } from '@/hooks/useNavSpy'
+import { useReveal } from '@/hooks/useReveal'
+import { useScrollProgress } from '@/hooks/useScrollProgress'
+import { useTiltCard } from '@/hooks/useTiltCard'
+import { JoinModal } from '@/components/modals/JoinModal'
+import { VideoModal } from '@/components/modals/VideoModal'
 import { CursorGlow } from './CursorGlow'
 import { Footer } from './Footer'
 import { Header } from './Header'
@@ -18,10 +19,14 @@ import { NoiseOverlay } from './NoiseOverlay'
 import { ProgressBar } from './ProgressBar'
 import { ScrollToTop } from './ScrollToTop'
 
-export function AppShell() {
+interface AppShellProps {
+  children: ReactNode
+}
+
+export function AppShell({ children }: AppShellProps) {
   const { open, openMenu, closeMenu } = useMobileMenu()
-  const location = useLocation()
-  const isHome = location.pathname === '/'
+  const router = useRouter()
+  const isHome = router.pathname === '/'
 
   useScrollProgress(FEATURES.movement && isHome)
   useReveal()
@@ -47,7 +52,7 @@ export function AppShell() {
       />
       <MobileMenu open={open} onClose={closeMenu} />
 
-      <Outlet />
+      {children}
 
       <Footer />
       <JoinModal />
