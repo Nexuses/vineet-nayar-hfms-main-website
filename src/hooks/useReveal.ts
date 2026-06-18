@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { isPostBookRevealSection } from '../utils/reveal'
 
 function getRevealGroup(element: Element) {
   return (
@@ -49,46 +50,72 @@ function ensureHeroVisible() {
 
 function revealInViewport() {
   document.querySelectorAll('.reveal:not(.on)').forEach((element) => {
+    const group = getRevealGroup(element)
+    if (isPostBookRevealSection(group)) return
+
     const rect = element.getBoundingClientRect()
-    const visible = rect.top < window.innerHeight * 0.98 && rect.bottom > 0
+    const visible = rect.top < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.08
     if (visible) showReveals([element])
   })
   reapplyRevealed()
 }
 
 function initRevealGroups() {
-  const groups = new Map<Element, Element[]>()
+  const defaultGroups = new Map<Element, Element[]>()
+  const postBookGroups = new Map<Element, Element[]>()
 
   document.querySelectorAll('.reveal').forEach((element) => {
     if (element.classList.contains('on')) return
 
     const group = getRevealGroup(element)
     if (!group) return
-    if (!groups.has(group)) groups.set(group, [])
-    groups.get(group)!.push(element)
+
+    const bucket = isPostBookRevealSection(group) ? postBookGroups : defaultGroups
+    if (!bucket.has(group)) bucket.set(group, [])
+    bucket.get(group)!.push(element)
   })
 
-  const observer = new IntersectionObserver(
+  const defaultObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return
 
-        const reveals = groups.get(entry.target)
+        const reveals = defaultGroups.get(entry.target)
         if (reveals?.length) showReveals(reveals)
 
-        observer.unobserve(entry.target)
+        defaultObserver.unobserve(entry.target)
       })
       reapplyRevealed()
     },
-    { threshold: 0.05, rootMargin: '0px 0px 0px 0px' },
+    { threshold: 0.08, rootMargin: '0px 0px -4% 0px' },
   )
 
-  groups.forEach((reveals, group) => {
+  const postBookObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+
+        const reveals = postBookGroups.get(entry.target)
+        if (reveals?.length) showReveals(reveals)
+
+        postBookObserver.unobserve(entry.target)
+      })
+      reapplyRevealed()
+    },
+    { threshold: 0.14, rootMargin: '0px 0px -10% 0px' },
+  )
+
+  defaultGroups.forEach((reveals, group) => {
     if (!reveals.length) return
-    observer.observe(group)
+    defaultObserver.observe(group)
   })
 
-  return observer
+  postBookGroups.forEach((reveals, group) => {
+    if (!reveals.length) return
+    postBookObserver.observe(group)
+  })
+
+  return { defaultObserver, postBookObserver }
 }
 
 export function useReveal() {
@@ -96,7 +123,7 @@ export function useReveal() {
 
   useEffect(() => {
     ensureHeroVisible()
-    const observer = initRevealGroups()
+    const { defaultObserver, postBookObserver } = initRevealGroups()
 
     const refresh = () => {
       revealInViewport()
@@ -127,7 +154,8 @@ export function useReveal() {
 
     return () => {
       cancelAnimationFrame(frame)
-      observer.disconnect()
+      defaultObserver.disconnect()
+      postBookObserver.disconnect()
       mutationObserver.disconnect()
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', revealInViewport)

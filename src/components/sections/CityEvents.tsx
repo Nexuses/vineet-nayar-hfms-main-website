@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { CITY_EVENTS, CITY_EVENTS_HEADING } from '../../data/cityEvents'
 import { useModal } from '../../context/ModalContext'
+import { revealDelay, revealStagger } from '../../utils/reveal'
 
 const SCROLL_IDLE_MS = 150
 
@@ -45,25 +46,28 @@ export function CityEvents() {
   }
 
   return (
-    <section className="ev-section" id="cities-events">
+    <section className="ev-section post-scroll-reveal" id="cities-events">
       <div className="ev-inner">
-        <div className="ev-head reveal">
-          <h2 className="display">
+        <div className="ev-head">
+          <h2 className="display reveal reveal-from-bottom">
             {CITY_EVENTS_HEADING.titleLead}
             <span className="hand-highlight">{CITY_EVENTS_HEADING.titleHighlight}</span>
           </h2>
-          <p className="lede ev-head-lede">{CITY_EVENTS_HEADING.lede}</p>
+          <p className="lede ev-head-lede reveal reveal-from-bottom" style={revealDelay(160)}>
+            {CITY_EVENTS_HEADING.lede}
+          </p>
         </div>
 
         <div className="ev-grid" id="evGrid">
           {CITY_EVENTS.map((event, index) => (
             <div
               key={event.id}
-              className={`ev-card${index === activeIndex ? ' active' : ''}`}
+              className={`ev-card reveal reveal-from-left${index === activeIndex ? ' active' : ''}`}
               data-idx={index}
               role="button"
               tabIndex={0}
               aria-label={event.ariaLabel}
+              style={revealStagger(index, 90, 220)}
               onMouseEnter={() => handleMouseEnter(index)}
               onClick={() => activate(index)}
               onKeyDown={(e) => handleCardKeyDown(index, e)}
@@ -107,7 +111,7 @@ export function CityEvents() {
           ))}
         </div>
 
-        <div className="ev-dots" id="evDots">
+        <div className="ev-dots reveal reveal-from-bottom" id="evDots" style={revealDelay(680)}>
           {CITY_EVENTS.map((event, index) => (
             <button
               key={event.id}

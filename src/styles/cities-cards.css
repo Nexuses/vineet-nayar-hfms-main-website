@@ -1,7 +1,7 @@
 .cities-section {
   position: relative;
   z-index: 10;
-  background: #fff;
+  background: #f5f5f5;
 }
 
 .cities-head {
@@ -21,7 +21,7 @@
   border: 1px solid var(--line);
   border-radius: 24px;
   overflow: hidden;
-  background: var(--soft);
+  background: #fff;
   cursor: pointer;
 }
 
@@ -88,14 +88,83 @@
 .city-card-footer {
   margin-top: 18px;
   display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
+  width: 100%;
+}
+
+.city-card-actions {
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
+  width: 100%;
+}
+
+.city-card-countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(36, 36, 36, 0.55);
+}
+
+.city-card-countdown.is-expired {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(36, 36, 36, 0.42);
+}
+
+.city-card-countdown--pending {
+  visibility: hidden;
+}
+
+.city-card-countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 2.4rem;
+  gap: 2px;
+}
+
+.city-card-countdown-unit strong {
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.city-card-countdown-unit small {
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(36, 36, 36, 0.42);
+}
+
+.city-card-countdown-sep {
+  align-self: flex-start;
+  margin-top: 2px;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(36, 36, 36, 0.28);
 }
 
 .city-card-register {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex: 1;
   min-height: 40px;
   border: 0;
   border-radius: 999px;
@@ -104,6 +173,7 @@
   font-weight: 900;
   line-height: 1;
   text-transform: uppercase;
+  text-decoration: none;
   background: var(--ink);
   color: #fff;
   cursor: pointer;
@@ -118,6 +188,7 @@
 }
 
 .city-card-spots {
+  flex-shrink: 0;
   font-size: 12px;
   font-weight: 700;
   color: rgba(36, 36, 36, 0.38);

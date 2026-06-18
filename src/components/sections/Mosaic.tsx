@@ -1,4 +1,5 @@
 import { MOSAIC_COLS, MOSAIC_HEADING } from '../../data/mosaic'
+import { revealDelay, revealStagger } from '../../utils/reveal'
 
 function MosaicPlayIcon() {
   return (
@@ -12,13 +13,15 @@ function MosaicPlayIcon() {
 
 export function Mosaic() {
   return (
-    <section className="mosaic-section" id="mosaic">
-      <div className="mosaic-heading reveal">
-        <h2 className="display">
+    <section className="mosaic-section post-scroll-reveal" id="mosaic">
+      <div className="mosaic-heading">
+        <h2 className="display reveal reveal-from-bottom">
           <span className="heading-lead">{MOSAIC_HEADING.titleLead}</span>
           <span className="hand-highlight">{MOSAIC_HEADING.titleHighlight}</span>
         </h2>
-        <p className="lede">{MOSAIC_HEADING.lede}</p>
+        <p className="lede reveal reveal-from-bottom" style={revealDelay(160)}>
+          {MOSAIC_HEADING.lede}
+        </p>
       </div>
 
       <div className="mosaic-grid">
@@ -27,11 +30,12 @@ export function Mosaic() {
             {column.map((photo, photoIndex) => (
               <a
                 key={photoIndex}
-                className="mosaic-photo mosaic-photo-link"
+                className="mosaic-photo mosaic-photo-link reveal reveal-from-bottom"
                 href={photo.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${photo.alt} (opens in new tab)`}
+                style={revealStagger(columnIndex * 3 + photoIndex, 80, 240)}
               >
                 <img src={photo.src} alt={photo.alt} loading="lazy" />
                 <MosaicPlayIcon />

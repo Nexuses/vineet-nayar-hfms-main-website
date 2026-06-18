@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { BOOK_AVAILABILITY } from '../../data/bookPageContent'
 import { ASSETS } from '../../data/site'
 import { useModal } from '../../context/ModalContext'
@@ -22,9 +23,9 @@ export function Hero() {
           </span>
         </h1>
 
-        <p className="hero-quote reveal">{HERO_QUOTE}</p>
+        <p className="hero-quote reveal reveal-from-bottom">{HERO_QUOTE}</p>
 
-        <div className="hero-actions">
+        <div className="hero-actions reveal reveal-from-bottom" style={{ '--reveal-delay': '120ms' } as CSSProperties}>
           <button className="btn magnetic" type="button" onClick={openJoin}>
             Register for your city
           </button>

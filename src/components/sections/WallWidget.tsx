@@ -1,5 +1,6 @@
 import { useCallback, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
 import { WALL_SEED, WALL_WORDS, createSeedNotes, createWallNote, type WallNote } from '../../data/wall'
+import { revealDelay } from '../../utils/reveal'
 
 const NOTE_WIDTH = 148
 const NOTE_HEIGHT = 132
@@ -104,18 +105,18 @@ export function WallWidget() {
   }
 
   return (
-    <section className="hf-wall-widget" id="wall" data-hf-wall aria-label="The Humans First Wall">
+    <section className="hf-wall-widget post-scroll-reveal" id="wall" data-hf-wall aria-label="The Humans First Wall">
       <div className="hf-wall-wrap">
-        <p className="hf-wall-kicker reveal">The Humans First Wall</p>
-        <h2 className="display hf-wall-q reveal">
-          <span className="hf-wall-q-lead">What part of being human will you</span>
-          <span className="hand-highlight">never give up?</span>
+        <p className="hf-wall-kicker reveal reveal-from-bottom">The Humans First Wall</p>
+        <h2 className="display hf-wall-q reveal reveal-from-bottom" style={revealDelay(120)}>
+          <span className="hf-wall-q-lead">What part of being human</span>
+          <span className="hand-highlight">will you never give up?</span>
         </h2>
-        <p className="hf-wall-intro reveal">
+        <p className="hf-wall-intro reveal reveal-from-bottom" style={revealDelay(240)}>
           You&apos;ll answer it in your own handwriting, beside a few hundred strangers answering the same. A card
           gets thrown away. A wall becomes a memory, and a record of what humans refuse to lose in the age of AI.
         </p>
-        <div className="hf-wall-chip-row reveal" data-hf-wall-chips>
+        <div className="hf-wall-chip-row reveal reveal-from-bottom" data-hf-wall-chips style={revealDelay(360)}>
           {WALL_WORDS.map((chip) => (
             <button
               key={chip}
@@ -130,7 +131,7 @@ export function WallWidget() {
           ))}
         </div>
 
-        <div className="whiteboard reveal" ref={boardRef} data-hf-wall-board>
+        <div className="whiteboard reveal reveal-from-bottom" ref={boardRef} data-hf-wall-board style={revealDelay(480)}>
           {notes.map((note) => (
             <DraggableNote key={note.id} note={note} boardRef={boardRef} onMove={moveNote} />
           ))}
@@ -162,7 +163,7 @@ export function WallWidget() {
           </form>
         </div>
 
-        <p className="hf-wall-count reveal">
+        <p className="hf-wall-count reveal reveal-from-bottom" style={revealDelay(600)}>
           <b data-hf-wall-count>{count}</b> answers and counting across India.
         </p>
       </div>

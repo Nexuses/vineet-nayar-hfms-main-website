@@ -11,7 +11,6 @@
   width: min(74vh, 680px);
   height: min(74vh, 680px);
   overflow: visible;
-  transform-style: preserve-3d;
 }
 
 .hf-book-anim .hf-flipbook-embed {

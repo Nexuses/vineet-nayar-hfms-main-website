@@ -71,10 +71,12 @@ export function useBookAnimation(
 
     function showFlipbook() {
       flipbookHostEl.classList.add('is-visible')
+      flipbookHostEl.style.pointerEvents = 'auto'
     }
 
     function hideFlipbook() {
       flipbookHostEl.classList.remove('is-visible')
+      flipbookHostEl.style.pointerEvents = 'none'
     }
 
     function flushPendingPage() {
@@ -494,15 +496,10 @@ export function useBookAnimation(
       cta!.style.opacity = String(heroFade)
       cta!.style.pointerEvents = p > 0.05 ? 'none' : 'auto'
 
-      const baseRotY = lerp(-16, -20, introT)
-      const tiltTransform = mobileMode
-        ? `rotateY(${baseRotY}deg)`
-        : `rotateY(${baseRotY}deg) rotateX(6deg)`
-
       if (mobileMode) {
-        bookSceneEl.style.transform = `translate(-50%, -50%) scale(${scale}) ${tiltTransform}`
+        bookSceneEl.style.transform = `translate(-50%, -50%) scale(${scale})`
       } else {
-        bookSceneEl.style.transform = `translate(calc(-50% + ${xPct}vw), -50%) scale(${scale}) ${tiltTransform}`
+        bookSceneEl.style.transform = `translate(calc(-50% + ${xPct}vw), -50%) scale(${scale})`
       }
 
       showFlipbook()

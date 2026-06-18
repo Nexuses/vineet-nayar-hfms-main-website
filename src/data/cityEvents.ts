@@ -27,8 +27,8 @@ export const CITY_EVENTS: CityEvent[] = [
     label: 'India',
     ariaLabel: 'India — 25 July 2026',
     // Demo image (Unsplash) — replace when final asset is ready:
-    // https://images.unsplash.com/photo-1587474260584-136574528ed5?w=900&q=80&auto=format&fit=crop
-    image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=900&q=80&auto=format&fit=crop',
+    // https://images.unsplash.com/photo-1515091943-9d5c0ad475af?w=900&q=80&auto=format&fit=crop
+    image: 'https://images.unsplash.com/photo-1515091943-9d5c0ad475af?w=900&q=80&auto=format&fit=crop',
     colorLayer: 'linear-gradient(160deg, rgba(17,17,17,0.3) 0%, rgba(17,17,17,0.88) 100%)',
     badge: 'Now Open',
     overlayCity: 'India',

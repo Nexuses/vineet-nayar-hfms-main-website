@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, type CSSProperties } from 'react'
 import { BookFlipbookEmbed, type BookFlipbookHandle } from './book/BookFlipbookEmbed'
 import { BOOK_BLOCKS, BOOK_PANELS } from '../../data/bookPages'
 import { useBookAnimation } from '../../hooks/useBookAnimation'
@@ -57,12 +57,14 @@ export function BookAnimation() {
           <div className="hf-copy">
             {BOOK_PANELS.map((panel) => (
               <div key={panel.index} className="hf-panel" data-index={panel.index}>
-                <span className="hf-panel-num" aria-hidden="true">
+                <span className="hf-panel-num" aria-hidden="true"  >
                   {panel.number}
                 </span>
-                <div className="hf-panel-stack">
-                  <div className="hf-panel-band">
+                <div className="hf-panel-stack" style={{ borderTopLeftRadius: '100px'}}>
+                  <div style={{ paddingLeft: '45px', borderTopLeftRadius: '100px'}}>
+                  <div className="hf-panel-band" >
                     <span>{panel.section}</span>
+                    </div>
                   </div>
                   <h3 className="hf-panel-title">{panel.title}</h3>
                   <p className="hf-panel-quote">
@@ -74,12 +76,12 @@ export function BookAnimation() {
             ))}
           </div>
 
-          <div className="hf-hero-cap" id="hf-heroCap">
+          <div className="hf-hero-cap reveal reveal-from-bottom" id="hf-heroCap">
             <h2>Humans First, Machines Second</h2>
             <div className="sub">Vineet Nayar · 30 Sparks to Reimagine Winning</div>
           </div>
 
-          <div className="hf-cue" id="hf-cue">
+          <div className="hf-cue reveal reveal-from-bottom" id="hf-cue" style={{ '--reveal-delay': '120ms' } as CSSProperties}>
             Scroll to explore
           </div>
         </div>

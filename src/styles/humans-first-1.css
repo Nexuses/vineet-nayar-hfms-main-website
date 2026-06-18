@@ -99,7 +99,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  perspective: 2200px;
   z-index: 3;
   will-change: transform;
 }
@@ -474,7 +473,7 @@
   display: block;
   padding: clamp(20px, 4vh, 48px) clamp(12px, 2vw, 24px) clamp(20px, 4vh, 48px) 0;
   z-index: 4;
-  pointer-events: auto;
+  pointer-events: none;
   box-sizing: border-box;
   overflow-x: clip;
   overflow-y: auto;
@@ -513,6 +512,7 @@
   position: absolute;
   top: 0;
   left: var(--hf-panel-text-indent);
+  margin-top: 110px;
   z-index: 0;
   font-family: "Inter", var(--hf-sans);
   font-size: var(--hf-panel-num-size);
@@ -549,10 +549,11 @@
   margin-left: calc(-1 * var(--hf-panel-text-indent));
   padding: 0.45em 1.35em 0.45em var(--hf-panel-text-indent);
   background: var(--hf-yellow-strip);
-  border-radius: 0 999px 999px 0;
+  border-radius: 999px 999px 999px 999px;
   box-sizing: border-box;
   position: relative;
   z-index: 3;
+
 }
 
 .hf-book-anim .hf-panel-band span {
@@ -574,6 +575,7 @@
   line-height: 0.94;
   letter-spacing: -0.03em;
   color: #111;
+  padding-top:-65px;
   max-width: 100%;
   overflow-wrap: anywhere;
   position: relative;
