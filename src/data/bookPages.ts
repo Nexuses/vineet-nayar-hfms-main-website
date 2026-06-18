@@ -1,15 +1,3 @@
-export interface BookPage {
-  image: string
-  alt: string
-}
-
-export const BOOK_PAGES: BookPage[] = [
-  { image: '/assets/figma/trust-book1.png', alt: 'Trust' },
-  { image: '/assets/figma/empower-book2.png', alt: 'Empower' },
-  { image: '/assets/figma/aplify-book3.png', alt: 'Amplify' },
-  { image: '/assets/figma/reimagine-book4.png', alt: 'Reimagine' },
-]
-
 export interface BookBlock {
   position: 'hf-block-tr' | 'hf-block-bl' | 'hf-block-tl' | 'hf-block-br'
   title: string

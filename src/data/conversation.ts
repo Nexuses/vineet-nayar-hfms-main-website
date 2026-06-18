@@ -1,3 +1,4 @@
+// Flip-card back images quarantined in unused/public/assets/figma/ — restore before enabling FEATURES.conversation
 export interface ConversationCard {
   title: string
   front: string
@@ -9,22 +10,22 @@ export const CONVERSATION_CARDS: ConversationCard[] = [
   {
     title: 'Trust',
     front: '/assets/figma/trust.png',
-    back: '/assets/figma/Trust-flip.png',
+    back: '',
   },
   {
     title: 'Empower',
     front: '/assets/figma/empower.png',
-    back: '/assets/figma/Empower-flip.png',
+    back: '',
   },
   {
     title: 'Amplify',
-    front: '/assets/figma/amplify.png',
-    back: '/assets/figma/Amplify-flip.png',
+    front: '',
+    back: '',
     amplify: true,
   },
   {
     title: 'Reimagine',
     front: '/assets/figma/reimagine.png',
-    back: '/assets/figma/Reimagine-flip.png',
+    back: '',
   },
 ]
