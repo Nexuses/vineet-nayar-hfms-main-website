@@ -1,6 +1,11 @@
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { ASSETS, FOOTER_LINKS, SITE } from '../../data/site'
+import { resolveNavHref } from '../../utils/nav'
 
 export function Footer() {
+  const router = useRouter()
+
   return (
     <footer className="footer">
       <div className="wrap footer-grid">
@@ -13,12 +18,22 @@ export function Footer() {
         </div>
         <div className="footer-links">
           <div>
-            <h4>Get in touch</h4>
-            {FOOTER_LINKS.contact.map((link) => (
-              <a key={link.label} href={link.href}>
-                {link.label}
-              </a>
-            ))}
+            <h4>Quick Links</h4>
+            {FOOTER_LINKS.explore.map((link) =>
+              link.isRoute ? (
+                <Link key={link.href} href={link.href}>
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={resolveNavHref(link, router.pathname)}
+                  data-section-link={link.sectionId}
+                >
+                  {link.label}
+                </a>
+              ),
+            )}
           </div>
           <div>
             <h4>Follow us</h4>

@@ -57,10 +57,19 @@ export function BookAnimation() {
           <div className="hf-copy">
             {BOOK_PANELS.map((panel) => (
               <div key={panel.index} className="hf-panel" data-index={panel.index}>
-                <h3>
-                  <span className="hf-heading-highlight">{panel.title}</span>
-                </h3>
-                <p>{panel.body}</p>
+                <span className="hf-panel-num" aria-hidden="true">
+                  {panel.number}
+                </span>
+                <div className="hf-panel-stack">
+                  <div className="hf-panel-band">
+                    <span>{panel.section}</span>
+                  </div>
+                  <h3 className="hf-panel-title">{panel.title}</h3>
+                  <p className="hf-panel-quote">
+                    <span className="hand-highlight">&ldquo;{panel.quote}&rdquo;</span>
+                  </p>
+                  <p className="hf-panel-body">{panel.body}</p>
+                </div>
               </div>
             ))}
           </div>

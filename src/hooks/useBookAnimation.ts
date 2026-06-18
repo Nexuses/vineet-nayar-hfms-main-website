@@ -180,6 +180,17 @@ export function useBookAnimation(
       return window.innerHeight - getStickyTop()
     }
 
+    function getCircleDiameter() {
+      const stageH = getStageHeight()
+      const vw = window.innerWidth
+
+      if (vw <= 900) return Math.min(stageH * 0.62, vw * 0.46, 500)
+      if (vw <= 1100) return Math.min(stageH * 0.66, vw * 0.5, 560)
+      if (vw <= 1200) return Math.min(stageH * 0.7, vw * 0.54, 620)
+
+      return Math.min(stageH * 0.74, vw * 0.58, 680)
+    }
+
     const APPROACH_ZOOM_START = 0.02
     const APPROACH_ZOOM_END = 0.78
     const APPROACH_LINE_BOTTOM = 0
@@ -238,7 +249,7 @@ export function useBookAnimation(
       const stickyTop = getStickyTop()
       const stageH = getStageHeight()
       const stageCenterY = stickyTop + stageH / 2
-      const circleDiameter = Math.min(stageH * 0.74, 680)
+      const circleDiameter = getCircleDiameter()
       const lineAnchorY = window.innerHeight - APPROACH_LINE_BOTTOM
       const maxLineHeight = Math.max(0, lineAnchorY - stageCenterY)
 
@@ -343,8 +354,7 @@ export function useBookAnimation(
         return
       }
 
-      const stageH = getStageHeight()
-      const radius = Math.min(stageH * 0.37, 340)
+      const radius = getCircleDiameter() / 2
       const styles = getComputedStyle(copyEl)
       const padLeft = parseFloat(styles.paddingLeft) || 0
       const padRight = parseFloat(styles.paddingRight) || 0

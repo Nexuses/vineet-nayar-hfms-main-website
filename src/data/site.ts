@@ -42,12 +42,15 @@ export const NAV_LINKS: NavLinkItem[] = [
   { href: '#wall', label: 'The Wall', sectionId: 'wall', side: 'right' },
 ]
 
+export type FooterNavLink = Pick<NavLinkItem, 'href' | 'label' | 'sectionId' | 'isRoute'>
+
 export const FOOTER_LINKS = {
-  contact: [
-    { href: 'mailto:hello@humansfirst.com?subject=Media%20inquiry', label: 'Media inquiries' },
-    { href: 'mailto:hello@humansfirst.com?subject=Speaking%20request', label: 'Speaking requests' },
-    { href: 'mailto:hello@humansfirst.com', label: 'Contact us' },
-  ],
+  explore: [
+    { href: '/book', label: 'The book', isRoute: true },
+    { href: '#cities-cards', label: 'Cities', sectionId: 'cities-cards' },
+    { href: '#mosaic', label: 'Watch', sectionId: 'mosaic' },
+    { href: '#wall', label: 'The Wall', sectionId: 'wall' },
+  ] satisfies FooterNavLink[],
   social: [
     { href: 'https://www.linkedin.com/', label: 'LinkedIn' },
     { href: 'https://www.instagram.com/', label: 'Instagram' },
