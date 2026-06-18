@@ -1,5 +1,9 @@
+import { BOOK_AVAILABILITY } from '../../data/bookPageContent'
 import { ASSETS } from '../../data/site'
 import { useModal } from '../../context/ModalContext'
+
+const HERO_QUOTE =
+  '“The greatest danger of the artificial intelligence (AI) age is not smarter machines. It is humans slowly losing belief in their own uniqueness.”'
 
 export function Hero() {
   const { openJoin } = useModal()
@@ -18,18 +22,21 @@ export function Hero() {
           </span>
         </h1>
 
+        <p className="hero-quote reveal">{HERO_QUOTE}</p>
+
         <div className="hero-actions">
           <button className="btn magnetic" type="button" onClick={openJoin}>
             Register for your city
           </button>
-          <a className="btn secondary magnetic" href="#wall">
-            Join the movement
+          <a
+            className="btn secondary magnetic"
+            href={BOOK_AVAILABILITY.amazonUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Buy Now on Amazon
           </a>
         </div>
-
-        <p className="hero-quote reveal on">
-          &ldquo;As machines become smarter, will human beings continue to believe in themselves?&rdquo;
-        </p>
       </div>
     </section>
   )

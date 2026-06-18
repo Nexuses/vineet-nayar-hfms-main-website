@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 export function useTiltCard() {
   useEffect(() => {
-    const items = document.querySelectorAll('.truth-panel, .city-preview, .faq-item')
+    const items = document.querySelectorAll('.truth-panel, .city-preview, .city-card, .faq-item')
 
     const handlers = new Map<
       Element,

@@ -39,12 +39,13 @@
 }
 
 .hf-wall-widget .hf-wall-q {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 0 auto;
   max-width: 1020px;
-  font-size: var(--h2-size, clamp(27.2px, 3.97vw, 52.5px));
   font-family: var(--font, "Inter", system-ui, sans-serif);
   font-weight: 900;
-  line-height: 0.98;
   text-align: center;
   text-transform: uppercase;
   color: #fff;
@@ -52,12 +53,13 @@
 
 .hf-wall-widget .hf-wall-q .hf-wall-q-lead {
   display: block;
+  width: 100%;
+  text-align: center;
   white-space: nowrap;
   font-size: min(1em, 5cqi);
 }
 
 .hf-wall-widget .hf-wall-q .hand-highlight {
-  margin-top: 12px;
   margin-inline: auto;
   white-space: nowrap;
 }

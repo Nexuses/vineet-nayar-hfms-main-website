@@ -1,0 +1,125 @@
+import { useEffect, useRef, useState } from 'react'
+import { CITY_EVENTS, CITY_EVENTS_HEADING } from '../../data/cityEvents'
+import { useModal } from '../../context/ModalContext'
+
+const SCROLL_IDLE_MS = 150
+
+export function CityEvents() {
+  const { openJoin } = useModal()
+  const [activeIndex, setActiveIndex] = useState(0)
+  const isScrollingRef = useRef(false)
+  const scrollTimerRef = useRef<number | undefined>(undefined)
+  const prefersHoverRef = useRef(true)
+
+  useEffect(() => {
+    prefersHoverRef.current = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+
+    const onScroll = () => {
+      isScrollingRef.current = true
+      window.clearTimeout(scrollTimerRef.current)
+      scrollTimerRef.current = window.setTimeout(() => {
+        isScrollingRef.current = false
+      }, SCROLL_IDLE_MS)
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.clearTimeout(scrollTimerRef.current)
+    }
+  }, [])
+
+  const activate = (index: number) => {
+    setActiveIndex(index)
+  }
+
+  const handleMouseEnter = (index: number) => {
+    if (!prefersHoverRef.current || isScrollingRef.current) return
+    activate(index)
+  }
+
+  const handleCardKeyDown = (index: number, event: React.KeyboardEvent) => {
+    if (event.key !== 'Enter' && event.key !== ' ') return
+    event.preventDefault()
+    activate(index)
+  }
+
+  return (
+    <section className="ev-section" id="cities-events">
+      <div className="ev-inner">
+        <div className="ev-head reveal">
+          <h2 className="display">
+            {CITY_EVENTS_HEADING.titleLead}
+            <span className="hand-highlight">{CITY_EVENTS_HEADING.titleHighlight}</span>
+          </h2>
+          <p className="lede ev-head-lede">{CITY_EVENTS_HEADING.lede}</p>
+        </div>
+
+        <div className="ev-grid" id="evGrid">
+          {CITY_EVENTS.map((event, index) => (
+            <div
+              key={event.id}
+              className={`ev-card${index === activeIndex ? ' active' : ''}`}
+              data-idx={index}
+              role="button"
+              tabIndex={0}
+              aria-label={event.ariaLabel}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onClick={() => activate(index)}
+              onKeyDown={(e) => handleCardKeyDown(index, e)}
+            >
+              <div className="ev-bg" style={{ backgroundImage: `url('${event.image}')` }} />
+              <div className="ev-color-layer" style={{ background: event.colorLayer }} />
+              <div className="ev-city-label-wrap" aria-hidden="true">
+                <span className="ev-city-label">{event.label}</span>
+              </div>
+              <div className="ev-overlay">
+                <span className="ev-badge">{event.badge}</span>
+                <div className="ev-overlay-city">{event.overlayCity}</div>
+                <div className="ev-overlay-meta">
+                  <span className="ev-meta-item">
+                    <span className="ev-meta-dot" aria-hidden="true" />
+                    {event.date}
+                  </span>
+                  <span className="ev-meta-item">
+                    <span className="ev-meta-dot" aria-hidden="true" />
+                    {event.time}
+                  </span>
+                  <span className="ev-meta-item">
+                    <span className="ev-meta-dot" aria-hidden="true" />
+                    {event.entry}
+                  </span>
+                </div>
+                <p className="ev-overlay-desc">{event.description}</p>
+                <button
+                  className="ev-register-btn"
+                  type="button"
+                  data-city-select={event.registerCity}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    openJoin()
+                  }}
+                >
+                  Register Now &rarr;
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="ev-dots" id="evDots">
+          {CITY_EVENTS.map((event, index) => (
+            <button
+              key={event.id}
+              className={`ev-dot${index === activeIndex ? ' active' : ''}`}
+              type="button"
+              data-idx={index}
+              aria-label={event.dotLabel}
+              onClick={() => activate(index)}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

@@ -1,7 +1,21 @@
 import { useEffect, type RefObject } from 'react'
-import { BOOK_PAGES } from '../data/bookPages'
+import type { BookFlipbookHandle } from '../components/sections/book/BookFlipbookEmbed'
+import { FLIPBOOK_PAGE_IMAGES, FLIPBOOK_SPREADS } from '../data/flipbookPages'
 
-export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
+function mobileStepToPage(step: number) {
+  if (step <= 0) return 1
+  const spreadIdx = Math.min(step - 1, FLIPBOOK_SPREADS - 1)
+  return 2 + spreadIdx * 2
+}
+
+function sectionPageForSpread(spreadIdx: number) {
+  return 2 + spreadIdx * 2
+}
+
+export function useBookAnimation(
+  rootRef: RefObject<HTMLElement | null>,
+  flipbookRef: RefObject<BookFlipbookHandle | null>,
+) {
   useEffect(() => {
     const root = rootRef.current
     if (!root) return
@@ -9,22 +23,19 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
     const track = root.querySelector('#hf-track') as HTMLElement | null
     const stage = root.querySelector('.hf-stage') as HTMLElement | null
     const bookScene = root.querySelector('#hf-bookScene') as HTMLElement | null
-    const book = root.querySelector('#hf-book') as HTMLElement | null
+    const book = root.querySelector('#hf-flipbook') as HTMLElement | null
     const circle = root.querySelector('#hf-circle') as HTMLElement | null
     const approachLine = root.querySelector('#hf-approach-line') as HTMLElement | null
     const approachDot = root.querySelector('#hf-approach-dot') as HTMLElement | null
-    const cover = root.querySelector('#hf-cover') as HTMLElement | null
     const blocksWrap = root.querySelector('#hf-blocks') as HTMLElement | null
     const cta = root.querySelector('#hf-cta') as HTMLButtonElement | null
     const heroCap = root.querySelector('#hf-heroCap') as HTMLElement | null
     const cue = root.querySelector('#hf-cue') as HTMLElement | null
     const tapHint = root.querySelector('#hf-tapHint') as HTMLElement | null
     const flipBtn = root.querySelector('#hf-flipBtn') as HTMLButtonElement | null
+    const flipbookHost = root.querySelector('#hf-flipbook') as HTMLElement | null
     const copyEl = root.querySelector('.hf-copy') as HTMLElement | null
     const panels = [...root.querySelectorAll('.hf-panel')] as HTMLElement[]
-    const turn = root.querySelector('#hf-turn') as HTMLElement | null
-    const pageBase = root.querySelector('#hf-pageBase') as HTMLElement | null
-    const pageTurn = root.querySelector('#hf-pageTurn') as HTMLElement | null
 
     if (
       !track ||
@@ -32,34 +43,96 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
       !bookScene ||
       !book ||
       !circle ||
-      !cover ||
       !blocksWrap ||
       !cta ||
-      !pageBase ||
-      !pageTurn ||
-      !turn
+      !flipbookHost
     ) {
       return
     }
 
-    const pages = BOOK_PAGES
+    const spreadCount = FLIPBOOK_SPREADS
     const mobileQuery = window.matchMedia('(max-width: 820px)')
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-    pages.forEach((page) => {
+    Object.values(FLIPBOOK_PAGE_IMAGES).forEach((src) => {
       const preload = new Image()
-      preload.src = page.image
+      preload.src = src
     })
 
-    function renderPage(el: HTMLElement, i: number) {
-      const page = pages[i]
-      if (!page || !el) return
+    const flipbookHostEl = flipbookHost
+    const bookSceneEl = bookScene
+    const bookEl = book
 
-      if (el.dataset.pageIdx === String(i)) return
+    let lastSyncedPage = 1
+    let lastSyncedSpread = -2
+    let pendingPage: number | null = null
+    let pendingAnimate = false
+    const FLIP_ANIM_MS = reducedMotion ? 0 : 1000
 
-      el.dataset.pageIdx = String(i)
-      el.classList.add('hf-page-image')
-      el.innerHTML = `<img class="hf-page-img" src="${page.image}" alt="${page.alt}" decoding="async" />`
+    function showFlipbook() {
+      flipbookHostEl.classList.add('is-visible')
+    }
+
+    function hideFlipbook() {
+      flipbookHostEl.classList.remove('is-visible')
+    }
+
+    function flushPendingPage() {
+      const flipbook = flipbookRef.current
+      if (!flipbook?.isReady() || pendingPage === null) return
+
+      flipbook.setPage(pendingPage, pendingAnimate)
+      lastSyncedPage = pendingPage
+      pendingPage = null
+    }
+
+    function getSpreadIdx(coverOpen: boolean, readP: number, mobileMode: boolean) {
+      if (!coverOpen) return -1
+      if (mobileMode) return Math.min(spreadCount - 1, Math.max(0, mobileStep - 1))
+      return Math.min(spreadCount - 1, Math.floor(readP * spreadCount))
+    }
+
+    function getTargetPage(coverOpen: boolean, readP: number, mobileMode: boolean) {
+      if (!coverOpen) return 1
+      if (mobileMode) return mobileStepToPage(mobileStep)
+      const spreadIdx = Math.min(spreadCount - 1, Math.floor(readP * spreadCount))
+      return sectionPageForSpread(spreadIdx)
+    }
+
+    function syncFlipbook(coverOpen: boolean, readP: number, mobileMode: boolean, animate = false) {
+      const flipbook = flipbookRef.current
+      const spreadIdx = getSpreadIdx(coverOpen, readP, mobileMode)
+      const targetPage = getTargetPage(coverOpen, readP, mobileMode)
+
+      if (!coverOpen) {
+        lastSyncedSpread = -1
+        if (lastSyncedPage !== 1) {
+          if (flipbook?.isReady()) {
+            flipbook.setPage(1, false)
+            lastSyncedPage = 1
+          } else {
+            pendingPage = 1
+            pendingAnimate = false
+          }
+        }
+        return
+      }
+
+      if (targetPage === lastSyncedPage) return
+
+      const sectionChanged = spreadIdx !== lastSyncedSpread
+      const shouldAnimate = animate || (!mobileMode && sectionChanged && FLIP_ANIM_MS > 0)
+
+      if (!flipbook?.isReady()) {
+        pendingPage = targetPage
+        pendingAnimate = shouldAnimate
+        return
+      }
+
+      flipbook.setPage(targetPage, shouldAnimate)
+      lastSyncedPage = targetPage
+      lastSyncedSpread = spreadIdx
+      pendingPage = null
     }
 
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t
@@ -68,8 +141,6 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
 
     let blocksOpen = false
     let scrollProgress = 0
-    let mx = 0
-    let my = 0
     let running = false
     let wasPassed = false
 
@@ -160,6 +231,7 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
         if (approachDot) approachDot.style.display = 'none'
         circle!.style.opacity = '0'
         bookScene!.style.opacity = '0'
+        hideFlipbook()
         return
       }
 
@@ -244,6 +316,13 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
       bookScene!.style.transform = `translate(-50%, -50%) scale(${bookScale})`
       bookScene!.style.zIndex = '3'
 
+      if (bookOpacity > 0.08) {
+        showFlipbook()
+        syncFlipbook(false, 0, false, false)
+      } else {
+        hideFlipbook()
+      }
+
       const heroFade = easeInOut(clamp((zoomT - 0.42) / 0.58))
       if (heroCap) {
         heroCap.style.opacity = String(heroFade)
@@ -253,12 +332,6 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
       cta!.style.opacity = String(heroFade)
       cta!.style.pointerEvents = heroFade > 0.5 ? 'auto' : 'none'
 
-      book!.style.transform = 'rotateY(-16deg)'
-      cover!.style.transform = 'translateZ(20px) rotateY(0deg)'
-      cover!.style.boxShadow = '14px 22px 44px rgba(0,0,0,0.28)'
-      pageBase!.classList.remove('show')
-      turn!.style.opacity = '0'
-      turn!.style.transform = 'translateZ(17px) rotateY(0deg)'
       panels.forEach((pl) => pl.classList.remove('active'))
       blocksWrap!.classList.remove('open')
       if (copyEl) copyEl.style.maxWidth = ''
@@ -283,13 +356,50 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
       copyEl.style.maxWidth = `${clamped + padLeft + padRight}px`
     }
 
-    function progressForMobileStep(step: number) {
+    function progressForStep(step: number) {
       if (step <= 0) return 0
       if (step === 1) return 0.22
 
-      const pageIdx = Math.min(step - 1, pages.length - 1)
-      const readP = (pageIdx + 0.06) / pages.length
+      const pageIdx = Math.min(step - 1, spreadCount - 1)
+      const readP = (pageIdx + 0.06) / spreadCount
       return 0.16 + 0.84 * readP
+    }
+
+    function getStepForProgress(p: number) {
+      for (let step = spreadCount; step >= 0; step -= 1) {
+        if (p >= progressForStep(step) - 0.02) return step
+      }
+      return 0
+    }
+
+    function scrollToBookProgress(targetP: number) {
+      const stickyTop = getStickyTop()
+      const stageHeight = getStageHeight()
+      const scrollable = track!.offsetHeight - stageHeight
+      const targetScrollY = track!.offsetTop - stickyTop + targetP * scrollable
+
+      window.scrollTo({
+        top: Math.max(0, targetScrollY),
+        behavior: reducedMotion ? 'auto' : 'smooth',
+      })
+    }
+
+    function advanceDesktop() {
+      if (isMobile()) return
+
+      if (isBeforePin()) {
+        const stickyTop = getStickyTop()
+        window.scrollTo({
+          top: Math.max(0, track!.offsetTop - stickyTop + 1),
+          behavior: reducedMotion ? 'auto' : 'smooth',
+        })
+        return
+      }
+
+      const currentStep = getStepForProgress(scrollProgress)
+      if (currentStep >= spreadCount) return
+
+      scrollToBookProgress(progressForStep(currentStep + 1))
     }
 
     function updateFlipBtn() {
@@ -312,7 +422,11 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
       tapHint.removeAttribute('aria-hidden')
       tapHint.classList.toggle('is-prominent', step <= 0 && !mobileAnimating)
       const label =
-        step <= 0 ? 'Tap the book to explore' : step >= pages.length ? 'Tap to start again' : 'Tap to turn the page'
+        step <= 0
+          ? 'Tap the book to explore'
+          : step >= spreadCount
+            ? 'Tap to start again'
+            : 'Tap to turn the page'
       const icon = tapHint.querySelector('.hf-tap-icon')
       tapHint.textContent = ''
       if (icon) tapHint.appendChild(icon)
@@ -352,10 +466,8 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
       bookScene!.style.zIndex = ''
 
       if (mobileMode) {
-        bookScene!.style.transform = `translate(-50%, -50%) scale(${scale})`
         circle!.style.transform = `scale(${circleScale})`
       } else {
-        bookScene!.style.transform = `translate(calc(-50% + ${xPct}vw), -50%) scale(${scale})`
         circle!.style.transform = `translate(calc(-50% + ${xPct}vw), -50%) scale(${circleScale})`
       }
 
@@ -373,53 +485,33 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
       cta!.style.pointerEvents = p > 0.05 ? 'none' : 'auto'
 
       const baseRotY = lerp(-16, -20, introT)
-      book!.style.transform = mobileMode
+      const tiltTransform = mobileMode
         ? `rotateY(${baseRotY}deg)`
-        : `rotateY(${baseRotY + mx * 12}deg) rotateX(${6 - my * 9}deg)`
+        : `rotateY(${baseRotY}deg) rotateX(6deg)`
+
+      if (mobileMode) {
+        bookSceneEl.style.transform = `translate(-50%, -50%) scale(${scale}) ${tiltTransform}`
+      } else {
+        bookSceneEl.style.transform = `translate(calc(-50% + ${xPct}vw), -50%) scale(${scale}) ${tiltTransform}`
+      }
+
+      showFlipbook()
 
       const openF = easeInOut(clamp((p - 0.06) / 0.14))
       const coverOpen = openF > 0.02
-      cover!.style.transform = `translateZ(20px) rotateY(${-openF * 168}deg)`
-      cover!.style.boxShadow = `${14 * (1 - openF)}px 22px 44px rgba(0,0,0,${0.28 * (1 - openF) + 0.04})`
-
-      pageBase!.classList.toggle('show', coverOpen)
 
       const readP = clamp((p - 0.16) / (1 - 0.16))
-      const pageCount = pages.length
-      const seg = readP * pageCount
-      const idx = Math.min(pageCount - 1, Math.floor(seg))
-      const within = seg - idx
-      const flipStart = 0.22
-      const isFlipping = coverOpen && within > flipStart && idx < pageCount - 1 && p < 0.995
-      const flipProgress = isFlipping ? easeInOut(clamp((within - flipStart) / (1 - flipStart))) : 0
-      const panelIdx = !coverOpen ? 0 : isFlipping && flipProgress > 0.5 ? idx + 1 : idx
+      const spreadIdx = getSpreadIdx(coverOpen, readP, mobileMode)
 
-      panels.forEach((pl, i) => pl.classList.toggle('active', i === panelIdx && coverOpen))
+      panels.forEach((pl, i) => pl.classList.toggle('active', coverOpen && i === spreadIdx))
 
-      if (!coverOpen) {
-        turn!.style.opacity = '0'
-        turn!.style.transform = 'translateZ(17px) rotateY(0deg)'
-        pageBase!.dataset.pageIdx = ''
-        renderPage(pageBase!, 0)
-      } else if (isFlipping) {
-        renderPage(pageTurn!, idx)
-        turn!.style.opacity = '1'
-        turn!.style.transform = `translateZ(18px) rotateY(${-flipProgress * 172}deg)`
-        turn!.style.boxShadow = `inset ${18 * (1 - flipProgress)}px 0 24px -16px rgba(0,0,0,0.24), 2px 0 8px rgba(0,0,0,0.08)`
-        renderPage(pageBase!, idx + 1)
-      } else {
-        turn!.style.opacity = '0'
-        turn!.style.transform = 'translateZ(17px) rotateY(0deg)'
-        turn!.style.boxShadow = 'inset 18px 0 24px -16px rgba(0,0,0,0.24), 2px 0 8px rgba(0,0,0,0.08)'
-        pageTurn!.dataset.pageIdx = ''
-        renderPage(pageBase!, idx)
-      }
+      syncFlipbook(coverOpen, readP, mobileMode, mobileAnimating)
     }
 
     function animateMobileToStep(targetStep: number) {
-      const nextStep = clamp(targetStep, 0, pages.length)
+      const nextStep = clamp(targetStep, 0, spreadCount)
       const fromP = mobileProgress
-      const toP = progressForMobileStep(nextStep)
+      const toP = progressForStep(nextStep)
 
       mobileAnimating = true
       mobileStep = nextStep
@@ -457,7 +549,7 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
 
     function advanceMobile() {
       if (mobileAnimating) return
-      if (mobileStep < pages.length) {
+      if (mobileStep < spreadCount) {
         animateMobileToStep(mobileStep + 1)
         return
       }
@@ -511,8 +603,15 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
     function applyDesktopFrame() {
       if (isBeforePin()) {
         applyApproach(getApproachProgress())
+        bookEl.removeAttribute('role')
+        bookEl.removeAttribute('aria-label')
+        bookEl.tabIndex = -1
         return
       }
+
+      bookEl.setAttribute('role', 'button')
+      bookEl.setAttribute('aria-label', 'Turn to the next page')
+      bookEl.tabIndex = 0
 
       if (approachLine) approachLine.style.display = 'none'
       if (approachDot) approachDot.style.display = 'none'
@@ -562,15 +661,15 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
       if (isMobile()) {
         running = false
         resetMobile()
-        book!.setAttribute('role', 'button')
-        book!.setAttribute('aria-label', 'Open and flip through the book')
-        book!.tabIndex = 0
+        bookEl.setAttribute('role', 'button')
+        bookEl.setAttribute('aria-label', 'Open and flip through the book')
+        bookEl.tabIndex = 0
         return
       }
 
-      book!.removeAttribute('role')
-      book!.removeAttribute('aria-label')
-      book!.tabIndex = -1
+      bookEl.removeAttribute('role')
+      bookEl.removeAttribute('aria-label')
+      bookEl.tabIndex = -1
       if (tapHint) tapHint.hidden = true
       if (flipBtn) {
         flipBtn.disabled = true
@@ -605,15 +704,19 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
         advanceMobile()
         return
       }
-      if (scrollProgress < 0.1) toggleBlocks()
+
+      e.stopPropagation()
+      advanceDesktop()
     }
 
     const onBookKeydown = (e: KeyboardEvent) => {
-      if (!isMobile()) return
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault()
+      if (e.key !== 'Enter' && e.key !== ' ') return
+      e.preventDefault()
+      if (isMobile()) {
         advanceMobile()
+        return
       }
+      advanceDesktop()
     }
 
     let touchStartX = 0
@@ -652,27 +755,46 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
       advanceMobile()
     }
 
-    const onMouseMove = (e: MouseEvent) => {
-      if (isMobile()) return
-      const r = book!.getBoundingClientRect()
-      const cx = r.left + r.width / 2
-      const cy = r.top + r.height / 2
-      mx = clamp((e.clientX - cx) / (window.innerWidth / 2), -1, 1)
-      my = clamp((e.clientY - cy) / (window.innerHeight / 2), -1, 1)
-    }
-
     cta.addEventListener('click', onCtaClick)
     if (flipBtn) flipBtn.addEventListener('click', onFlipBtnClick)
     book.addEventListener('click', onBookClick)
     book.addEventListener('keydown', onBookKeydown)
     book.addEventListener('touchstart', onTouchStart, { passive: true })
     book.addEventListener('touchend', onTouchEnd, { passive: true })
-    root.addEventListener('mousemove', onMouseMove)
+    let resizeTimer = 0
+    const onResize = () => {
+      window.clearTimeout(resizeTimer)
+      resizeTimer = window.setTimeout(() => {
+        flipbookRef.current?.resize()
+        onScroll()
+      }, 120)
+    }
+
     window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll, { passive: true })
+    window.addEventListener('resize', onResize, { passive: true })
     mobileQuery.addEventListener('change', onMobileModeChange)
 
-    renderPage(pageBase, 0)
+    let didInitialFlipbookResize = false
+
+    const onFlipbookReady = () => {
+      flushPendingPage()
+      if (!didInitialFlipbookResize) {
+        didInitialFlipbookResize = true
+        window.requestAnimationFrame(() => flipbookRef.current?.resize())
+      }
+    }
+
+    const onFlipbookAdvance = () => {
+      if (isMobile()) {
+        advanceMobile()
+        return
+      }
+      advanceDesktop()
+    }
+
+    window.addEventListener('hf-flipbook-ready', onFlipbookReady)
+    window.addEventListener('hf-flipbook-advance', onFlipbookAdvance)
+
     setCtaLabel('What it is')
     onScroll()
     onMobileModeChange()
@@ -682,11 +804,12 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
       applyApproach(getApproachProgress())
       requestAnimationFrame(render)
     } else if (reducedMotion && !isMobile()) {
-      pageBase.classList.add('show')
+      showFlipbook()
       panels.forEach((pl, i) => pl.classList.toggle('active', i === 0))
       if (heroCap) heroCap.style.opacity = '1'
       if (cue) cue.style.opacity = '1'
       cta.style.opacity = '1'
+      flipbookRef.current?.setPage(2, false)
     }
 
     return () => {
@@ -696,11 +819,13 @@ export function useBookAnimation(rootRef: RefObject<HTMLElement | null>) {
       book.removeEventListener('keydown', onBookKeydown)
       book.removeEventListener('touchstart', onTouchStart)
       book.removeEventListener('touchend', onTouchEnd)
-      root.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
+      window.removeEventListener('resize', onResize)
+      window.removeEventListener('hf-flipbook-ready', onFlipbookReady)
+      window.removeEventListener('hf-flipbook-advance', onFlipbookAdvance)
       mobileQuery.removeEventListener('change', onMobileModeChange)
+      window.clearTimeout(resizeTimer)
       cancelAnimationFrame(mobileAnimRaf)
     }
-  }, [rootRef])
+  }, [flipbookRef, rootRef])
 }

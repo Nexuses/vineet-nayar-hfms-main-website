@@ -1,11 +1,12 @@
 import { useRef } from 'react'
+import { BookFlipbookEmbed, type BookFlipbookHandle } from './book/BookFlipbookEmbed'
 import { BOOK_BLOCKS, BOOK_PANELS } from '../../data/bookPages'
-import { SITE } from '../../data/site'
 import { useBookAnimation } from '../../hooks/useBookAnimation'
 
 export function BookAnimation() {
   const rootRef = useRef<HTMLElement>(null)
-  useBookAnimation(rootRef)
+  const flipbookRef = useRef<BookFlipbookHandle>(null)
+  useBookAnimation(rootRef, flipbookRef)
 
   return (
     <section className="hf-book-anim" id="book" data-hf-book aria-label="Humans First book experience" ref={rootRef}>
@@ -17,35 +18,18 @@ export function BookAnimation() {
             <div className="hf-approach-line" id="hf-approach-line" aria-hidden="true" />
             <div className="hf-approach-dot" id="hf-approach-dot" aria-hidden="true" />
             <div className="hf-circle" id="hf-circle" aria-hidden="true" />
+
             <div className="hf-book-scene" id="hf-bookScene">
-              <div className="hf-book" id="hf-book">
-                <div className="hf-back-board" aria-hidden="true" />
-                <div className="hf-page-stack" aria-hidden="true">
-                  {Array.from({ length: 12 }).map((_, i) => (
-                    <span key={i} className="hf-page-layer" />
-                  ))}
-                </div>
-                <div className="hf-spine" aria-hidden="true" />
-                <div className="hf-fore-edge" aria-hidden="true" />
-
-                <div className="hf-sheet hf-page-base">
-                  <div className="hf-page-content" id="hf-pageBase" />
-                </div>
-                <div className="hf-sheet hf-turn" id="hf-turn">
-                  <div className="hf-page-content" id="hf-pageTurn" />
-                </div>
-
-                <div className="hf-sheet hf-cover" id="hf-cover">
-                  <img src={SITE.bookCoverUrl} alt="Humans First, Machines Second book cover" />
-                </div>
-
-                <div className="hf-gloss" aria-hidden="true" />
-                <button className="hf-cta" id="hf-cta" type="button">
-                  <span className="dot" />
-                  What it is
-                </button>
+              <div className="hf-flipbook-embed" id="hf-flipbook">
+                <BookFlipbookEmbed ref={flipbookRef} />
               </div>
+
+              <button className="hf-cta" id="hf-cta" type="button">
+                <span className="dot" />
+                What it is
+              </button>
             </div>
+
             <button className="hf-flip-btn" id="hf-flipBtn" type="button" aria-label="Tap to flip the book">
               Tap to Flip
             </button>
@@ -76,7 +60,6 @@ export function BookAnimation() {
                 <h3>
                   <span className="hf-heading-highlight">{panel.title}</span>
                 </h3>
-                <p className="hf-panel-sub">{panel.subtitle}</p>
                 <p>{panel.body}</p>
               </div>
             ))}

@@ -13,6 +13,8 @@
   --header: 76px;
   --scroll: 0;
   --h2-size: clamp(27.2px, 3.97vw, 52.5px);
+  --section-display-size: clamp(32px, 5vw, 72px);
+  --section-display-highlight-size: clamp(26px, 4vw, 58px);
   --h3-size: clamp(21.6px, 3.14vw, 41.6px);
   --h4-size: clamp(16.8px, 2.43vw, 32px);
   --h5-size: clamp(14.4px, 1.92vw, 25.6px);
@@ -287,17 +289,27 @@ mark.hand-highlight {
   min-height: 46px;
   border: 0;
   border-radius: 999px;
-  background: #000;
-  color: #fff;
   padding: 0 22px;
   font-size: 14px;
   font-weight: 900;
   line-height: 1;
   text-transform: uppercase;
-  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
+  transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease, color 220ms ease;
 }
 
-.nav-cta:hover,
+.nav button.nav-cta {
+  background: #000;
+  color: #fff;
+}
+
+.nav button.nav-cta:hover,
+.nav button.nav-cta:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+  background: #000;
+  color: var(--yellow);
+}
+
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
@@ -347,6 +359,28 @@ main {
   font-weight: 900;
   line-height: 0.86;
   text-transform: uppercase;
+}
+
+/* Section display scale — matches #cities-events .ev-head */
+.ev-head h2,
+.cities-head h2,
+.mosaic-heading h2,
+.hf-wall-widget .hf-wall-q,
+.promise .promise-title {
+  font-size: var(--section-display-size);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+.ev-head h2 .hand-highlight,
+.cities-head .hand-highlight,
+.mosaic-heading h2 .hand-highlight,
+.hf-wall-widget .hf-wall-q .hand-highlight,
+.promise-title .hand-highlight {
+  display: table;
+  margin: 10px auto 0;
+  font-size: var(--section-display-highlight-size);
+  text-transform: none;
 }
 
 .section-title {
@@ -511,7 +545,7 @@ main {
 
 .hero-quote {
   max-width: 800px;
-  margin-top: 24px;
+  margin-top: 34px;
   color: var(--muted);
   font-size: var(--body-size);
   font-weight: 400;
@@ -530,7 +564,7 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   gap: 14px;
-  margin-top: 34px;
+  margin-top: 24px;
 }
 
 .scroll-cue {
@@ -887,79 +921,15 @@ main > .promise {
   min-width: min(100%, 220px);
 }
 
-.video-author-section,
 .video-section {
   padding-block: clamp(56px, 7vw, 96px);
   padding-inline: var(--gutter);
-}
-
-.video-author-section {
-  background: #f5f5f5;
-}
-
-.video-section {
   background: #fff;
 }
 
-.video-author-section > .wrap,
 .video-section > .wrap {
   width: min(1300px, 100%);
   max-width: 1300px;
-}
-
-.video-author-section .video-author-heading {
-  margin: 0;
-  font-family: var(--font);
-  font-size: var(--h2-size);
-  font-weight: 900;
-  line-height: 0.86;
-  letter-spacing: 0;
-  color: var(--ink);
-}
-
-.video-author-section .video-author-heading-lead {
-  display: block;
-  text-transform: uppercase;
-}
-
-.video-author-section .video-author-heading .hand-highlight {
-  margin-top: 12px;
-}
-
-.video-author-section .video-author-bio {
-  width: min(1200px, 100%);
-  max-width: 1200px;
-  margin-top: 10px;
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-  box-sizing: border-box;
-}
-
-.video-author-section .hero-quote {
-  max-width: 100%;
-  margin: 28px auto 0;
-  font-size: 22px;
-}
-
-.video-author-section .lede {
-  max-width: 100%;
-}
-
-.video-author-section .author-avatar {
-  display: block;
-  width: 120px;
-  height: 120px;
-  margin: 24px auto 0;
-  object-fit: cover;
-}
-
-.video-author-section .hero-signature {
-  margin: 0 auto;
-  display: block;
-}
-
-.video-author-section .author-avatar + .hero-signature {
-  margin-top: 16px;
 }
 
 .video-section .section-title {
@@ -1265,10 +1235,6 @@ main > .promise {
   z-index: 3;
   max-width: 1040px;
   margin: 0 auto;
-}
-
-.promise-title .hand-highlight {
-  margin-top: 12px;
 }
 
 .promise .eyebrow {

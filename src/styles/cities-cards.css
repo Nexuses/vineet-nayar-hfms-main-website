@@ -1,0 +1,138 @@
+.cities-section {
+  position: relative;
+  z-index: 10;
+  background: #fff;
+}
+
+.cities-head {
+  text-align: center;
+  margin-bottom: clamp(48px, 6vw, 80px);
+}
+
+.city-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.city-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--soft);
+  cursor: pointer;
+}
+
+.city-card-img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #111;
+}
+
+.city-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms ease;
+}
+
+.city-card:hover .city-card-img img {
+  transform: scale(1.05);
+}
+
+.city-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px 22px 20px;
+  flex: 1;
+}
+
+.city-card-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.city-card-name {
+  margin: 0;
+  font-size: clamp(20px, 2.8vw, 32px);
+  font-weight: 900;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.city-card-date {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: rgba(36, 36, 36, 0.48);
+  line-height: 1.35;
+}
+
+.city-card-theme {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: clamp(14px, 1.1vw, 16px);
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.city-card-footer {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.city-card-register {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 20px;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--font);
+  transition: transform 220ms ease, background 220ms ease, color 220ms ease;
+}
+
+.city-card-register:hover {
+  background: #000;
+  color: var(--yellow);
+  transform: translateY(-2px);
+}
+
+.city-card-spots {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(36, 36, 36, 0.38);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1050px) {
+  .city-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .city-cards {
+    grid-template-columns: 1fr;
+  }
+}

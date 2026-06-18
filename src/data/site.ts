@@ -12,6 +12,7 @@ export const SITE = {
 } as const
 
 export const FEATURES = {
+  manifesto: false,
   movement: false,
   truth: false,
   conversation: false,
@@ -29,11 +30,15 @@ export type NavLinkItem = {
   isRoute?: boolean
 }
 
+const MANIFESTO_NAV: NavLinkItem[] = FEATURES.manifesto
+  ? [{ href: '#manifesto', label: 'Manifesto', sectionId: 'manifesto', side: 'left' }]
+  : []
+
 export const NAV_LINKS: NavLinkItem[] = [
-  { href: '#manifesto', label: 'Manifesto', sectionId: 'manifesto', side: 'left' },
+  ...MANIFESTO_NAV,
   { href: '/book', label: 'The book', isRoute: true, side: 'left' },
-  { href: '#cities', label: 'Cities', sectionId: 'cities', side: 'left' },
-  { href: '#videos', label: 'Watch', sectionId: 'videos', side: 'right' },
+  { href: '#cities-cards', label: 'Cities', sectionId: 'cities-cards', side: 'left' },
+  { href: '#mosaic', label: 'Watch', sectionId: 'mosaic', side: 'right' },
   { href: '#wall', label: 'The Wall', sectionId: 'wall', side: 'right' },
 ]
 
@@ -52,11 +57,11 @@ export const FOOTER_LINKS = {
 
 export const JOIN_CITY_OPTIONS = [
   'Delhi · 25 Jul',
-  'Mumbai · 1 Aug',
-  'Bengaluru · 8 Aug',
-  'Hyderabad · 15 Aug',
-  'Chennai · 22 Aug',
-  'Jaipur / Ahmedabad · 29 Aug',
+  'Mumbai · 8 Aug',
+  'Bengaluru · 22 Aug',
+  'Hyderabad · 5 Sept',
+  'Chennai · 19 Sept',
+  'Kolkata · 3 Oct',
 ] as const
 
 export const ASSETS = {

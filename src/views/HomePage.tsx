@@ -1,9 +1,11 @@
 import { BookAnimation } from '@/components/sections/BookAnimation'
 import { Cities } from '@/components/sections/Cities'
+import { CityEvents } from '@/components/sections/CityEvents'
 import { Hero } from '@/components/sections/Hero'
 import { Manifesto } from '@/components/sections/Manifesto'
+import { Mosaic } from '@/components/sections/Mosaic'
 import { Promise } from '@/components/sections/Promise'
-import { Videos } from '@/components/sections/Videos'
+import { AuthorHero } from '@/components/sections/AuthorHero'
 import { WallWidget } from '@/components/sections/WallWidget'
 import { Conversation } from '@/components/sections/dormant/Conversation'
 import { Experience } from '@/components/sections/dormant/Experience'
@@ -22,13 +24,15 @@ export function HomePage() {
       {FEATURES.movement && <Movement />}
       {FEATURES.truth && <Truth />}
       {FEATURES.conversation && <Conversation />}
-      <Manifesto />
+      {FEATURES.manifesto ? <Manifesto /> : null}
       {FEATURES.sparks && <Sparks />}
       {FEATURES.experience && <Experience />}
       <Cities />
-      <Videos />
-      {FEATURES.wallIframe && <WallIframe />}
+      <CityEvents />
       <WallWidget />
+      <AuthorHero />
+      <Mosaic />
+      {FEATURES.wallIframe && <WallIframe />}
       {FEATURES.faq && <Faq />}
       <Promise />
     </main>

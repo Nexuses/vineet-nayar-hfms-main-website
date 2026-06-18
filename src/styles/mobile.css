@@ -277,18 +277,15 @@
     display: none;
   }
 
-  .video-author-section,
   .video-section {
     padding-inline: var(--gutter);
   }
 
-  .video-author-section > .wrap,
   .video-section > .wrap {
     width: 100%;
     max-width: none;
   }
 
-  .video-author-section > .wrap.center,
   .video-section > .wrap.center {
     width: 100%;
     margin-inline: 0;
@@ -324,14 +321,23 @@
   main .display.section-title,
   main .manifesto-title,
   main .manifesto h2,
-  main .promise-title,
-  main .promise h2,
   main .wall-head h2,
-  main .hf-wall-q,
   main .faq-title,
   main .experience-title {
     font-size: var(--mobile-h2);
     line-height: 0.92;
+  }
+
+  /* Section display headings — match #cities-events .ev-head */
+  main .ev-head h2,
+  main .cities-head h2,
+  main .mosaic-heading h2,
+  main .promise-title,
+  main .promise h2,
+  main .hf-wall-q {
+    font-size: var(--section-display-size);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
   }
 
   main .section-subtitle {
@@ -361,15 +367,19 @@
   }
 
   main .manifesto-title .hand-highlight,
-  main .promise-title .hand-highlight,
   main .experience-title .hand-highlight,
   main .faq-title .hand-highlight,
   main .wall-head h2 .hand-highlight {
     margin-top: 12px;
   }
 
+  main .ev-head h2 .hand-highlight,
+  main .cities-head .hand-highlight,
+  main .mosaic-heading h2 .hand-highlight,
+  main .promise-title .hand-highlight,
   main .hf-wall-q .hand-highlight {
-    margin-top: 12px;
+    font-size: var(--section-display-highlight-size);
+    margin-top: 10px;
     margin-inline: auto;
   }
 
