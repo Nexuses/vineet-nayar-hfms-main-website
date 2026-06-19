@@ -2,7 +2,7 @@
   position: relative;
   z-index: 10;
   background: var(--ink);
-  padding: clamp(72px, 9vw, 130px) 0 clamp(36px, 4vw, 64px);
+  padding: clamp(40px, 5vw, 64px) 0 clamp(36px, 4vw, 64px);
   scroll-margin-top: calc(var(--header) + 28px);
   overflow-anchor: none;
 }

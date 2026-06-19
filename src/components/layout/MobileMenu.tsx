@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { NAV_LINKS } from '@/data/site'
+import { NAV_EXPLORE_ITEMS, NAV_LINKS } from '@/data/site'
 import { resolveNavHref } from '@/utils/nav'
 
 interface MobileMenuProps {
@@ -28,12 +28,26 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
               key={link.href}
               href={resolveNavHref(link, router.pathname)}
               data-mobile-link
+              data-section-link={link.sectionId}
               onClick={onClose}
             >
               {link.label}
             </a>
           ),
         )}
+        <p className="mobile-menu-group-label">Explore</p>
+        {NAV_EXPLORE_ITEMS.map((item) => (
+          <a
+            key={item.sectionId}
+            className="mobile-menu-sublink"
+            href={resolveNavHref(item, router.pathname)}
+            data-mobile-link
+            data-section-link={item.sectionId}
+            onClick={onClose}
+          >
+            {item.label}
+          </a>
+        ))}
         <a
           className="btn"
           href={citiesHref}

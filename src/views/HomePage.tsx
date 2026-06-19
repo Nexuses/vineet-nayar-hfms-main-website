@@ -29,11 +29,11 @@ export function HomePage() {
       {FEATURES.experience && <Experience />}
       <Cities />
       <CityEvents />
-      <WallWidget />
       <AuthorHero />
       <Mosaic />
       {FEATURES.wallIframe && <WallIframe />}
       {FEATURES.faq && <Faq />}
+      <WallWidget />
       <Promise />
     </main>
   )

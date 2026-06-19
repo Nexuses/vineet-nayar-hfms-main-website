@@ -25,6 +25,11 @@ export function useNavSpy(enabled = true) {
           (link as HTMLElement).dataset.sectionLink === activeId,
         ),
       )
+
+      const exploreSections = new Set(['mosaic', 'cities-events'])
+      document.querySelectorAll('[data-nav-explore]').forEach((trigger) => {
+        trigger.classList.toggle('active', exploreSections.has(activeId ?? ''))
+      })
     }
 
     window.addEventListener('scroll', setActiveNav, { passive: true })

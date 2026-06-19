@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ASSETS, NAV_LINKS } from '@/data/site'
 import { isNavLinkActive, resolveNavHref } from '@/utils/nav'
+import { NavExploreDropdown } from './NavExploreDropdown'
 
 interface HeaderProps {
   onToggleMenu: () => void
@@ -44,7 +45,10 @@ export function Header({ onToggleMenu, menuOpen }: HeaderProps) {
     <header className="topbar">
       <nav className="nav" aria-label="Primary navigation" data-nav>
         <span className="nav-orb" aria-hidden="true" />
-        <div className="nav-group nav-left">{leftLinks.map(renderNavLink)}</div>
+        <div className="nav-group nav-left">
+          {leftLinks.map(renderNavLink)}
+          <NavExploreDropdown />
+        </div>
 
         <Link href="/" className="brand" aria-label="The Humans First Series home">
           <img className="brand-logo" src={ASSETS.logo} alt="Humans First Series" />

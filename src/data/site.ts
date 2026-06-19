@@ -30,15 +30,25 @@ export type NavLinkItem = {
   isRoute?: boolean
 }
 
+export type NavDropdownItem = {
+  href: string
+  label: string
+  sectionId: string
+}
+
+export const NAV_EXPLORE_ITEMS: NavDropdownItem[] = [
+  { href: '#mosaic', label: 'Vineet Nayar in Action', sectionId: 'mosaic' },
+  { href: '#cities-events', label: 'The world tour', sectionId: 'cities-events' },
+]
+
 const MANIFESTO_NAV: NavLinkItem[] = FEATURES.manifesto
   ? [{ href: '#manifesto', label: 'Manifesto', sectionId: 'manifesto', side: 'left' }]
   : []
 
 export const NAV_LINKS: NavLinkItem[] = [
   ...MANIFESTO_NAV,
-  { href: '/book', label: 'The book', isRoute: true, side: 'left' },
-  { href: '#cities-cards', label: 'Cities', sectionId: 'cities-cards', side: 'left' },
-  { href: '#mosaic', label: 'Watch', sectionId: 'mosaic', side: 'right' },
+  { href: '#cities-cards', label: 'Join Us', sectionId: 'cities-cards', side: 'left' },
+  { href: '/book', label: 'More Books', isRoute: true, side: 'left' },
   { href: '#wall', label: 'The Wall', sectionId: 'wall', side: 'right' },
 ]
 
@@ -46,10 +56,9 @@ export type FooterNavLink = Pick<NavLinkItem, 'href' | 'label' | 'sectionId' | '
 
 export const FOOTER_LINKS = {
   explore: [
-    { href: '/book', label: 'The book', isRoute: true },
-    { href: '#cities-cards', label: 'Cities', sectionId: 'cities-cards' },
-    { href: '#mosaic', label: 'Watch', sectionId: 'mosaic' },
-    { href: '#wall', label: 'The Wall', sectionId: 'wall' },
+    ...NAV_LINKS.filter((link) => link.side === 'left'),
+    ...NAV_EXPLORE_ITEMS,
+    ...NAV_LINKS.filter((link) => link.side === 'right'),
   ] satisfies FooterNavLink[],
   social: [
     { href: 'https://www.linkedin.com/', label: 'LinkedIn' },
