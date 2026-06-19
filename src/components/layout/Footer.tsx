@@ -1,10 +1,12 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ASSETS, FOOTER_LINKS, SITE } from '../../data/site'
+import { useModal } from '../../context/ModalContext'
 import { resolveNavHref } from '../../utils/nav'
 
 export function Footer() {
   const router = useRouter()
+  const { openJoin } = useModal()
 
   return (
     <footer className="footer">
@@ -34,6 +36,9 @@ export function Footer() {
                 </a>
               ),
             )}
+            <button className="footer-link-btn" type="button" onClick={openJoin}>
+              Contact Us
+            </button>
           </div>
           <div>
             <h4>Follow us</h4>

@@ -43,7 +43,6 @@
   gap: 10px;
   align-items: stretch;
   height: clamp(380px, 48vw, 480px);
-  contain: layout style;
   touch-action: pan-y;
 }
 
@@ -53,8 +52,9 @@
   overflow: hidden;
   position: relative;
   cursor: pointer;
-  transition: flex 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: flex 0.32s cubic-bezier(0.25, 0.9, 0.35, 1);
   min-width: 0;
+  isolation: isolate;
 }
 
 .ev-card.active {
@@ -66,7 +66,7 @@
   inset: 0;
   background-size: cover;
   background-position: center;
-  transition: transform 0.6s ease;
+  transition: transform 0.34s cubic-bezier(0.25, 0.9, 0.35, 1);
 }
 
 .ev-card.active .ev-bg {
@@ -77,7 +77,7 @@
   position: absolute;
   inset: 0;
   opacity: 0.72;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.22s ease;
 }
 
 .ev-card.active .ev-color-layer {
@@ -105,12 +105,15 @@
   align-items: center;
   justify-content: center;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.16s ease, visibility 0s linear 0s;
 }
 
 .ev-card.active .ev-city-label-wrap {
   opacity: 0;
-  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.14s ease, visibility 0s linear 0.14s;
 }
 
 .ev-city-label {
@@ -135,15 +138,16 @@
   justify-content: flex-end;
   padding: clamp(22px, 3vw, 32px);
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s;
+  visibility: hidden;
   pointer-events: none;
+  transition: opacity 0.18s ease, visibility 0s linear 0.18s;
 }
 
 .ev-card.active .ev-overlay {
   opacity: 1;
-  transform: translateY(0);
+  visibility: visible;
   pointer-events: auto;
+  transition: opacity 0.22s ease 0.14s, visibility 0s linear 0.14s;
 }
 
 .ev-badge {
@@ -245,7 +249,7 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.25);
   cursor: pointer;
-  transition: background 0.3s ease, width 0.3s ease;
+  transition: background 0.18s ease, width 0.18s ease;
   border: none;
   padding: 0;
 }
@@ -266,12 +270,21 @@
   .ev-grid {
     flex-direction: column;
     height: auto;
-    gap: 10px;
+    gap: 8px;
   }
 
   .ev-card {
     flex: none !important;
-    height: 260px;
+    height: 72px;
+    min-height: 72px;
+    transition:
+      height 0.32s cubic-bezier(0.25, 0.9, 0.35, 1),
+      flex 0.32s cubic-bezier(0.25, 0.9, 0.35, 1);
+  }
+
+  .ev-card.active {
+    height: clamp(340px, 72vw, 420px);
+    min-height: clamp(340px, 72vw, 420px);
   }
 
   .ev-city-label-wrap {
@@ -281,6 +294,11 @@
 
   .ev-city-label {
     writing-mode: horizontal-tb;
-    font-size: clamp(24px, 6vw, 30px);
+    font-size: clamp(20px, 5.5vw, 26px);
+    letter-spacing: 0.06em;
+  }
+
+  .ev-overlay {
+    justify-content: flex-end;
   }
 }

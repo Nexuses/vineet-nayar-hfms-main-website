@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ASSETS, NAV_LINKS } from '@/data/site'
-import { useModal } from '@/context/ModalContext'
 import { isNavLinkActive, resolveNavHref } from '@/utils/nav'
 
 interface HeaderProps {
@@ -10,10 +9,13 @@ interface HeaderProps {
 }
 
 export function Header({ onToggleMenu, menuOpen }: HeaderProps) {
-  const { openJoin } = useModal()
   const router = useRouter()
   const leftLinks = NAV_LINKS.filter((l) => l.side === 'left')
   const rightLinks = NAV_LINKS.filter((l) => l.side === 'right')
+  const citiesHref = resolveNavHref(
+    { href: '#cities-cards', sectionId: 'cities-cards' },
+    router.pathname,
+  )
 
   const renderNavLink = (link: (typeof NAV_LINKS)[number]) => {
     const active = isNavLinkActive(link, router.pathname)
@@ -50,9 +52,13 @@ export function Header({ onToggleMenu, menuOpen }: HeaderProps) {
 
         <div className="nav-group nav-right">
           {rightLinks.map(renderNavLink)}
-          <button className="nav-cta magnetic" type="button" onClick={openJoin}>
+          <a
+            className="nav-cta magnetic"
+            href={citiesHref}
+            data-section-link="cities-cards"
+          >
             Join the movement
-          </button>
+          </a>
         </div>
 
         <button

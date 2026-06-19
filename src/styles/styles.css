@@ -297,16 +297,35 @@ mark.hand-highlight {
   transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease, color 220ms ease;
 }
 
-.nav button.nav-cta {
+.nav button.nav-cta,
+.nav a.nav-cta {
   background: #000;
+  color: #fff;
+  text-decoration: none;
+  padding: 0 26px;
+  min-height: 46px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  font-family: var(--font);
+}
+
+.nav a.nav-cta.active {
   color: #fff;
 }
 
 .nav button.nav-cta:hover,
-.nav button.nav-cta:focus-visible {
+.nav button.nav-cta:focus-visible,
+.nav a.nav-cta:hover,
+.nav a.nav-cta:focus-visible {
   transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
   background: #000;
+  color: var(--yellow);
+}
+
+.nav a.nav-cta.active:hover,
+.nav a.nav-cta.active:focus-visible {
   color: var(--yellow);
 }
 

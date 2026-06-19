@@ -23,6 +23,9 @@ export function Cities() {
             >
               <div className="city-card-img">
                 <img src={city.cardImage} alt={city.city} loading="lazy" />
+                <div className="city-card-countdown-overlay">
+                  <CityCardCountdown isoDate={city.isoDate} />
+                </div>
               </div>
               <div className="city-card-body">
                 <div className="city-card-meta">
@@ -44,7 +47,6 @@ export function Cities() {
                     </a>
                     <span className="city-card-spots">Limited seats</span>
                   </div>
-                  <CityCardCountdown isoDate={city.isoDate} />
                 </div>
               </div>
             </article>

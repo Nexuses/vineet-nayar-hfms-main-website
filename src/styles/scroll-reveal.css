@@ -9,7 +9,7 @@ main > .post-scroll-reveal .reveal {
 }
 
 #cities-events.post-scroll-reveal {
-  --reveal-section-offset: 100ms;
+  --reveal-section-offset: 0ms;
 }
 
 #wall.post-scroll-reveal {
