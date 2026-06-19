@@ -54,12 +54,28 @@ export const NAV_LINKS: NavLinkItem[] = [
 
 export type FooterNavLink = Pick<NavLinkItem, 'href' | 'label' | 'sectionId' | 'isRoute'>
 
+export const FOOTER_QUICK_LINKS: FooterNavLink[] = [
+  ...NAV_LINKS.filter((link) => link.side === 'left').map(({ href, label, sectionId, isRoute }) => ({
+    href,
+    label,
+    sectionId,
+    isRoute,
+  })),
+  ...NAV_EXPLORE_ITEMS.map(({ href, label, sectionId }) => ({
+    href,
+    label,
+    sectionId,
+  })),
+  ...NAV_LINKS.filter((link) => link.side === 'right').map(({ href, label, sectionId, isRoute }) => ({
+    href,
+    label,
+    sectionId,
+    isRoute,
+  })),
+]
+
 export const FOOTER_LINKS = {
-  explore: [
-    ...NAV_LINKS.filter((link) => link.side === 'left'),
-    ...NAV_EXPLORE_ITEMS,
-    ...NAV_LINKS.filter((link) => link.side === 'right'),
-  ] satisfies FooterNavLink[],
+  explore: FOOTER_QUICK_LINKS,
   social: [
     { href: 'https://www.linkedin.com/', label: 'LinkedIn' },
     { href: 'https://www.instagram.com/', label: 'Instagram' },
