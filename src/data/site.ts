@@ -20,6 +20,7 @@ export const FEATURES = {
   experience: false,
   faq: false,
   wallIframe: false,
+  bookPage: false,
 } as const
 
 export type NavLinkItem = {
@@ -45,10 +46,14 @@ const MANIFESTO_NAV: NavLinkItem[] = FEATURES.manifesto
   ? [{ href: '#manifesto', label: 'Manifesto', sectionId: 'manifesto', side: 'left' }]
   : []
 
+const BOOK_NAV: NavLinkItem[] = FEATURES.bookPage
+  ? [{ href: '/book', label: 'More Books', isRoute: true, side: 'left' }]
+  : []
+
 export const NAV_LINKS: NavLinkItem[] = [
   ...MANIFESTO_NAV,
   { href: '#cities-cards', label: 'Join Us', sectionId: 'cities-cards', side: 'left' },
-  { href: '/book', label: 'More Books', isRoute: true, side: 'left' },
+  ...BOOK_NAV,
   { href: '#wall', label: 'The Wall', sectionId: 'wall', side: 'right' },
 ]
 
