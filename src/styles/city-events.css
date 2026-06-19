@@ -76,12 +76,25 @@
 .ev-color-layer {
   position: absolute;
   inset: 0;
-  opacity: 0.42;
+  opacity: 0.72;
   transition: opacity 0.4s ease;
 }
 
 .ev-card.active .ev-color-layer {
-  opacity: 0.6;
+  opacity: 0.82;
+}
+
+.ev-card.is-coming-soon .ev-color-layer {
+  opacity: 0.78;
+}
+
+.ev-card.is-coming-soon.active .ev-color-layer {
+  opacity: 0.86;
+}
+
+.ev-badge.is-muted {
+  background: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .ev-city-label-wrap {

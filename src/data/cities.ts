@@ -66,7 +66,7 @@ export const CITIES: City[] = [
     isoDate: '2026-10-03',
     dateDisplay: '3rd Oct 2026',
     theme: 'What Part of Being Human Will You Never Give Up?',
-    cardImage: unsplash('1603262110263-fb0112e7cc33'),
+    cardImage: unsplash('1677307816181-1446ab18913e'),
     registerUrl: 'https://vineetnayar-events.vercel.app/events/evt_1781772877547_zjbwzho',
   },
 ]

@@ -17,7 +17,7 @@ export function Cities() {
           {CITIES.map((city, index) => (
             <article
               key={city.city}
-              className={`city-card tilt-card reveal ${index % 2 === 0 ? 'reveal-from-left' : 'reveal-from-bottom'}`}
+              className="city-card tilt-card reveal reveal-from-bottom"
               data-city={city.city}
               style={revealStagger(index, 110, 200)}
             >

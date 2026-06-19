@@ -62,7 +62,7 @@ export function CityEvents() {
           {CITY_EVENTS.map((event, index) => (
             <div
               key={event.id}
-              className={`ev-card reveal reveal-from-left${index === activeIndex ? ' active' : ''}`}
+              className={`ev-card reveal reveal-from-left${index === activeIndex ? ' active' : ''}${event.isOpen ? '' : ' is-coming-soon'}`}
               data-idx={index}
               role="button"
               tabIndex={0}
@@ -78,7 +78,7 @@ export function CityEvents() {
                 <span className="ev-city-label">{event.label}</span>
               </div>
               <div className="ev-overlay">
-                <span className="ev-badge">{event.badge}</span>
+                <span className={`ev-badge${event.isOpen ? '' : ' is-muted'}`}>{event.badge}</span>
                 <div className="ev-overlay-city">{event.overlayCity}</div>
                 <div className="ev-overlay-meta">
                   <span className="ev-meta-item">
@@ -95,17 +95,19 @@ export function CityEvents() {
                   </span>
                 </div>
                 <p className="ev-overlay-desc">{event.description}</p>
-                <button
-                  className="ev-register-btn"
-                  type="button"
-                  data-city-select={event.registerCity}
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    openJoin()
-                  }}
-                >
-                  Register Now &rarr;
-                </button>
+                {event.isOpen ? (
+                  <button
+                    className="ev-register-btn"
+                    type="button"
+                    data-city-select={event.registerCity}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      openJoin()
+                    }}
+                  >
+                    Register Now &rarr;
+                  </button>
+                ) : null}
               </div>
             </div>
           ))}

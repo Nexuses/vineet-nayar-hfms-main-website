@@ -12,7 +12,19 @@ export interface CityEvent {
   description: string
   registerCity: string
   dotLabel: string
+  isOpen: boolean
 }
+
+const EVENT_OVERLAY =
+  'linear-gradient(160deg, rgba(17,17,17,0.55) 0%, rgba(17,17,17,0.92) 100%)'
+
+const COMING_SOON = {
+  badge: 'Coming Soon',
+  date: 'TBA',
+  time: 'TBA',
+  entry: 'TBA',
+  description: 'Details TBA',
+} as const
 
 export const CITY_EVENTS_HEADING = {
   titleLead: 'The World Tour',
@@ -29,7 +41,7 @@ export const CITY_EVENTS: CityEvent[] = [
     // Demo image (Unsplash) — replace when final asset is ready:
     // https://images.unsplash.com/photo-1515091943-9d5c0ad475af?w=900&q=80&auto=format&fit=crop
     image: 'https://images.unsplash.com/photo-1515091943-9d5c0ad475af?w=900&q=80&auto=format&fit=crop',
-    colorLayer: 'linear-gradient(160deg, rgba(17,17,17,0.3) 0%, rgba(17,17,17,0.88) 100%)',
+    colorLayer: EVENT_OVERLAY,
     badge: 'Now Open',
     overlayCity: 'India',
     date: '25 July 2026',
@@ -39,77 +51,78 @@ export const CITY_EVENTS: CityEvent[] = [
       'Will average people still matter? Join the conversation at the heart of the tour — a night of reflection, courage, and human possibility.',
     registerCity: 'India',
     dotLabel: 'India',
+    isOpen: true,
   },
   {
     id: 'new-york',
     label: 'New York',
-    ariaLabel: 'New York — 1 August 2026',
+    ariaLabel: 'New York — Coming soon',
     // Demo image (Unsplash) — replace when final asset is ready:
     // https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=900&q=80&auto=format&fit=crop
     image: 'https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=900&q=80&auto=format&fit=crop',
-    colorLayer: 'linear-gradient(160deg, rgba(17,17,17,0.28) 0%, rgba(17,17,17,0.86) 100%)',
-    badge: 'Selling Fast',
+    colorLayer: EVENT_OVERLAY,
+    badge: COMING_SOON.badge,
     overlayCity: 'New York',
-    date: '1 August 2026',
-    time: '7:00 PM onwards',
-    entry: 'Free entry',
-    description:
-      'The Human Advantage. The city that never sleeps hosts one evening where being human is the competitive edge that cannot be automated away.',
+    date: COMING_SOON.date,
+    time: COMING_SOON.time,
+    entry: COMING_SOON.entry,
+    description: COMING_SOON.description,
     registerCity: 'New York',
     dotLabel: 'New York',
+    isOpen: false,
   },
   {
     id: 'paris',
     label: 'Paris',
-    ariaLabel: 'Paris — 8 August 2026',
+    ariaLabel: 'Paris — Coming soon',
     // Demo image (Unsplash) — replace when final asset is ready:
     // https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=900&q=80&auto=format&fit=crop
     image: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=900&q=80&auto=format&fit=crop',
-    colorLayer: 'linear-gradient(160deg, rgba(17,17,17,0.28) 0%, rgba(17,17,17,0.86) 100%)',
-    badge: 'Tech Hub',
+    colorLayer: EVENT_OVERLAY,
+    badge: COMING_SOON.badge,
     overlayCity: 'Paris',
-    date: '8 August 2026',
-    time: '6:30 PM onwards',
-    entry: 'Free entry',
-    description:
-      'What AI Cannot Replace. Where art meets innovation — Paris asks what stays irreplaceable when machines get brilliant.',
+    date: COMING_SOON.date,
+    time: COMING_SOON.time,
+    entry: COMING_SOON.entry,
+    description: COMING_SOON.description,
     registerCity: 'Paris',
     dotLabel: 'Paris',
+    isOpen: false,
   },
   {
     id: 'london',
     label: 'London',
-    ariaLabel: 'London — 15 August 2026',
+    ariaLabel: 'London — Coming soon',
     // Demo image (Unsplash) — replace when final asset is ready:
     // https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=900&q=80&auto=format&fit=crop
     image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=900&q=80&auto=format&fit=crop',
-    colorLayer: 'linear-gradient(160deg, rgba(17,17,17,0.28) 0%, rgba(17,17,17,0.86) 100%)',
-    badge: 'Independence Day',
+    colorLayer: EVENT_OVERLAY,
+    badge: COMING_SOON.badge,
     overlayCity: 'London',
-    date: '15 August 2026',
-    time: '6:00 PM onwards',
-    entry: 'Free entry',
-    description:
-      'Why Human Potential Still Wins. London celebrates the original intelligence — the kind that cannot be downloaded.',
+    date: COMING_SOON.date,
+    time: COMING_SOON.time,
+    entry: COMING_SOON.entry,
+    description: COMING_SOON.description,
     registerCity: 'London',
     dotLabel: 'London',
+    isOpen: false,
   },
   {
     id: 'singapore',
     label: 'Singapore',
-    ariaLabel: 'Singapore — 22 August 2026',
+    ariaLabel: 'Singapore — Coming soon',
     // Demo image (Unsplash) — replace when final asset is ready:
     // https://images.unsplash.com/photo-1548919973-5cef591cdbc9?w=900&q=80&auto=format&fit=crop
     image: 'https://images.unsplash.com/photo-1548919973-5cef591cdbc9?w=900&q=80&auto=format&fit=crop',
-    colorLayer: 'linear-gradient(160deg, rgba(17,17,17,0.28) 0%, rgba(17,17,17,0.86) 100%)',
-    badge: 'Limited Seats',
+    colorLayer: EVENT_OVERLAY,
+    badge: COMING_SOON.badge,
     overlayCity: 'Singapore',
-    date: '22 August 2026',
-    time: '6:30 PM onwards',
-    entry: 'Free entry',
-    description:
-      'Stay Curious. Stay Inspired. Singapore asks: what happens when curiosity is the last thing left that machines cannot fake?',
+    date: COMING_SOON.date,
+    time: COMING_SOON.time,
+    entry: COMING_SOON.entry,
+    description: COMING_SOON.description,
     registerCity: 'Singapore',
     dotLabel: 'Singapore',
+    isOpen: false,
   },
 ]
