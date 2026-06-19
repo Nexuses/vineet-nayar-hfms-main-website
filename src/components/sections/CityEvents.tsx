@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { CITY_EVENTS, CITY_EVENTS_HEADING } from '../../data/cityEvents'
 import { useModal } from '../../context/ModalContext'
-import { revealDelay, revealStagger } from '../../utils/reveal'
+import { revealDelay } from '../../utils/reveal'
 
 const SCROLL_IDLE_MS = 150
 
@@ -53,21 +53,20 @@ export function CityEvents() {
             {CITY_EVENTS_HEADING.titleLead}
             <span className="hand-highlight">{CITY_EVENTS_HEADING.titleHighlight}</span>
           </h2>
-          <p className="lede ev-head-lede reveal reveal-from-bottom" style={revealDelay(160)}>
+          <p className="lede ev-head-lede reveal reveal-from-bottom" style={revealDelay(80)}>
             {CITY_EVENTS_HEADING.lede}
           </p>
         </div>
 
-        <div className="ev-grid" id="evGrid">
+        <div className="ev-grid reveal reveal-from-bottom" id="evGrid" style={revealDelay(60)}>
           {CITY_EVENTS.map((event, index) => (
             <div
               key={event.id}
-              className={`ev-card reveal reveal-from-left${index === activeIndex ? ' active' : ''}${event.isOpen ? '' : ' is-coming-soon'}`}
+              className={`ev-card${index === activeIndex ? ' active' : ''}${event.isOpen ? '' : ' is-coming-soon'}`}
               data-idx={index}
               role="button"
               tabIndex={0}
               aria-label={event.ariaLabel}
-              style={revealStagger(index, 90, 220)}
               onMouseEnter={() => handleMouseEnter(index)}
               onClick={() => activate(index)}
               onKeyDown={(e) => handleCardKeyDown(index, e)}
@@ -113,7 +112,7 @@ export function CityEvents() {
           ))}
         </div>
 
-        <div className="ev-dots reveal reveal-from-bottom" id="evDots" style={revealDelay(680)}>
+        <div className="ev-dots reveal reveal-from-bottom" id="evDots" style={revealDelay(120)}>
           {CITY_EVENTS.map((event, index) => (
             <button
               key={event.id}

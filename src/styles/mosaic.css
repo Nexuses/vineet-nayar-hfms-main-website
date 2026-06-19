@@ -168,6 +168,15 @@
 
 @media (max-width: 720px) {
   .mosaic-grid {
-    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .mosaic-col:nth-child(n + 4) {
+    display: flex;
+  }
+
+  .mosaic-col:nth-child(even) {
+    margin-top: clamp(16px, 4vw, 28px);
   }
 }

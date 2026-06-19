@@ -368,13 +368,20 @@ export function useBookAnimation(
       copyEl.style.maxWidth = `${clamped + padLeft + padRight}px`
     }
 
+    const INTRO_SCALE_END = 0.14
+    const INTRO_HOLD_END = 0.3
+    const INTRO_DRIFT_END = 0.44
+    const COVER_OPEN_START = 0.28
+    const COVER_OPEN_END = 0.4
+    const BOOK_READ_START = 0.42
+
     function progressForStep(step: number) {
       if (step <= 0) return 0
-      if (step === 1) return 0.22
+      if (step === 1) return BOOK_READ_START + 0.04
 
       const pageIdx = Math.min(step - 1, spreadCount - 1)
-      const readP = (pageIdx + 0.06) / spreadCount
-      return 0.16 + 0.84 * readP
+      const pageSpan = (pageIdx + 0.06) / spreadCount
+      return BOOK_READ_START + (1 - BOOK_READ_START) * pageSpan
     }
 
     function getStepForProgress(p: number) {
@@ -454,15 +461,16 @@ export function useBookAnimation(
 
       bookScene!.style.opacity = ''
 
-      if (p > 0.06 && blocksOpen) {
+      if (p > COVER_OPEN_START && blocksOpen) {
         blocksOpen = false
         blocksWrap!.classList.remove('open')
         setCtaLabel('What it is')
       }
 
-      const introT = easeInOut(clamp(p / 0.18))
-      const xPct = mobileMode ? 0 : lerp(0, 26, introT)
-      const scale = lerp(mobileMode ? 0.88 : 0.78, 1, introT)
+      const scaleT = easeInOut(clamp(p / INTRO_SCALE_END))
+      const driftT = easeInOut(clamp((p - INTRO_HOLD_END) / (INTRO_DRIFT_END - INTRO_HOLD_END)))
+      const xPct = mobileMode ? 0 : lerp(0, 26, driftT)
+      const scale = lerp(mobileMode ? 0.88 : 0.78, 1, scaleT)
       const circleScale = scale
 
       circle!.style.position = ''
@@ -504,10 +512,10 @@ export function useBookAnimation(
 
       showFlipbook()
 
-      const openF = easeInOut(clamp((p - 0.06) / 0.14))
+      const openF = easeInOut(clamp((p - COVER_OPEN_START) / (COVER_OPEN_END - COVER_OPEN_START)))
       const coverOpen = openF > 0.02
 
-      const readP = clamp((p - 0.16) / (1 - 0.16))
+      const readP = clamp((p - BOOK_READ_START) / (1 - BOOK_READ_START))
       const spreadIdx = getSpreadIdx(coverOpen, readP, mobileMode)
 
       panels.forEach((pl, i) => pl.classList.toggle('active', coverOpen && i === spreadIdx))

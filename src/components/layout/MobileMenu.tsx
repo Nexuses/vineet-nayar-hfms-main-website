@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NAV_LINKS } from '@/data/site'
-import { useModal } from '@/context/ModalContext'
 import { resolveNavHref } from '@/utils/nav'
 
 interface MobileMenuProps {
@@ -10,13 +9,11 @@ interface MobileMenuProps {
 }
 
 export function MobileMenu({ open, onClose }: MobileMenuProps) {
-  const { openJoin } = useModal()
   const router = useRouter()
-
-  const handleJoin = () => {
-    onClose()
-    openJoin()
-  }
+  const citiesHref = resolveNavHref(
+    { href: '#cities-cards', sectionId: 'cities-cards' },
+    router.pathname,
+  )
 
   return (
     <div className={`mobile-menu${open ? ' open' : ''}`} id="mobileMenu" aria-hidden={!open}>
@@ -37,9 +34,15 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             </a>
           ),
         )}
-        <button className="btn" type="button" data-mobile-link onClick={handleJoin}>
+        <a
+          className="btn"
+          href={citiesHref}
+          data-mobile-link
+          data-section-link="cities-cards"
+          onClick={onClose}
+        >
           Join the movement
-        </button>
+        </a>
       </nav>
     </div>
   )

@@ -44,6 +44,17 @@
   transform: scale(1.05);
 }
 
+.city-card-countdown-overlay {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 16px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.55) 28%, rgba(0, 0, 0, 0.88) 100%);
+}
+
 .city-card-body {
   display: flex;
   flex-direction: column;
@@ -90,7 +101,6 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 14px;
   width: 100%;
 }
 
@@ -106,20 +116,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  align-self: center;
   gap: 6px;
   margin: 0;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: rgba(36, 36, 36, 0.55);
+  color: rgba(255, 255, 255, 0.82);
 }
 
-.city-card-countdown.is-expired {
+.city-card-countdown-overlay .city-card-countdown.is-expired {
   font-size: 12px;
   letter-spacing: 0.06em;
-  color: rgba(36, 36, 36, 0.42);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .city-card-countdown--pending {
@@ -134,30 +143,30 @@
   gap: 2px;
 }
 
-.city-card-countdown-unit strong {
-  font-size: 15px;
+.city-card-countdown-overlay .city-card-countdown-unit strong {
+  font-size: 16px;
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.02em;
-  color: var(--ink);
+  color: #fff;
 }
 
-.city-card-countdown-unit small {
+.city-card-countdown-overlay .city-card-countdown-unit small {
   font-size: 9px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(36, 36, 36, 0.42);
+  color: rgba(255, 255, 255, 0.72);
 }
 
-.city-card-countdown-sep {
+.city-card-countdown-overlay .city-card-countdown-sep {
   align-self: flex-start;
   margin-top: 2px;
   font-size: 14px;
   font-weight: 900;
   line-height: 1;
-  color: rgba(36, 36, 36, 0.28);
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .city-card-register {
@@ -205,5 +214,30 @@
 @media (max-width: 720px) {
   .city-cards {
     grid-template-columns: 1fr;
+  }
+
+  .city-card-body {
+    align-items: center;
+    text-align: center;
+  }
+
+  .city-card-meta {
+    align-items: center;
+  }
+
+  .city-card-footer {
+    align-items: center;
+  }
+
+  .city-card-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .city-card-register {
+    flex: none;
+    width: 100%;
+    max-width: 280px;
   }
 }
