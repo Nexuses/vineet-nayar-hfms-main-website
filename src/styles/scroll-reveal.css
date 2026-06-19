@@ -1,0 +1,29 @@
+/* Post-book sections: base offset so content animates in after the section enters view */
+main > section.post-scroll-reveal .reveal,
+main > .post-scroll-reveal .reveal {
+  transition-delay: calc(var(--reveal-section-offset, 0ms) + var(--reveal-delay, 0ms));
+}
+
+#cities-cards.post-scroll-reveal {
+  --reveal-section-offset: 80ms;
+}
+
+#cities-events.post-scroll-reveal {
+  --reveal-section-offset: 100ms;
+}
+
+#wall.post-scroll-reveal {
+  --reveal-section-offset: 120ms;
+}
+
+#author-hero.post-scroll-reveal {
+  --reveal-section-offset: 100ms;
+}
+
+#mosaic.post-scroll-reveal {
+  --reveal-section-offset: 100ms;
+}
+
+.promise.post-scroll-reveal {
+  --reveal-section-offset: 120ms;
+}

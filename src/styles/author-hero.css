@@ -1,0 +1,388 @@
+.ah-hero {
+  position: relative;
+  background: var(--ink);
+  overflow: hidden;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  scroll-margin-top: calc(var(--header) + 28px);
+}
+
+.ah-hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 45%;
+  background: var(--soft);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ah-hero::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -8%;
+  width: 50vw;
+  height: 50vw;
+  max-width: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 234, 48, 0.08) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ah-hero-grid {
+  position: relative;
+  z-index: 2;
+  width: min(var(--max), calc(100% - var(--gutter) * 2));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  padding-top: clamp(80px, 10vw, 130px);
+  gap: 0;
+}
+
+.ah-left {
+  padding: 0 clamp(24px, 3vw, 52px) clamp(52px, 7vw, 90px) 0;
+  color: #fff;
+}
+
+.ah-eyebrow {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+  margin: 0 0 clamp(18px, 2.5vw, 28px);
+}
+
+.ah-headline {
+  font-size: clamp(36px, 5.2vw, 78px);
+  font-weight: 900;
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  margin: 0 0 clamp(18px, 2.5vw, 28px);
+  color: #fff;
+}
+
+.ah-headline .ah-script {
+  display: block;
+  font-family: "Gochi Hand", cursive;
+  font-weight: 400;
+  font-size: clamp(32px, 4.8vw, 72px);
+  text-transform: none;
+  letter-spacing: -0.02em;
+  color: var(--yellow);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.ah-headline .heading-lead {
+  text-transform: none;
+}
+
+.ah-headline .hand-highlight {
+  position: relative;
+  z-index: 2;
+  display: block !important;
+  width: fit-content;
+  margin: 10px 0 0;
+  margin-inline: 0;
+  font-size: clamp(26px, 4vw, 58px);
+  color: #000;
+}
+
+.ah-headline .hand-highlight::before {
+  z-index: -1;
+}
+
+.ah-body {
+  font-size: clamp(14px, 1.1vw, 16px);
+  font-weight: 400;
+  line-height: 1.72;
+  color: rgba(255, 255, 255, 0.54);
+  max-width: 600px;
+  margin: 0 0 clamp(28px, 4vw, 40px);
+}
+
+.ah-body p {
+  margin: 0 0 1em;
+}
+
+.ah-body p:last-child {
+  margin-bottom: 0;
+}
+
+.ah-quote {
+  max-width: 600px;
+  margin: 0 0 clamp(28px, 4vw, 40px);
+  font-size: clamp(16px, 1.35vw, 19px);
+  font-weight: 700;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.ah-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(32px, 5vw, 52px);
+}
+
+.ah-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 52px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 30px;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease,
+    color 220ms ease;
+}
+
+.ah-btn--primary {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+.ah-btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(245, 234, 48, 0.32);
+}
+
+.ah-btn--ghost {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+}
+
+.ah-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.ah-sig {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ah-sig-img {
+  height: 75px;
+  width: auto;
+  filter: invert(1);
+  opacity: 0.7;
+}
+
+.ah-sig-text {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.32);
+  line-height: 1.4;
+}
+
+.ah-right {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 0;
+}
+
+.ah-shape {
+  position: absolute;
+  bottom: 300px;
+  right: clamp(-90px, -7vw, -45px);
+  width: clamp(200px, 26vw, 340px);
+  height: clamp(200px, 26vw, 340px);
+  border-radius: 50%;
+  background: var(--yellow);
+  z-index: 1;
+}
+
+.ah-portrait {
+  position: relative;
+  z-index: 3;
+  width: min(100%, clamp(320px, 44vw, 640px));
+  display: block;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.4));
+  margin: 0 auto;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.ah-avatar-badge {
+  position: absolute;
+  top: clamp(20px, 3vw, 40px);
+  right: clamp(16px, 2vw, 32px);
+  z-index: 4;
+  width: clamp(64px, 8vw, 96px);
+  height: clamp(64px, 8vw, 96px);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--yellow);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.ah-avatar-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.ah-cred-bar {
+  position: relative;
+  z-index: 3;
+  width: min(var(--max), calc(100% - var(--gutter) * 2));
+  margin: 0 auto;
+  background: var(--paper);
+  border-radius: 22px 22px 0 0;
+  padding: clamp(22px, 3vw, 32px) clamp(24px, 4vw, 52px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  box-shadow: 0 -10px 50px rgba(0, 0, 0, 0.14);
+}
+
+.ah-cred-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 0 clamp(12px, 2vw, 24px);
+  border-left: 1px solid var(--line);
+}
+
+.ah-cred-item:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.ah-cred-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: var(--soft);
+  display: grid;
+  place-items: center;
+  margin-top: 2px;
+}
+
+.ah-cred-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--ink);
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ah-cred-num {
+  font-size: clamp(18px, 2.2vw, 28px);
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.ah-cred-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-top: 4px;
+  line-height: 1.35;
+}
+
+.ah-cred-label strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 900;
+  font-size: 13px;
+}
+
+@media (max-width: 1050px) {
+  .ah-hero-grid {
+    grid-template-columns: 1fr;
+    padding-top: clamp(60px, 8vw, 100px);
+  }
+
+  .ah-hero::after {
+    display: none;
+  }
+
+  .ah-left {
+    padding: 0 0 clamp(32px, 5vw, 52px);
+    text-align: center;
+  }
+
+  .ah-body {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ah-quote {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ah-cta-row {
+    justify-content: center;
+  }
+
+  .ah-sig {
+    justify-content: center;
+  }
+
+  .ah-right {
+    padding-top: 0;
+    justify-content: center;
+  }
+
+  .ah-cred-bar {
+    grid-template-columns: repeat(2, 1fr);
+    border-radius: 22px;
+    margin-bottom: 0;
+  }
+
+  .ah-shape {
+    right: auto;
+    left: 50%;
+    bottom: 220px;
+    transform: translateX(clamp(80px, 18vw, 140px));
+  }
+}
+
+@media (max-width: 720px) {
+  .ah-cred-bar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ah-headline {
+    font-size: clamp(30px, 9vw, 52px);
+  }
+
+  .ah-portrait {
+    width: min(100%, 400px);
+  }
+}

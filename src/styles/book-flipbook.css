@@ -1,0 +1,57 @@
+.hf-book-anim .hf-visual {
+  overflow: visible;
+}
+
+.hf-book-anim .hf-stage.is-pinned {
+  overflow: visible;
+}
+
+.hf-book-anim .hf-book-scene {
+  z-index: 5;
+  width: min(74vh, 680px);
+  height: min(74vh, 680px);
+  overflow: visible;
+}
+
+.hf-book-anim .hf-flipbook-embed {
+  position: absolute;
+  inset: 0;
+  transform: none;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0;
+  overflow: visible;
+  background: transparent;
+  pointer-events: auto;
+  transition: opacity 0.35s ease;
+}
+
+.hf-book-anim .hf-flipbook-embed.is-visible {
+  opacity: 1;
+}
+
+.hf-book-anim .hf-flipbook-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.hf-book-anim .hf-book-scene .hf-cta {
+  position: absolute;
+  bottom: -52px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+@media (max-width: 820px) {
+  .hf-book-anim .hf-book-scene {
+    width: var(--hf-mob-circle, min(72vw, 300px));
+    height: var(--hf-mob-circle, min(72vw, 300px));
+  }
+}
