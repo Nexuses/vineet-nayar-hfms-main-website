@@ -54,4 +54,10 @@
     width: var(--hf-mob-circle, min(72vw, 300px));
     height: var(--hf-mob-circle, min(72vw, 300px));
   }
+
+  .hf-book-anim .hf-flipbook-embed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

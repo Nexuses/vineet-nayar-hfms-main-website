@@ -1,7 +1,7 @@
 export interface MosaicPhoto {
   src: string
   alt: string
-  href: string
+  youtubeId: string
 }
 
 export const MOSAIC_HEADING = {
@@ -18,7 +18,7 @@ function mosaicVideo(youtubeId: string, label: string, thumbIndex: number): Mosa
   return {
     src: mosaicThumb(thumbIndex),
     alt: `Watch ${label} on YouTube`,
-    href: `https://www.youtube.com/watch?v=${youtubeId}`,
+    youtubeId,
   }
 }
 

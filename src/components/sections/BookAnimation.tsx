@@ -20,6 +20,7 @@ export function BookAnimation() {
             <div className="hf-circle" id="hf-circle" aria-hidden="true" />
 
             <div className="hf-book-scene" id="hf-bookScene">
+              <span className="hf-book-tap-badge" id="hfBookTapBadge" aria-hidden="true" />
               <div className="hf-flipbook-embed" id="hf-flipbook">
                 <BookFlipbookEmbed ref={flipbookRef} />
               </div>
@@ -77,8 +78,8 @@ export function BookAnimation() {
           </div>
 
           <div className="hf-hero-cap reveal reveal-from-bottom" id="hf-heroCap">
-            <h2>Humans First, Machines Second</h2>
-            <div className="sub">30 Sparks to Reimagine Winning</div>
+            <h2>30 Sparks to Reimagine Winning</h2>
+            <div className="sub">In the Age of AI</div>
           </div>
 
           <div className="hf-cue reveal reveal-from-bottom" id="hf-cue" style={{ '--reveal-delay': '120ms' } as CSSProperties}>

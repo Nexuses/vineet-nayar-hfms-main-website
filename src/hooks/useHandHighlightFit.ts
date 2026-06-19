@@ -14,7 +14,7 @@ export function useHandHighlightFit() {
       if (!mobileHeadingQuery.matches) return
 
       document.querySelectorAll('main .hand-highlight').forEach((el) => {
-        if (el.closest('.hf-panel-quote')) return
+        if (el.closest('.hf-panel-quote') || el.closest('.city-card-img-overlay')) return
 
         const htmlEl = el as HTMLElement
         const container = htmlEl.parentElement

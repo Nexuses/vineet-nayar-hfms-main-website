@@ -1,4 +1,5 @@
 import { MOSAIC_COLS, MOSAIC_HEADING } from '../../data/mosaic'
+import { useModal } from '../../context/ModalContext'
 import { revealDelay, revealStagger } from '../../utils/reveal'
 
 function MosaicPlayIcon() {
@@ -12,6 +13,8 @@ function MosaicPlayIcon() {
 }
 
 export function Mosaic() {
+  const { openYoutubeVideo } = useModal()
+
   return (
     <section className="mosaic-section post-scroll-reveal" id="mosaic">
       <div className="mosaic-heading">
@@ -28,18 +31,17 @@ export function Mosaic() {
         {MOSAIC_COLS.map((column, columnIndex) => (
           <div key={columnIndex} className="mosaic-col">
             {column.map((photo, photoIndex) => (
-              <a
+              <button
                 key={photoIndex}
+                type="button"
                 className="mosaic-photo mosaic-photo-link reveal reveal-from-bottom"
-                href={photo.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${photo.alt} (opens in new tab)`}
+                aria-label={photo.alt}
                 style={revealStagger(columnIndex * 3 + photoIndex, 40, 100)}
+                onClick={() => openYoutubeVideo(photo.youtubeId, photo.alt)}
               >
-                <img src={photo.src} alt={photo.alt} loading="lazy" />
+                <img src={photo.src} alt="" loading="lazy" />
                 <MosaicPlayIcon />
-              </a>
+              </button>
             ))}
           </div>
         ))}

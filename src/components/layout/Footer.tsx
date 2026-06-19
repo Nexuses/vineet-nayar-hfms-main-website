@@ -36,12 +36,12 @@ export function Footer() {
                 </a>
               ),
             )}
-            <button className="footer-link-btn" type="button" onClick={openJoin}>
-              Contact Us
-            </button>
           </div>
           <div>
-            <h4>Follow us</h4>
+            <h4>Connect with us</h4>
+            <button className="footer-link-btn footer-contact-btn" type="button" onClick={openJoin}>
+              <span className="hand-highlight">Contact Us</span>
+            </button>
             {FOOTER_LINKS.social.map((link) => (
               <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer">
                 {link.label}

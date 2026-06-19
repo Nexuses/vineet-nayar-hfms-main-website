@@ -190,7 +190,8 @@
   transform: translateX(-50%);
 }
 
-.hf-wall-widget .wall-input input {
+.hf-wall-widget .wall-input input,
+.hf-wall-widget .wall-input select {
   min-width: 0;
   flex: 1;
   border: 0;
@@ -200,6 +201,20 @@
   color: var(--hf-wall-ink);
   font-family: var(--hf-wall-sans);
   font-size: 15px;
+}
+
+.hf-wall-widget .wall-input select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23111' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+
+.hf-wall-widget .wall-input select:invalid,
+.hf-wall-widget .wall-input select option[value=''] {
+  color: #8a8a8a;
 }
 
 .hf-wall-widget .wall-input .hf-wall-word {

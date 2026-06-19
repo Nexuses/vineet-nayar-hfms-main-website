@@ -4,6 +4,7 @@ import { useModal } from '../../context/ModalContext'
 import { revealDelay } from '../../utils/reveal'
 
 const SCROLL_IDLE_MS = 150
+const TAP_MOVE_THRESHOLD = 12
 
 export function CityEvents() {
   const { openJoin } = useModal()
@@ -11,6 +12,8 @@ export function CityEvents() {
   const isScrollingRef = useRef(false)
   const scrollTimerRef = useRef<number | undefined>(undefined)
   const prefersHoverRef = useRef(true)
+  const touchStartRef = useRef({ x: 0, y: 0 })
+  const touchHandledRef = useRef(false)
 
   useEffect(() => {
     prefersHoverRef.current = window.matchMedia('(hover: hover) and (pointer: fine)').matches
@@ -45,6 +48,36 @@ export function CityEvents() {
     activate(index)
   }
 
+  const handleTouchStart = (event: React.TouchEvent) => {
+    const touch = event.touches[0]
+    if (!touch) return
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY }
+  }
+
+  const handleTouchEnd = (index: number, event: React.TouchEvent) => {
+    const touch = event.changedTouches[0]
+    if (!touch) return
+
+    const dx = Math.abs(touch.clientX - touchStartRef.current.x)
+    const dy = Math.abs(touch.clientY - touchStartRef.current.y)
+    if (dx > TAP_MOVE_THRESHOLD || dy > TAP_MOVE_THRESHOLD) return
+
+    event.preventDefault()
+    touchHandledRef.current = true
+    window.setTimeout(() => {
+      touchHandledRef.current = false
+    }, 400)
+    activate(index)
+  }
+
+  const handleClick = (index: number, event: React.MouseEvent) => {
+    if (touchHandledRef.current) {
+      event.preventDefault()
+      return
+    }
+    activate(index)
+  }
+
   return (
     <section className="ev-section post-scroll-reveal" id="cities-events">
       <div className="ev-inner">
@@ -68,7 +101,9 @@ export function CityEvents() {
               tabIndex={0}
               aria-label={event.ariaLabel}
               onMouseEnter={() => handleMouseEnter(index)}
-              onClick={() => activate(index)}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={(e) => handleTouchEnd(index, e)}
+              onClick={(e) => handleClick(index, e)}
               onKeyDown={(e) => handleCardKeyDown(index, e)}
             >
               <div className="ev-bg" style={{ backgroundImage: `url('${event.image}')` }} />

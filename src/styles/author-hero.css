@@ -364,7 +364,6 @@
   }
 
   .ah-cred-bar {
-    grid-template-columns: repeat(2, 1fr);
     border-radius: 22px;
     margin-bottom: 0;
   }
@@ -377,9 +376,58 @@
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 820px) {
+  .ah-hero {
+    background: linear-gradient(180deg, var(--ink) 0%, var(--ink) 80%, #fff 80%, #fff 100%);
+    overflow: visible;
+  }
+
   .ah-cred-bar {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-radius: 20px;
+    margin-top: clamp(28px, 7vw, 48px);
+    margin-bottom: clamp(24px, 6vw, 40px);
+    box-shadow: 0 20px 56px rgba(0, 0, 0, 0.14);
+  }
+
+  .ah-cred-item {
+    gap: 16px;
+    padding: clamp(14px, 3.5vw, 18px) 0;
+    border-left: none;
+    border-top: 1px solid var(--line);
+  }
+
+  .ah-cred-item:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .ah-cred-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .ah-cred-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+  }
+
+  .ah-cred-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 720px) {
+  .ah-cred-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .ah-cred-icon svg {
+    width: 21px;
+    height: 21px;
   }
 
   .ah-headline {

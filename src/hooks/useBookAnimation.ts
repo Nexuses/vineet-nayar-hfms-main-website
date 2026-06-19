@@ -32,6 +32,7 @@ export function useBookAnimation(
     const heroCap = root.querySelector('#hf-heroCap') as HTMLElement | null
     const cue = root.querySelector('#hf-cue') as HTMLElement | null
     const tapHint = root.querySelector('#hf-tapHint') as HTMLElement | null
+    const bookTapBadge = root.querySelector('#hfBookTapBadge') as HTMLElement | null
     const flipBtn = root.querySelector('#hf-flipBtn') as HTMLButtonElement | null
     const flipbookHost = root.querySelector('#hf-flipbook') as HTMLElement | null
     const copyEl = root.querySelector('.hf-copy') as HTMLElement | null
@@ -434,12 +435,15 @@ export function useBookAnimation(
       if (!isMobile()) {
         tapHint.hidden = true
         tapHint.setAttribute('aria-hidden', 'true')
+        if (bookTapBadge) bookTapBadge.classList.remove('is-visible')
         return
       }
 
       tapHint.hidden = false
       tapHint.removeAttribute('aria-hidden')
-      tapHint.classList.toggle('is-prominent', step <= 0 && !mobileAnimating)
+      const showTapCue = step <= 0 && !mobileAnimating
+      tapHint.classList.toggle('is-prominent', showTapCue)
+      if (bookTapBadge) bookTapBadge.classList.toggle('is-visible', showTapCue)
       const label =
         step <= 0
           ? 'Tap the book to explore'
@@ -504,16 +508,17 @@ export function useBookAnimation(
       cta!.style.opacity = String(heroFade)
       cta!.style.pointerEvents = p > 0.05 ? 'none' : 'auto'
 
+      const openF = easeInOut(clamp((p - COVER_OPEN_START) / (COVER_OPEN_END - COVER_OPEN_START)))
+      const coverOpen = openF > 0.02
+
       if (mobileMode) {
-        bookSceneEl.style.transform = `translate(-50%, -50%) scale(${scale})`
+        circle!.style.transform = `scale(${circleScale})`
+        bookSceneEl.style.transform = `scale(${scale})`
       } else {
         bookSceneEl.style.transform = `translate(calc(-50% + ${xPct}vw), -50%) scale(${scale})`
       }
 
       showFlipbook()
-
-      const openF = easeInOut(clamp((p - COVER_OPEN_START) / (COVER_OPEN_END - COVER_OPEN_START)))
-      const coverOpen = openF > 0.02
 
       const readP = clamp((p - BOOK_READ_START) / (1 - BOOK_READ_START))
       const spreadIdx = getSpreadIdx(coverOpen, readP, mobileMode)
@@ -686,6 +691,7 @@ export function useBookAnimation(
       bookEl.removeAttribute('aria-label')
       bookEl.tabIndex = -1
       if (tapHint) tapHint.hidden = true
+      if (bookTapBadge) bookTapBadge.classList.remove('is-visible')
       if (flipBtn) {
         flipBtn.disabled = true
         flipBtn.tabIndex = -1

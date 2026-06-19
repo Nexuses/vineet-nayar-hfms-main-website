@@ -55,6 +55,9 @@
   transition: flex 0.32s cubic-bezier(0.25, 0.9, 0.35, 1);
   min-width: 0;
   isolation: isolate;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 .ev-card.active {

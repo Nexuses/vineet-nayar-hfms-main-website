@@ -517,6 +517,10 @@ main {
   text-align: center;
 }
 
+.hero-main {
+  display: contents;
+}
+
 .hero-logo {
   display: inline-grid;
   gap: 4px;
@@ -1382,6 +1386,42 @@ main > .promise {
   opacity: 1;
 }
 
+.footer-links .footer-contact-btn::before {
+  display: none;
+}
+
+.footer-links .footer-contact-btn {
+  margin-bottom: 0.35em;
+}
+
+.footer-links .footer-contact-btn .hand-highlight {
+  position: relative;
+  display: inline-block !important;
+  width: max-content;
+  padding: 0.12em 0.2em;
+  color: #000;
+  font-family: "Caveat", cursive;
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: var(--hand-letter-spacing);
+}
+
+.footer-links .footer-contact-btn .hand-highlight::before {
+  left: 50%;
+  top: 50%;
+  width: 120%;
+  height: 1.15em;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  background-size: 100% 100%;
+}
+
+.footer-links .footer-contact-btn:hover .hand-highlight,
+.footer-links .footer-contact-btn:focus-visible .hand-highlight {
+  color: #000;
+}
+
 .footer-copyright {
   margin: 26px auto 0;
   color: rgba(17, 17, 17, 0.6);
@@ -1416,6 +1456,21 @@ main > .promise {
   height: auto;
   display: block;
   background: #000;
+}
+
+.video-modal-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.video-modal-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 .video-modal .modal-close {
@@ -1604,9 +1659,38 @@ main > .promise {
   }
 
   .hero {
-    min-height: auto;
-    padding-top: calc(var(--header) + 52px);
-    padding-bottom: clamp(28px, 5vh, 40px);
+    min-height: 100svh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    padding-top: calc(var(--header) + 12px);
+    padding-bottom: max(24px, env(safe-area-inset-bottom, 24px));
+  }
+
+  .hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 0;
+  }
+
+  .hero-main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 0;
+    text-align: center;
+  }
+
+  .hero-actions {
+    flex-shrink: 0;
+    margin-top: 0;
+    padding-top: clamp(16px, 3vh, 24px);
   }
 
   .hero-logo {

@@ -197,17 +197,24 @@ export function WallWidget() {
           ))}
 
           <form className="wall-input" data-hf-wall-form onSubmit={handleSubmit}>
-            <input
+            <select
               className="hf-wall-word"
               data-hf-wall-word
-              maxLength={22}
-              placeholder="Your word…"
-              aria-label="Your word"
+              aria-label="Choose your word"
               value={word}
               onChange={(e) => setWord(e.target.value)}
-              onKeyDown={handleKeyDown}
               disabled={submitting}
-            />
+              required
+            >
+              <option value="" disabled>
+                Choose your word…
+              </option>
+              {WALL_WORDS.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
             <input
               className="hf-wall-name"
               data-hf-wall-name

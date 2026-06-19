@@ -2,19 +2,24 @@ import { useEffect, useRef } from 'react'
 import { useModal } from '../../context/ModalContext'
 
 export function VideoModal() {
-  const { videoOpen, videoSrc, closeVideo } = useModal()
+  const { videoOpen, videoSrc, videoYoutubeId, videoTitle, closeVideo } = useModal()
   const playerRef = useRef<HTMLVideoElement>(null)
   const sourceRef = useRef<HTMLSourceElement>(null)
 
   useEffect(() => {
-    if (!videoOpen || !videoSrc) return
+    document.body.classList.toggle('modal-open', videoOpen)
+    return () => document.body.classList.remove('modal-open')
+  }, [videoOpen])
+
+  useEffect(() => {
+    if (!videoOpen || !videoSrc || videoYoutubeId) return
     const player = playerRef.current
     const source = sourceRef.current
     if (!player || !source) return
     source.src = videoSrc
     player.load()
     player.play().catch(() => {})
-  }, [videoOpen, videoSrc])
+  }, [videoOpen, videoSrc, videoYoutubeId])
 
   useEffect(() => {
     if (videoOpen) return
@@ -50,12 +55,23 @@ export function VideoModal() {
           ×
         </button>
         <h2 id="videoModalTitle" className="sr-only">
-          Video player
+          {videoTitle}
         </h2>
-        <video id="videoModalPlayer" ref={playerRef} controls playsInline>
-          {videoSrc ? <source id="videoModalSource" ref={sourceRef} src={videoSrc} type="video/mp4" /> : null}
-          Your browser does not support embedded videos.
-        </video>
+        {videoYoutubeId ? (
+          <div className="video-modal-embed">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${videoYoutubeId}?autoplay=1&rel=0`}
+              title={videoTitle}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        ) : (
+          <video id="videoModalPlayer" ref={playerRef} controls playsInline>
+            {videoSrc ? <source id="videoModalSource" ref={sourceRef} src={videoSrc} type="video/mp4" /> : null}
+            Your browser does not support embedded videos.
+          </video>
+        )}
       </div>
     </div>
   )

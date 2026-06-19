@@ -255,19 +255,43 @@
   }
 
   .hero {
-    min-height: auto;
+    min-height: 100svh;
+    min-height: 100dvh;
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
     overflow: visible;
-    padding-top: calc(var(--header) + 52px);
-    padding-bottom: clamp(28px, 5vh, 40px);
+    padding-top: calc(var(--header) + 12px);
+    padding-bottom: max(24px, env(safe-area-inset-bottom, 24px));
   }
 
   .hero-content {
     width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 0;
     opacity: 1;
     visibility: visible;
+  }
+
+  .hero-main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 0;
+    text-align: center;
+  }
+
+  .hero-actions {
+    flex-shrink: 0;
+    margin-top: 0;
+    padding-top: clamp(16px, 3vh, 24px);
   }
 
   .hero h1 span {
@@ -475,6 +499,22 @@
   main .hand-highlight::before {
     width: calc(100% + 1em);
     height: 1.35em;
+  }
+
+  main .city-card-img-overlay .city-card-name.hand-highlight {
+    display: inline-block !important;
+    width: max-content !important;
+    max-width: calc(100% - 24px) !important;
+  }
+
+  main .city-card-img-overlay .city-card-name.hand-highlight::before {
+    left: 50% !important;
+    top: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 120% !important;
+    height: 100% !important;
+    transform: translate(-50%, -50%) !important;
   }
 
   .footer-links {

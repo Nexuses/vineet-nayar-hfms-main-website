@@ -23,31 +23,27 @@ export function Cities() {
             >
               <div className="city-card-img">
                 <img src={city.cardImage} alt={city.city} loading="lazy" />
-                <div className="city-card-countdown-overlay">
-                  <CityCardCountdown isoDate={city.isoDate} />
+                <div className="city-card-img-overlay">
+                  <span className="city-card-name hand-highlight">{city.city}</span>
                 </div>
               </div>
               <div className="city-card-body">
-                <div className="city-card-meta">
-                  <h3 className="city-card-name">{city.city}</h3>
-                  <span className="city-card-date">
-                    {getEventDayOfWeek(city.isoDate)} · {city.dateDisplay}
-                  </span>
-                </div>
+                <p className="city-card-date">
+                  {getEventDayOfWeek(city.isoDate)} · {city.dateDisplay}
+                </p>
+                <p className="city-card-venue">
+                  {city.venue} — {city.city}
+                </p>
                 <p className="city-card-theme">{city.theme}</p>
-                <div className="city-card-footer">
-                  <div className="city-card-actions">
-                    <a
-                      className="city-card-register"
-                      href={city.registerUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Register Now
-                    </a>
-                    <span className="city-card-spots">Limited seats</span>
-                  </div>
-                </div>
+                <CityCardCountdown isoDate={city.isoDate} />
+                <a
+                  className="city-card-register"
+                  href={city.registerUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Register Now
+                </a>
               </div>
             </article>
           ))}
