@@ -53,12 +53,12 @@ export function CityEvents() {
             {CITY_EVENTS_HEADING.titleLead}
             <span className="hand-highlight">{CITY_EVENTS_HEADING.titleHighlight}</span>
           </h2>
-          <p className="lede ev-head-lede reveal reveal-from-bottom" style={revealDelay(80)}>
+          <p className="lede ev-head-lede reveal reveal-from-bottom" style={revealDelay(40)}>
             {CITY_EVENTS_HEADING.lede}
           </p>
         </div>
 
-        <div className="ev-grid reveal reveal-from-bottom" id="evGrid" style={revealDelay(60)}>
+        <div className="ev-grid reveal reveal-from-bottom" id="evGrid" style={revealDelay(30)}>
           {CITY_EVENTS.map((event, index) => (
             <div
               key={event.id}
@@ -112,7 +112,7 @@ export function CityEvents() {
           ))}
         </div>
 
-        <div className="ev-dots reveal reveal-from-bottom" id="evDots" style={revealDelay(120)}>
+        <div className="ev-dots reveal reveal-from-bottom" id="evDots" style={revealDelay(60)}>
           {CITY_EVENTS.map((event, index) => (
             <button
               key={event.id}

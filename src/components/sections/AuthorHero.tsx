@@ -53,17 +53,17 @@ export function AuthorHero() {
             <span className="hand-highlight">{AUTHOR_HERO_HEADING.titleHighlight}</span>
           </h2>
 
-          <div className="ah-body reveal reveal-from-bottom" style={revealDelay(140)}>
+          <div className="ah-body reveal reveal-from-bottom" style={revealDelay(70)}>
             {AUTHOR_HERO_BODY.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
 
-          <p className="ah-quote reveal reveal-from-bottom" style={revealDelay(280)}>
+          <p className="ah-quote reveal reveal-from-bottom" style={revealDelay(140)}>
             {AUTHOR_HERO_QUOTE}
           </p>
 
-          <div className="ah-sig reveal reveal-from-bottom" style={revealDelay(360)}>
+          <div className="ah-sig reveal reveal-from-bottom" style={revealDelay(180)}>
             <img
               className="ah-sig-img"
               src={AUTHOR_SIGNATURE_INVERTED_URL}
@@ -79,7 +79,7 @@ export function AuthorHero() {
             src={AUTHOR_PORTRAIT_URL}
             alt="Vineet Nayar on stage"
             loading="lazy"
-            style={revealDelay(120)}
+            style={revealDelay(60)}
             onError={(event) => {
               event.currentTarget.src = ASSETS.avatar
             }}
@@ -87,7 +87,7 @@ export function AuthorHero() {
         </div>
       </div>
 
-      <div className="ah-cred-bar reveal reveal-from-bottom" style={revealDelay(440)}>
+      <div className="ah-cred-bar reveal reveal-from-bottom" style={revealDelay(220)}>
         {AUTHOR_CREDENTIALS.map((credential) => (
           <div key={credential.subtitle} className="ah-cred-item">
             <div className="ah-cred-icon" aria-hidden="true">

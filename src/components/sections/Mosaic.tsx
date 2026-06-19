@@ -19,7 +19,7 @@ export function Mosaic() {
           <span className="heading-lead">{MOSAIC_HEADING.titleLead}</span>
           <span className="hand-highlight">{MOSAIC_HEADING.titleHighlight}</span>
         </h2>
-        <p className="lede reveal reveal-from-bottom" style={revealDelay(160)}>
+        <p className="lede reveal reveal-from-bottom" style={revealDelay(80)}>
           {MOSAIC_HEADING.lede}
         </p>
       </div>
@@ -35,7 +35,7 @@ export function Mosaic() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${photo.alt} (opens in new tab)`}
-                style={revealStagger(columnIndex * 3 + photoIndex, 80, 240)}
+                style={revealStagger(columnIndex * 3 + photoIndex, 40, 100)}
               >
                 <img src={photo.src} alt={photo.alt} loading="lazy" />
                 <MosaicPlayIcon />

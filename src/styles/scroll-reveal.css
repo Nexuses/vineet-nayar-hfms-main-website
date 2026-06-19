@@ -5,7 +5,7 @@ main > .post-scroll-reveal .reveal {
 }
 
 #cities-cards.post-scroll-reveal {
-  --reveal-section-offset: 80ms;
+  --reveal-section-offset: 40ms;
 }
 
 #cities-events.post-scroll-reveal {
@@ -13,17 +13,17 @@ main > .post-scroll-reveal .reveal {
 }
 
 #wall.post-scroll-reveal {
-  --reveal-section-offset: 120ms;
+  --reveal-section-offset: 40ms;
 }
 
 #author-hero.post-scroll-reveal {
-  --reveal-section-offset: 100ms;
+  --reveal-section-offset: 40ms;
 }
 
 #mosaic.post-scroll-reveal {
-  --reveal-section-offset: 100ms;
+  --reveal-section-offset: 40ms;
 }
 
 .promise.post-scroll-reveal {
-  --reveal-section-offset: 120ms;
+  --reveal-section-offset: 40ms;
 }

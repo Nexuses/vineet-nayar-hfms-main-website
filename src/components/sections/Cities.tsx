@@ -19,7 +19,7 @@ export function Cities() {
               key={city.city}
               className="city-card tilt-card reveal reveal-from-bottom"
               data-city={city.city}
-              style={revealStagger(index, 110, 200)}
+              style={revealStagger(index, 55, 80)}
             >
               <div className="city-card-img">
                 <img src={city.cardImage} alt={city.city} loading="lazy" />

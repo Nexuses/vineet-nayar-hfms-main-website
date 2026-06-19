@@ -78,7 +78,7 @@ export function BookAnimation() {
 
           <div className="hf-hero-cap reveal reveal-from-bottom" id="hf-heroCap">
             <h2>Humans First, Machines Second</h2>
-            <div className="sub">Vineet Nayar · 30 Sparks to Reimagine Winning</div>
+            <div className="sub">30 Sparks to Reimagine Winning</div>
           </div>
 
           <div className="hf-cue reveal reveal-from-bottom" id="hf-cue" style={{ '--reveal-delay': '120ms' } as CSSProperties}>
