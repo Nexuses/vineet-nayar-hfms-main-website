@@ -1,5 +1,11 @@
-import { useCallback, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
-import { WALL_SEED, WALL_WORDS, createSeedNotes, createWallNote, type WallNote } from '../../data/wall'
+import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
+import {
+  WALL_SEED,
+  WALL_WORDS,
+  createSeedNotes,
+  createWallNoteFromDb,
+  type WallNote,
+} from '../../data/wall'
 import { revealDelay } from '../../utils/reveal'
 
 const NOTE_WIDTH = 148
@@ -76,31 +82,85 @@ export function WallWidget() {
   const [count, setCount] = useState(WALL_SEED.length)
   const [word, setWord] = useState('')
   const [name, setName] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+
+  useEffect(() => {
+    let cancelled = false
+
+    async function loadSubmissions() {
+      try {
+        const response = await fetch('/api/wall')
+        if (!response.ok) return
+
+        const data = (await response.json()) as {
+          submissions: Array<{ id: string; word: string; name: string }>
+          total: number
+        }
+
+        if (cancelled) return
+
+        const dbNotes = data.submissions.map((submission, index) =>
+          createWallNoteFromDb(submission.id, submission.word, submission.name, index),
+        )
+
+        setNotes([...dbNotes, ...createSeedNotes()])
+        setCount(WALL_SEED.length + data.total)
+      } catch {
+        // Keep seed notes if the API is unavailable.
+      }
+    }
+
+    void loadSubmissions()
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   const moveNote = useCallback((id: string, x: number, y: number) => {
     setNotes((prev) => prev.map((note) => (note.id === id ? { ...note, x, y } : note)))
   }, [])
 
-  const addNote = () => {
-    const trimmed = word.trim()
-    if (!trimmed) return
+  const addNote = async () => {
+    const trimmedWord = word.trim()
+    if (!trimmedWord || submitting) return
 
-    const note = createWallNote(trimmed, name.trim(), notes.length)
-    setNotes((prev) => [note, ...prev])
-    setCount((c) => c + 1)
-    setWord('')
-    setName('')
+    setSubmitting(true)
+
+    try {
+      const response = await fetch('/api/wall', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ word: trimmedWord, name: name.trim() }),
+      })
+
+      if (!response.ok) return
+
+      const data = (await response.json()) as {
+        submission: { id: string; word: string; name: string }
+      }
+
+      const note = createWallNoteFromDb(data.submission.id, data.submission.word, data.submission.name, 0)
+      setNotes((prev) => [note, ...prev])
+      setCount((c) => c + 1)
+      setWord('')
+      setName('')
+    } catch {
+      // Submission failed silently; user can retry.
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
-    addNote()
+    void addNote()
   }
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
       event.preventDefault()
-      addNote()
+      void addNote()
     }
   }
 
@@ -146,6 +206,7 @@ export function WallWidget() {
               value={word}
               onChange={(e) => setWord(e.target.value)}
               onKeyDown={handleKeyDown}
+              disabled={submitting}
             />
             <input
               className="hf-wall-name"
@@ -156,9 +217,10 @@ export function WallWidget() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               onKeyDown={handleKeyDown}
+              disabled={submitting}
             />
-            <button className="hf-wall-submit" type="submit">
-              Add to the wall
+            <button className="hf-wall-submit" type="submit" disabled={submitting || !word.trim()}>
+              {submitting ? 'Adding…' : 'Add to the wall'}
             </button>
           </form>
         </div>

@@ -109,7 +109,67 @@
 .join-form {
   display: grid;
   gap: 16px;
+  margin-top: 0;
+}
+
+.join-form-area {
   margin-top: 24px;
+  min-height: 320px;
+}
+
+.join-loading {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 16px;
+  min-height: 320px;
+  text-align: center;
+}
+
+.join-loading p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.join-loading-spinner {
+  width: 42px;
+  height: 42px;
+  border: 3px solid rgba(17, 17, 17, 0.12);
+  border-top-color: #111;
+  border-radius: 50%;
+  animation: join-spin 0.8s linear infinite;
+}
+
+@keyframes join-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.join-success-in-form {
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  min-height: 320px;
+  margin: 0;
+  text-align: center;
+}
+
+.join-success-title {
+  margin: 0;
+  font-size: clamp(28px, 5vw, 36px);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.join-success-in-form p:last-child {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 .join-form label {
@@ -161,6 +221,17 @@
 
 .join-success[hidden] {
   display: none;
+}
+
+.join-error {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(220, 53, 69, 0.12);
+  color: #b42318;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 

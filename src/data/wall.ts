@@ -42,7 +42,7 @@ function hashSeed(value: string) {
 export function createWallPlacement(seed: string, index = 0): Pick<WallNote, 'x' | 'y' | 'rotation'> {
   const h = hashSeed(`${seed}:${index}`)
   const x = 4 + (h % 6200) / 100
-  const y = 6 + ((h >> 10) % 5200) / 100
+  const y = 6 + ((h >>> 10) % 5200) / 100
   const rotation = -7 + (h % 15)
   return { x, y, rotation }
 }
@@ -54,6 +54,15 @@ export function createWallNote(word: string, name: string, index = 0): WallNote 
     word,
     name: name || 'Anonymous',
     ...placement,
+  }
+}
+
+export function createWallNoteFromDb(id: string, word: string, name: string, index = 0): WallNote {
+  return {
+    id,
+    word,
+    name: name || 'Anonymous',
+    ...createWallPlacement(id, index),
   }
 }
 
