@@ -1,13 +1,18 @@
 import type { CSSProperties } from 'react'
+import { useRouter } from 'next/router'
 import { BOOK_AVAILABILITY } from '../../data/bookPageContent'
 import { ASSETS } from '../../data/site'
-import { useModal } from '../../context/ModalContext'
+import { resolveNavHref } from '../../utils/nav'
 
 const HERO_QUOTE =
   'The greatest danger of the artificial intelligence (AI) age is not smarter machines. It is humans slowly losing belief in their own uniqueness.'
 
 export function Hero() {
-  const { openJoin } = useModal()
+  const router = useRouter()
+  const citiesHref = resolveNavHref(
+    { href: '#cities-cards', sectionId: 'cities-cards' },
+    router.pathname,
+  )
 
   return (
     <section className="hero" data-hero>
@@ -28,9 +33,9 @@ export function Hero() {
         </div>
 
         <div className="hero-actions reveal reveal-from-bottom" style={{ '--reveal-delay': '120ms' } as CSSProperties}>
-          <button className="btn magnetic" type="button" onClick={openJoin}>
+          <a className="btn magnetic" href={citiesHref} data-section-link="cities-cards">
             Register for your city
-          </button>
+          </a>
           <a
             className="btn secondary magnetic"
             href={BOOK_AVAILABILITY.amazonUrl}
