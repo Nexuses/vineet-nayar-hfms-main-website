@@ -813,10 +813,19 @@
     flex-shrink: 0;
   }
 
+  .hf-book-anim .hf-visual:has(.hf-book-tap-badge.is-visible) {
+    grid-template-rows: var(--hf-mob-circle) auto auto;
+  }
+
   .hf-book-anim .hf-book-tap-badge {
+    position: relative;
+    top: auto;
+    right: auto;
+    grid-row: 2;
+    grid-column: 1;
+    justify-self: center;
+    margin-top: clamp(6px, 1.5vh, 10px);
     gap: 9px;
-    top: 6%;
-    right: -8%;
   }
 
   .hf-book-anim .hf-book-tap-dot {
@@ -872,6 +881,10 @@
   .hf-book-anim .hf-flip-btn:disabled {
     opacity: 0.55;
     cursor: wait;
+  }
+
+  .hf-book-anim .hf-visual:has(.hf-book-tap-badge.is-visible) .hf-flip-btn {
+    grid-row: 3;
   }
 
   .hf-book-anim .hf-flip-btn:not(:disabled):active {
