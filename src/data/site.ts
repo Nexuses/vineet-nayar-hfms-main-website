@@ -82,9 +82,10 @@ export const FOOTER_QUICK_LINKS: FooterNavLink[] = [
 export const FOOTER_LINKS = {
   explore: FOOTER_QUICK_LINKS,
   social: [
-    { href: 'https://www.linkedin.com/', label: 'LinkedIn' },
-    { href: 'https://www.instagram.com/', label: 'Instagram' },
-    { href: 'https://www.youtube.com/', label: 'YouTube' },
+    { href: 'https://www.linkedin.com/in/vineetnayar?originalSubdomain=in', label: 'LinkedIn' },
+    { href: 'https://www.instagram.com/vn.nayar/?hl=en', label: 'Instagram' },
+    { href: 'https://x.com/vineetnayar', label: 'X' },
+    { href: 'https://www.facebook.com/VineetNayar.EmployeesFirst', label: 'Facebook' },
   ],
 } as const
 
