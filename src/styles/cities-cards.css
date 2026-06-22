@@ -20,6 +20,7 @@
 .city-card {
   display: flex;
   flex-direction: column;
+  height: 100%;
   border: 1px solid var(--line);
   border-radius: 24px;
   overflow: hidden;
@@ -128,6 +129,7 @@
   font-size: clamp(15px, 1.15vw, 17px);
   font-weight: 400;
   line-height: 1.45;
+  flex: 1;
 }
 
 .city-card-countdown {
@@ -136,7 +138,7 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 6px 0 0;
+  margin: 0;
   font-family: var(--font);
   font-size: 12px;
   font-weight: 700;
@@ -195,7 +197,8 @@
   justify-content: center;
   width: 100%;
   min-height: 44px;
-  margin-top: 8px;
+  margin-top: auto;
+  padding-top: 12px;
   border: 0;
   border-radius: 999px;
   padding: 0 20px;

@@ -6,6 +6,28 @@
   scroll-margin-top: calc(var(--header) + 28px);
 }
 
+.mosaic-cursor-hint {
+  position: fixed;
+  z-index: 1200;
+  pointer-events: none;
+  transform: translate(14px, 14px);
+  padding: 0.12em 0.5em 0.16em;
+  font-family: "Caveat", cursive;
+  font-size: clamp(18px, 1.6vw, 24px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: var(--hand-letter-spacing, 0.02em);
+  text-transform: none;
+  color: #000;
+  white-space: nowrap;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mosaic-photo-link {
+    cursor: none;
+  }
+}
+
 .mosaic-heading {
   text-align: center;
   padding: 0 var(--gutter) clamp(36px, 5vw, 56px);

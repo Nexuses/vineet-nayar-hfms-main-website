@@ -35,25 +35,6 @@ export const CITY_EVENTS_HEADING = {
 
 export const CITY_EVENTS: CityEvent[] = [
   {
-    id: 'india',
-    label: 'India',
-    ariaLabel: 'India — 25 July 2026',
-    // Demo image (Unsplash) — replace when final asset is ready:
-    // https://images.unsplash.com/photo-1515091943-9d5c0ad475af?w=900&q=80&auto=format&fit=crop
-    image: 'https://images.unsplash.com/photo-1515091943-9d5c0ad475af?w=900&q=80&auto=format&fit=crop',
-    colorLayer: EVENT_OVERLAY,
-    badge: 'Now Open',
-    overlayCity: 'India',
-    date: '25 July 2026',
-    time: '6:00 PM onwards',
-    entry: 'Free entry',
-    description:
-      'Will average people still matter? Join the conversation at the heart of the tour — a night of reflection, courage, and human possibility.',
-    registerCity: 'India',
-    dotLabel: 'India',
-    isOpen: true,
-  },
-  {
     id: 'new-york',
     label: 'New York',
     ariaLabel: 'New York — Coming soon',

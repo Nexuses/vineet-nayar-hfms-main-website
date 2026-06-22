@@ -43,7 +43,7 @@ export function BookAnimation() {
 
           <div className="hf-blocks" id="hf-blocks">
             {BOOK_BLOCKS.map((block) => (
-              <div key={block.position} className={`hf-block ${block.position}`}>
+              <div key={block.title} className="hf-block">
                 <div className="hf-ico">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d={block.iconPath} />
@@ -58,14 +58,12 @@ export function BookAnimation() {
           <div className="hf-copy">
             {BOOK_PANELS.map((panel) => (
               <div key={panel.index} className="hf-panel" data-index={panel.index}>
-                <span className="hf-panel-num" aria-hidden="true"  >
-                  {panel.number}
-                </span>
-                <div className="hf-panel-stack" style={{ borderTopLeftRadius: '100px'}}>
-                  <div style={{ paddingLeft: '45px', borderTopLeftRadius: '100px'}}>
-                  <div className="hf-panel-band" >
+                <div className="hf-panel-stack">
+                  <span className="hf-panel-num" aria-hidden="true">
+                    {panel.number}
+                  </span>
+                  <div className="hf-panel-band">
                     <span>{panel.section}</span>
-                    </div>
                   </div>
                   <h3 className="hf-panel-title">{panel.title}</h3>
                   <p className="hf-panel-quote">
@@ -78,8 +76,7 @@ export function BookAnimation() {
           </div>
 
           <div className="hf-hero-cap reveal reveal-from-bottom" id="hf-heroCap">
-            <h2>30 Sparks to Reimagine Winning</h2>
-            <div className="sub">In the Age of AI</div>
+            <h2>30 Sparks to Reimagine Winning in the Age of AI</h2>
           </div>
 
           <div className="hf-cue reveal reveal-from-bottom" id="hf-cue" style={{ '--reveal-delay': '120ms' } as CSSProperties}>

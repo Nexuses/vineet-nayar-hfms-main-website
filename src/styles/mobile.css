@@ -562,7 +562,8 @@
   }
 
   .hf-book-anim .hf-panel-stack {
-    padding-top: clamp(32px, 10vw, 52px);
+    padding-top: 0;
+    gap: clamp(12px, 3.5vw, 20px);
   }
 
   .hf-book-anim .hf-panel-quote {
@@ -574,8 +575,9 @@
   }
 
   .hf-book-anim .hf-panel-band {
-    width: min(94%, 100%);
-    padding-left: clamp(10px, 3vw, 14px);
+    width: auto;
+    max-width: 100%;
+    padding: 0.45em 20px;
   }
 
   /* Manifesto — heading + body pair as one unit */
