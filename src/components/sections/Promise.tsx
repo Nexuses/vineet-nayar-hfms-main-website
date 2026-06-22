@@ -1,9 +1,14 @@
+import { useRouter } from 'next/router'
 import { ASSETS } from '../../data/site'
-import { useModal } from '../../context/ModalContext'
 import { revealDelay } from '../../utils/reveal'
+import { resolveNavHref } from '../../utils/nav'
 
 export function Promise() {
-  const { openJoin } = useModal()
+  const router = useRouter()
+  const citiesHref = resolveNavHref(
+    { href: '#cities-cards', sectionId: 'cities-cards' },
+    router.pathname,
+  )
 
   return (
     <section className="promise post-scroll-reveal" id="promise">
@@ -21,14 +26,14 @@ export function Promise() {
           A student. A colleague. A child. A stranger. You do not have to tell them about the movement. You do not
           have to tell them about the book. Just help them see themselves a little differently.
         </p>
-        <button
+        <a
           className="btn reveal reveal-from-bottom magnetic"
-          type="button"
+          href={citiesHref}
+          data-section-link="cities-cards"
           style={revealDelay(210)}
-          onClick={openJoin}
         >
           I accept the promise
-        </button>
+        </a>
       </div>
     </section>
   )
