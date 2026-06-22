@@ -726,6 +726,8 @@
   .hf-book-anim {
     padding-top: clamp(4px, 1vh, 8px);
     overflow: hidden;
+    --hf-panel-text-indent: 0;
+    --hf-panel-content-nudge: 0;
   }
 
   .hf-book-anim .hf-track {
@@ -813,22 +815,19 @@
     flex-shrink: 0;
   }
 
-  .hf-book-anim .hf-visual:has(.hf-book-tap-badge.is-visible) {
-    grid-template-rows: var(--hf-mob-circle) auto auto;
-  }
-
   .hf-book-anim .hf-book-tap-badge {
-    position: relative;
+    order: 2;
+    position: static;
     top: auto;
     right: auto;
-    grid-row: 2;
-    grid-column: 1;
-    justify-self: center;
+    left: auto;
     width: 100%;
-    margin-top: clamp(8px, 2vh, 14px);
+    max-width: 100%;
+    margin: clamp(8px, 2vh, 14px) 0 0;
     gap: 8px;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-align: center;
   }
 
@@ -891,10 +890,6 @@
     cursor: wait;
   }
 
-  .hf-book-anim .hf-visual:has(.hf-book-tap-badge.is-visible) .hf-flip-btn {
-    grid-row: 3;
-  }
-
   .hf-book-anim .hf-flip-btn:not(:disabled):active {
     transform: translateY(1px);
   }
@@ -930,17 +925,21 @@
 
   .hf-book-anim .hf-copy {
     position: relative;
+    left: auto;
     right: auto;
     order: 3;
     width: 100%;
     max-width: none;
     height: auto;
     max-height: none;
-    padding: clamp(20px, 5vh, 36px) var(--hf-gutter) clamp(20px, 5vh, 36px) 0;
+    padding: clamp(20px, 5vh, 36px) var(--hf-gutter);
     overflow-x: clip;
     overflow-y: visible;
     pointer-events: auto;
     align-self: stretch;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
     box-sizing: border-box;
   }
 
@@ -949,17 +948,22 @@
     top: auto;
     right: auto;
     bottom: auto;
+    left: auto;
     display: none;
+    flex-direction: column;
+    align-items: center;
     justify-content: flex-start;
+    width: 100%;
     opacity: 0;
     transform: translateY(12px);
     margin-bottom: 0;
     padding: 0;
+    text-align: center;
     transition: opacity 0.45s ease, transform 0.45s ease;
   }
 
   .hf-book-anim .hf-panel.active {
-    display: block;
+    display: flex;
     opacity: 1;
     transform: none;
   }
@@ -971,32 +975,67 @@
   .hf-book-anim .hf-panel-stack {
     padding-top: 0;
     min-height: 0;
-    --hf-panel-text-indent: 10%;
-    padding-left: var(--hf-panel-text-indent);
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    align-items: center;
+    text-align: center;
     gap: clamp(12px, 3.5vw, 20px);
   }
 
   .hf-book-anim .hf-panel-num {
     position: relative;
-    left: 0;
+    left: auto;
     top: auto;
+    display: block;
+    width: 100%;
     margin: 0 0 clamp(6px, 2vw, 10px);
     font-size: clamp(4rem, 20vw, 7.5rem);
+    text-align: center;
   }
 
   .hf-book-anim .hf-panel-band {
+    align-self: center;
     width: auto;
     max-width: 100%;
-    margin-left: 0;
+    margin: 0 auto;
     padding: 0.45em 20px;
     transform: none;
+  }
+
+  .hf-book-anim .hf-panel-title {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+  }
+
+  .hf-book-anim .hf-panel-quote,
+  .hf-book-anim .hf-panel-body {
+    width: 100%;
+    margin-inline: 0;
+    text-align: center;
+  }
+
+  .hf-book-anim .hf-panel-quote {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hf-book-anim .hf-panel-quote .hand-highlight {
+    display: inline-block;
+    width: auto;
+    max-width: 100%;
+    margin-inline: auto;
+    text-align: center;
   }
 
   .hf-book-anim .hf-tap-hint {
     display: flex;
     flex-direction: column;
     align-items: center;
-    order: 2;
+    order: 3;
     margin: clamp(4px, 1vh, 10px) 0 clamp(2px, 0.5vh, 6px);
     font-size: 0.68rem;
     letter-spacing: 0.28em;
@@ -1023,12 +1062,10 @@
 
 .hf-book-anim .hf-book-tap-badge {
   display: none;
-  position: absolute;
-  top: 8%;
-  right: -6%;
   z-index: 8;
   align-items: center;
-  gap: 7px;
+  justify-content: center;
+  gap: 8px;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.25s ease;
@@ -1058,6 +1095,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  width: 100%;
   text-align: center;
   opacity: 1;
 }

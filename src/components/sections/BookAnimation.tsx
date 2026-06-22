@@ -30,19 +30,19 @@ export function BookAnimation() {
               </button>
             </div>
 
-            <span className="hf-book-tap-badge" id="hfBookTapBadge" aria-hidden="true">
-              <span className="hf-book-tap-dot" aria-hidden="true" />
-              <span className="hf-book-tap-label">
-                Tap on the Book
-                <br />
-                to Learn More
-              </span>
-            </span>
-
             <button className="hf-flip-btn" id="hf-flipBtn" type="button" aria-label="Tap to flip the book">
               Tap to Flip
             </button>
           </div>
+
+          <span className="hf-book-tap-badge" id="hfBookTapBadge" aria-hidden="true">
+            <span className="hf-book-tap-dot" aria-hidden="true" />
+            <span className="hf-book-tap-label">
+              Tap on the Book
+              <br />
+              to Learn More
+            </span>
+          </span>
 
           <p className="hf-tap-hint is-prominent" id="hf-tapHint" aria-hidden="true">
             <span className="hf-tap-icon" aria-hidden="true" />
