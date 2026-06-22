@@ -813,6 +813,22 @@
     flex-shrink: 0;
   }
 
+  .hf-book-anim .hf-book-tap-badge {
+    gap: 9px;
+    top: 6%;
+    right: -8%;
+  }
+
+  .hf-book-anim .hf-book-tap-dot {
+    width: 20px;
+    height: 20px;
+  }
+
+  .hf-book-anim .hf-book-tap-label {
+    font-size: clamp(0.72rem, 3.4vw, 0.88rem);
+    letter-spacing: 0.12em;
+  }
+
   .hf-book-anim .hf-approach-line,
   .hf-book-anim .hf-approach-dot {
     display: none;

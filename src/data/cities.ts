@@ -55,7 +55,7 @@ export const CITIES: City[] = [
     dateDisplay: '5th Sept 2026',
     venue: 'Venue TBA',
     theme: 'Why Human Potential Still Wins',
-    cardImage: '/assets/figma/char-minar (1).png',
+    cardImage: unsplash('1551161242-b5af797b7233'),
     registerUrl: 'https://vineetnayar-events.vercel.app/events/evt_1781772675328_3a2ebk4',
   },
   {
