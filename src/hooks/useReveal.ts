@@ -35,19 +35,6 @@ function reapplyRevealed() {
   })
 }
 
-function ensureHeroVisible() {
-  document.querySelectorAll('.hero .reveal').forEach((element) => {
-    markRevealed(element)
-  })
-
-  document.querySelectorAll('.hero h1 b').forEach((element) => {
-    const el = element as HTMLElement
-    el.style.transform = ''
-    el.style.opacity = ''
-    el.style.visibility = ''
-  })
-}
-
 function revealInViewport() {
   document.querySelectorAll('.reveal:not(.on)').forEach((element) => {
     const group = getRevealGroup(element)
@@ -122,7 +109,6 @@ export function useReveal() {
   const router = useRouter()
 
   useEffect(() => {
-    ensureHeroVisible()
     const { defaultObserver, postBookObserver } = initRevealGroups()
 
     const refresh = () => {
@@ -133,7 +119,6 @@ export function useReveal() {
 
     const onScroll = () => revealInViewport()
     const onLoad = () => {
-      ensureHeroVisible()
       revealInViewport()
     }
 

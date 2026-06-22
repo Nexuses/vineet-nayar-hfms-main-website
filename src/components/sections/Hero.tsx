@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { BOOK_AVAILABILITY } from '../../data/bookPageContent'
 import { ASSETS } from '../../data/site'
@@ -9,30 +9,38 @@ const HERO_QUOTE =
 
 export function Hero() {
   const router = useRouter()
+  const [entered, setEntered] = useState(false)
   const citiesHref = resolveNavHref(
     { href: '#cities-cards', sectionId: 'cities-cards' },
     router.pathname,
   )
 
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      requestAnimationFrame(() => setEntered(true))
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [])
+
   return (
-    <section className="hero" data-hero>
+    <section className={`hero${entered ? ' hero-enter' : ''}`} data-hero>
       <div className="hero-content">
         <div className="hero-main">
           <h1 className="display">
-            <span>
+            <span className="hero-line">
               <b>Why we choose</b>
             </span>
-            <span>
+            <span className="hero-line">
               <b>
                 <img className="hero-mark" src={ASSETS.heroMark} alt="Humans First" />
               </b>
             </span>
           </h1>
 
-          <p className="hero-quote reveal reveal-from-bottom">{HERO_QUOTE}</p>
+          <p className="hero-quote">{HERO_QUOTE}</p>
         </div>
 
-        <div className="hero-actions reveal reveal-from-bottom" style={{ '--reveal-delay': '120ms' } as CSSProperties}>
+        <div className="hero-actions">
           <a className="btn magnetic" href={citiesHref} data-section-link="cities-cards">
             Register for your city
           </a>

@@ -319,15 +319,9 @@
     padding-top: clamp(16px, 3vh, 24px);
   }
 
-  .hero h1 span {
+  .hero h1 span,
+  .hero h1 .hero-line {
     overflow: visible;
-  }
-
-  .hero h1 b {
-    transform: none;
-    animation: none;
-    opacity: 1;
-    visibility: visible;
   }
 
   .hero-mark {
@@ -335,18 +329,6 @@
     max-height: 32vh;
     object-fit: contain;
     margin-top: 4px;
-  }
-
-  .hero-actions,
-  .hero-quote,
-  .hero-signature {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .hero .reveal {
-    opacity: 1;
-    transform: none;
   }
 
   .city-row {
