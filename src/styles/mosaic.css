@@ -92,19 +92,19 @@
 
 .mosaic-play {
   position: absolute;
-  left: 50%;
-  top: 50%;
+  top: clamp(8px, 1vw, 12px);
+  right: clamp(8px, 1vw, 12px);
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(44px, 5.5vw, 64px);
-  height: clamp(44px, 5.5vw, 64px);
+  width: clamp(26px, 3vw, 34px);
+  height: clamp(26px, 3vw, 34px);
   border-radius: 50%;
   background: var(--yellow);
   color: var(--ink);
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  transform: scale(1);
   transition:
     opacity 220ms ease,
     transform 220ms ease;
@@ -112,14 +112,14 @@
 }
 
 .mosaic-play svg {
-  width: 40%;
-  height: 40%;
+  width: 42%;
+  height: 42%;
   display: block;
 }
 
 .mosaic-photo-link:hover .mosaic-play,
 .mosaic-photo-link:focus-visible .mosaic-play {
-  transform: translate(-50%, -50%) scale(1.06);
+  transform: scale(1.08);
 }
 
 .mosaic-photo img {

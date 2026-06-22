@@ -20,7 +20,10 @@ export function BookAnimation() {
             <div className="hf-circle" id="hf-circle" aria-hidden="true" />
 
             <div className="hf-book-scene" id="hf-bookScene">
-              <span className="hf-book-tap-badge" id="hfBookTapBadge" aria-hidden="true" />
+              <span className="hf-book-tap-badge" id="hfBookTapBadge" aria-hidden="true">
+                <span className="hf-book-tap-dot" aria-hidden="true" />
+                <span className="hf-book-tap-label">Tap Here</span>
+              </span>
               <div className="hf-flipbook-embed" id="hf-flipbook">
                 <BookFlipbookEmbed ref={flipbookRef} />
               </div>
