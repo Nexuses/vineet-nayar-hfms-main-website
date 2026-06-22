@@ -824,8 +824,12 @@
     grid-row: 2;
     grid-column: 1;
     justify-self: center;
-    margin-top: clamp(6px, 1.5vh, 10px);
-    gap: 9px;
+    width: 100%;
+    margin-top: clamp(8px, 2vh, 14px);
+    gap: 8px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .hf-book-anim .hf-book-tap-dot {
@@ -834,8 +838,12 @@
   }
 
   .hf-book-anim .hf-book-tap-label {
-    font-size: clamp(0.72rem, 3.4vw, 0.88rem);
-    letter-spacing: 0.12em;
+    font-size: clamp(0.75rem, 3.6vw, 0.92rem);
+    letter-spacing: 0.06em;
+    line-height: 1.35;
+    text-transform: none;
+    white-space: normal;
+    text-align: center;
   }
 
   .hf-book-anim .hf-approach-line,
@@ -1039,15 +1047,18 @@
   font-family: var(--hf-sans);
   font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--hf-black);
-  white-space: nowrap;
-  line-height: 1;
+  white-space: normal;
+  line-height: 1.35;
+  text-align: center;
 }
 
 .hf-book-anim .hf-book-tap-badge.is-visible {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   opacity: 1;
 }
 
