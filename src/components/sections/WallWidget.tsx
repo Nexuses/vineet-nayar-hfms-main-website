@@ -173,8 +173,7 @@ export function WallWidget() {
           <span className="hand-highlight">will you never give up?</span>
         </h2>
         <p className="hf-wall-intro reveal reveal-from-bottom" style={revealDelay(120)}>
-          You&apos;ll answer it in your own handwriting, beside a few hundred strangers answering the same. A card
-          gets thrown away. A wall becomes a memory, and a record of what humans refuse to lose in the age of AI.
+          You probably already know. Add it to the wall, beside hundreds who felt the same.
         </p>
         <div className="hf-wall-chip-row reveal reveal-from-bottom" data-hf-wall-chips style={revealDelay(180)}>
           {WALL_WORDS.map((chip) => (

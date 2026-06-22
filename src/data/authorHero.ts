@@ -4,7 +4,7 @@ export const AUTHOR_HERO_HEADING = {
 } as const
 
 export const AUTHOR_HERO_BODY = [
-  'VINEET NAYAR is the former CEO of HCL Technologies (HCLT) and Global bestselling author of Employees First, Customers Second —one of the most influential management books of the last two decades.',
+  'VINEET NAYAR is the former CEO of HCL Technologies (HCLT) and Global bestselling author of Employees First, Customers Second one of the most influential management books of the last two decades.',
   'At HCLT, he led one of the IT industry\'s most celebrated transformations by putting human potential at the centre of business performance. Today, as founder chairman of Sampark Foundation, he is helping transform learning outcomes for millions of children across rural India using technology designed to amplify human potential, not replace it.',
   'Across boardrooms and classrooms, one belief has guided everything he does: Human beings achieve extraordinary things when somebody helps them believe they are capable of more.',
   'Humans First, Machines Second is that belief reimagined for the age of AI.',
