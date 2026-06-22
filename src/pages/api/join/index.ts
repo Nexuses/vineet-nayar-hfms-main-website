@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { JOIN_CITY_OPTIONS } from '@/data/site'
+import { saveJoinSubmission } from '@/lib/formPersistence'
 import { assertJoinMailReady, sendJoinEmails } from '@/lib/mailer'
 
 type SuccessResponse = {
@@ -11,6 +12,13 @@ type ErrorResponse = {
 }
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const JOIN_FORM_TYPE = 'join'
+
+function normalizeFormType(value: unknown): string | null {
+  if (typeof value !== 'string') return null
+  const trimmed = value.trim()
+  return trimmed || null
+}
 
 function normalizeName(value: unknown): string | null {
   if (typeof value !== 'string') return null
@@ -33,6 +41,12 @@ function normalizeCity(value: unknown): string | null {
   return trimmed
 }
 
+function hasContactOnlyFields(body: Record<string, unknown>) {
+  const phone = typeof body.phone === 'string' ? body.phone.trim() : ''
+  const message = typeof body.message === 'string' ? body.message.trim() : ''
+  return phone.length > 0 || message.length > 0
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<SuccessResponse | ErrorResponse>,
@@ -42,9 +56,19 @@ export default async function handler(
     return res.status(405).json({ error: `Method ${req.method} not allowed` })
   }
 
-  const name = normalizeName(req.body?.name)
-  const email = normalizeEmail(req.body?.email)
-  const city = normalizeCity(req.body?.city)
+  const body = (req.body ?? {}) as Record<string, unknown>
+
+  if (normalizeFormType(body.formType) !== JOIN_FORM_TYPE) {
+    return res.status(400).json({ error: 'Invalid join form submission.' })
+  }
+
+  if (hasContactOnlyFields(body)) {
+    return res.status(400).json({ error: 'Invalid join form submission.' })
+  }
+
+  const name = normalizeName(body.name)
+  const email = normalizeEmail(body.email)
+  const city = normalizeCity(body.city)
 
   if (!name) {
     return res.status(400).json({ error: 'Please enter your full name.' })
@@ -58,10 +82,13 @@ export default async function handler(
     return res.status(400).json({ error: 'Please choose a city.' })
   }
 
+  const submission = { name, email, city }
+
   try {
     assertJoinMailReady()
 
-    void sendJoinEmails({ name, email, city }).catch((error) => {
+    void saveJoinSubmission(submission)
+    void sendJoinEmails(submission).catch((error) => {
       console.error('Join email error:', error)
     })
 

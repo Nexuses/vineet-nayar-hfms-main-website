@@ -6,7 +6,7 @@ import { resolveNavHref } from '../../utils/nav'
 
 export function Footer() {
   const router = useRouter()
-  const { openJoin } = useModal()
+  const { openContact } = useModal()
 
   return (
     <footer className="footer">
@@ -39,7 +39,7 @@ export function Footer() {
           </div>
           <div>
             <h4>Connect with us</h4>
-            <button className="footer-link-btn footer-contact-btn" type="button" onClick={openJoin}>
+            <button className="footer-link-btn footer-contact-btn" type="button" onClick={openContact}>
               <span className="hand-highlight">Contact Us</span>
             </button>
             {FOOTER_LINKS.social.map((link) => (

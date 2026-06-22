@@ -1,41 +1,40 @@
 import { useCallback, useEffect, useState } from 'react'
-import { JOIN_CITY_OPTIONS } from '../../data/site'
 import { useModal } from '../../context/ModalContext'
 
 const LOADING_MS = 2000
 const SUCCESS_CLOSE_MS = 5000
 
-export function JoinModal() {
-  const { joinOpen, closeJoin } = useModal()
+export function ContactModal() {
+  const { contactOpen, closeContact } = useModal()
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
 
   const handleClose = useCallback(() => {
-    closeJoin()
+    closeContact()
     setSubmitted(false)
     setSubmitting(false)
     setError('')
-  }, [closeJoin])
+  }, [closeContact])
 
   useEffect(() => {
-    if (!joinOpen) return
+    if (!contactOpen) return
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') handleClose()
     }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [joinOpen, handleClose])
+  }, [contactOpen, handleClose])
 
   useEffect(() => {
-    if (!submitted || !joinOpen) return
+    if (!submitted || !contactOpen) return
 
     const timer = window.setTimeout(() => {
       handleClose()
     }, SUCCESS_CLOSE_MS)
 
     return () => window.clearTimeout(timer)
-  }, [submitted, joinOpen, handleClose])
+  }, [submitted, contactOpen, handleClose])
 
   const handleBackdrop = (event: React.MouseEvent) => {
     if (event.target === event.currentTarget) handleClose()
@@ -60,7 +59,8 @@ export function JoinModal() {
     const formData = new FormData(form)
     const name = String(formData.get('name') ?? '').trim()
     const email = String(formData.get('email') ?? '').trim()
-    const city = String(formData.get('city') ?? '').trim()
+    const phone = String(formData.get('phone') ?? '').trim()
+    const message = String(formData.get('message') ?? '').trim()
     const startedAt = Date.now()
 
     setSubmitting(true)
@@ -68,10 +68,10 @@ export function JoinModal() {
     setSubmitted(false)
 
     try {
-      const response = await fetch('/api/join', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ formType: 'join', name, email, city }),
+        body: JSON.stringify({ formType: 'contact', name, email, phone, message }),
       })
 
       const contentType = response.headers.get('content-type') ?? ''
@@ -103,33 +103,33 @@ export function JoinModal() {
 
   return (
     <div
-      className={`modal join-modal${joinOpen ? ' open' : ''}`}
-      id="modal"
-      aria-hidden={!joinOpen}
+      className={`modal join-modal${contactOpen ? ' open' : ''}`}
+      id="contactModal"
+      aria-hidden={!contactOpen}
       onClick={handleBackdrop}
     >
-      <div className="modal-card join-card" role="dialog" aria-modal="true" aria-labelledby="joinModalTitle">
+      <div className="modal-card join-card" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
         <button className="modal-close" type="button" aria-label="Close" onClick={handleClose}>
           ×
         </button>
-        <p className="eyebrow">Join the movement</p>
-        <h2 id="joinModalTitle" className="join-title">
-          Save your seat.
+        <p className="eyebrow">Connect with us</p>
+        <h2 id="contactModalTitle" className="join-title">
+          Contact Us
         </h2>
-        <p className="join-sub">Six cities. Free, public and limited. Tell us where to keep a place for you.</p>
+        <p className="join-sub">Send us a message and we&apos;ll get back to you as soon as we can.</p>
 
         <div className="join-form-area">
           {submitting ? (
             <div className="join-loading" aria-live="polite" aria-busy="true">
               <span className="join-loading-spinner" aria-hidden="true" />
-              <p>Reserving your seat…</p>
+              <p>Sending your message…</p>
             </div>
           ) : null}
 
           {!submitting && !submitted ? (
-            <form className="join-form" id="joinForm" noValidate onSubmit={handleSubmit}>
+            <form className="join-form" id="contactForm" noValidate onSubmit={handleSubmit}>
               <label>
-                Your name
+                Name
                 <input type="text" name="name" autoComplete="name" required placeholder="Full name" />
               </label>
               <label>
@@ -137,15 +137,12 @@ export function JoinModal() {
                 <input type="email" name="email" autoComplete="email" required placeholder="you@example.com" />
               </label>
               <label>
-                City
-                <select name="city" required defaultValue="">
-                  <option value="" disabled>
-                    Choose a city
-                  </option>
-                  {JOIN_CITY_OPTIONS.map((city) => (
-                    <option key={city}>{city}</option>
-                  ))}
-                </select>
+                Phone
+                <input type="tel" name="phone" autoComplete="tel" required placeholder="+91 98765 43210" />
+              </label>
+              <label>
+                Message
+                <textarea name="message" rows={4} required placeholder="How can we help?" />
               </label>
               {error ? (
                 <p className="join-error" role="alert">
@@ -153,7 +150,7 @@ export function JoinModal() {
                 </p>
               ) : null}
               <button className="btn join-submit" type="submit">
-                Reserve my seat
+                Send message
               </button>
             </form>
           ) : null}
@@ -161,7 +158,7 @@ export function JoinModal() {
           {!submitting && submitted ? (
             <div className="join-success join-success-in-form" role="status">
               <p className="join-success-title">Thank you!</p>
-              <p>You&apos;re on the list. A confirmation email is on its way to your inbox with the details.</p>
+              <p>Your message has been sent. We&apos;ll be in touch soon.</p>
             </div>
           ) : null}
         </div>

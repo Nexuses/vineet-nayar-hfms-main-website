@@ -3,12 +3,12 @@ import { useModal } from '../context/ModalContext'
 
 export function useMobileMenu() {
   const [open, setOpen] = useState(false)
-  const { joinOpen, videoOpen } = useModal()
+  const { joinOpen, contactOpen, videoOpen } = useModal()
 
   const setBodyLock = useCallback(() => {
-    const anyOpen = open || joinOpen || videoOpen
+    const anyOpen = open || joinOpen || contactOpen || videoOpen
     document.body.classList.toggle('modal-open', anyOpen)
-  }, [open, joinOpen, videoOpen])
+  }, [open, joinOpen, contactOpen, videoOpen])
 
   useEffect(() => {
     setBodyLock()

@@ -29,3 +29,5 @@ export async function getDb(): Promise<Db> {
 }
 
 export const WALL_COLLECTION = 'wall_submissions'
+export const JOIN_SUBMISSIONS_COLLECTION = 'join_submissions'
+export const CONTACT_SUBMISSIONS_COLLECTION = 'contact_submissions'

@@ -15,7 +15,7 @@ export function getEmailLogoUrl(): string {
   return ''
 }
 
-function escapeHtml(value: string): string {
+export function escapeHtml(value: string): string {
   return value
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -24,7 +24,7 @@ function escapeHtml(value: string): string {
     .replace(/'/g, '&#39;')
 }
 
-function emailShell(content: string, preheader: string): string {
+export function emailShell(content: string, preheader: string): string {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +52,7 @@ function emailShell(content: string, preheader: string): string {
 </html>`
 }
 
-function emailHeader(title: string, subtitle?: string): string {
+export function emailHeader(title: string, subtitle?: string): string {
   const logoUrl = getEmailLogoUrl()
   const logoCell = logoUrl
     ? `<td align="right" valign="middle" width="152" style="width:152px;padding-left:20px;vertical-align:middle;text-align:right;">
@@ -90,7 +90,7 @@ function emailHeader(title: string, subtitle?: string): string {
     </tr>`
 }
 
-function detailRow(label: string, value: string): string {
+export function detailRow(label: string, value: string): string {
   return `
     <tr>
       <td style="padding:12px 0;border-bottom:1px solid #eceae3;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6b6b6b;width:120px;vertical-align:top;">

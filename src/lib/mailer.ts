@@ -1,8 +1,13 @@
 import nodemailer from 'nodemailer'
 import type { Transporter } from 'nodemailer'
 import { buildAdminJoinEmail, buildUserThankYouEmail, type JoinSubmission } from './joinEmailTemplates'
+import {
+  buildAdminContactEmail,
+  buildUserContactThankYouEmail,
+  type ContactSubmission,
+} from './contactEmailTemplates'
 
-export type { JoinSubmission }
+export type { JoinSubmission, ContactSubmission }
 
 function getSmtpConfig() {
   const host = process.env.SMTP_HOST
@@ -49,6 +54,10 @@ export function getJoinNotifyEmail(): string {
   return process.env.JOIN_NOTIFY_EMAIL || process.env.SMTP_USER || ''
 }
 
+export function getContactNotifyEmail(): string {
+  return process.env.CONTACT_NOTIFY_EMAIL || getJoinNotifyEmail()
+}
+
 export function assertJoinMailReady(): void {
   getSmtpConfig()
   getMailFrom()
@@ -57,6 +66,13 @@ export function assertJoinMailReady(): void {
   }
 }
 
+export function assertContactMailReady(): void {
+  getSmtpConfig()
+  getMailFrom()
+  if (!getContactNotifyEmail()) {
+    throw new Error('Missing CONTACT_NOTIFY_EMAIL. Set the inbox that should receive contact form messages.')
+  }
+}
 
 export async function sendJoinEmails(submission: JoinSubmission) {
   const notifyEmail = getJoinNotifyEmail()
@@ -70,7 +86,7 @@ export async function sendJoinEmails(submission: JoinSubmission) {
       from,
       to: notifyEmail,
       replyTo: submission.email,
-      subject: `New seat reservation — ${submission.city}`,
+      subject: `[Join] New seat reservation — ${submission.city}`,
       text: adminEmail.text,
       html: adminEmail.html,
     }),
@@ -78,6 +94,32 @@ export async function sendJoinEmails(submission: JoinSubmission) {
       from,
       to: submission.email,
       subject: 'Thank you — your seat is reserved | Humans First',
+      text: thankYouEmail.text,
+      html: thankYouEmail.html,
+    }),
+  ])
+}
+
+export async function sendContactEmails(submission: ContactSubmission) {
+  const notifyEmail = getContactNotifyEmail()
+  const transporter = getMailTransporter()
+  const from = getMailFrom()
+  const adminEmail = buildAdminContactEmail(submission)
+  const thankYouEmail = buildUserContactThankYouEmail(submission)
+
+  await Promise.all([
+    transporter.sendMail({
+      from,
+      to: notifyEmail,
+      replyTo: submission.email,
+      subject: `[Contact] New message from ${submission.name}`,
+      text: adminEmail.text,
+      html: adminEmail.html,
+    }),
+    transporter.sendMail({
+      from,
+      to: submission.email,
+      subject: 'We received your message | Humans First',
       text: thankYouEmail.text,
       html: thankYouEmail.html,
     }),

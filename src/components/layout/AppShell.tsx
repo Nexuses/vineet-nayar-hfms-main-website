@@ -9,6 +9,7 @@ import { useNavSpy } from '@/hooks/useNavSpy'
 import { useReveal } from '@/hooks/useReveal'
 import { useScrollProgress } from '@/hooks/useScrollProgress'
 import { useTiltCard } from '@/hooks/useTiltCard'
+import { ContactModal } from '@/components/modals/ContactModal'
 import { JoinModal } from '@/components/modals/JoinModal'
 import { VideoModal } from '@/components/modals/VideoModal'
 import { CursorGlow } from './CursorGlow'
@@ -56,6 +57,7 @@ export function AppShell({ children }: AppShellProps) {
 
       <Footer />
       <JoinModal />
+      <ContactModal />
       <VideoModal />
     </>
   )

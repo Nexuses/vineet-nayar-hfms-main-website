@@ -200,7 +200,8 @@
 }
 
 .join-form input,
-.join-form select {
+.join-form select,
+.join-form textarea {
   min-height: 50px;
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -214,8 +215,15 @@
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 
+.join-form textarea {
+  min-height: 120px;
+  padding: 14px 16px;
+  resize: vertical;
+}
+
 .join-form input:focus,
-.join-form select:focus {
+.join-form select:focus,
+.join-form textarea:focus {
   outline: none;
   border-color: #111;
   background: #fff;

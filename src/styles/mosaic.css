@@ -103,8 +103,8 @@
   border-radius: 50%;
   background: var(--yellow);
   color: var(--ink);
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.92);
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
   transition:
     opacity 220ms ease,
     transform 220ms ease;
@@ -119,8 +119,7 @@
 
 .mosaic-photo-link:hover .mosaic-play,
 .mosaic-photo-link:focus-visible .mosaic-play {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1.06);
 }
 
 .mosaic-photo img {

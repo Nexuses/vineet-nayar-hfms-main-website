@@ -2,12 +2,15 @@ import { createContext, useCallback, useContext, useState, type ReactNode } from
 
 interface ModalContextValue {
   joinOpen: boolean
+  contactOpen: boolean
   videoOpen: boolean
   videoSrc: string
   videoYoutubeId: string
   videoTitle: string
   openJoin: () => void
   closeJoin: () => void
+  openContact: () => void
+  closeContact: () => void
   openVideo: (src: string) => void
   openYoutubeVideo: (youtubeId: string, title?: string) => void
   closeVideo: () => void
@@ -17,6 +20,7 @@ const ModalContext = createContext<ModalContextValue | null>(null)
 
 export function ModalProvider({ children }: { children: ReactNode }) {
   const [joinOpen, setJoinOpen] = useState(false)
+  const [contactOpen, setContactOpen] = useState(false)
   const [videoOpen, setVideoOpen] = useState(false)
   const [videoSrc, setVideoSrc] = useState('')
   const [videoYoutubeId, setVideoYoutubeId] = useState('')
@@ -24,6 +28,8 @@ export function ModalProvider({ children }: { children: ReactNode }) {
 
   const openJoin = useCallback(() => setJoinOpen(true), [])
   const closeJoin = useCallback(() => setJoinOpen(false), [])
+  const openContact = useCallback(() => setContactOpen(true), [])
+  const closeContact = useCallback(() => setContactOpen(false), [])
   const openVideo = useCallback((src: string) => {
     setVideoYoutubeId('')
     setVideoTitle('Video player')
@@ -47,12 +53,15 @@ export function ModalProvider({ children }: { children: ReactNode }) {
     <ModalContext.Provider
       value={{
         joinOpen,
+        contactOpen,
         videoOpen,
         videoSrc,
         videoYoutubeId,
         videoTitle,
         openJoin,
         closeJoin,
+        openContact,
+        closeContact,
         openVideo,
         openYoutubeVideo,
         closeVideo,
