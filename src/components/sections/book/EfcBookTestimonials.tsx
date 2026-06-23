@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import type { Swiper as SwiperType } from 'swiper'
+import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { EFC_BOOK_TESTIMONIALS } from '@/data/employeesFirstBook'
 
@@ -20,10 +21,15 @@ export function EfcBookTestimonials() {
       <div className="testimonial-swiper-wrap">
         <Swiper
           className="testimonial-swiper"
+          modules={[Autoplay]}
           slidesPerView="auto"
           centeredSlides
           loop
           spaceBetween={24}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+          }}
           onSwiper={(swiper) => {
             swiperRef.current = swiper
           }}
