@@ -569,6 +569,10 @@ main {
   transform: none;
 }
 
+.hero-mark-wrap {
+  display: block;
+}
+
 .hero-mark {
   width: min(72vw, 900px);
   margin: clamp(-14px, -1vw, -6px) auto 0;
@@ -1756,9 +1760,13 @@ main > .promise {
     line-height: 0.9;
   }
 
+  .hero-mark-wrap {
+    margin-top: 6px;
+  }
+
   .hero-mark {
     width: min(92vw, 520px);
-    margin-top: 6px;
+    margin: 0;
   }
 
   .hero-quote {
@@ -1865,6 +1873,7 @@ main > .promise {
   }
 
   .hero h1 b,
+  .hero-mark-wrap,
   .hero-mark,
   .hero-quote,
   .hero-actions .btn,
@@ -1874,6 +1883,15 @@ main > .promise {
     transform: none;
     animation: none;
     transition: none;
+  }
+
+  .hero-mark-wrap,
+  .hero-enter .hero-mark-wrap {
+    max-width: 100vw;
+  }
+
+  .hero-mark {
+    clip-path: none;
   }
 }
 

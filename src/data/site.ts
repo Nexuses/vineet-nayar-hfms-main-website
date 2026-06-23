@@ -101,6 +101,7 @@ export const JOIN_CITY_OPTIONS = [
 export const ASSETS = {
   logo: '/assets/figma/logo-no-underline.png',
   footerLogo: '/assets/figma/logo.png',
+  favicon: '/assets/figma/favicon.png',
   heroMark: '/assets/figma/hero-mark.png',
   avatar: '/assets/figma/avatar.png',
   promiseVideo: '/assets/figma/bgvideo.mp4',

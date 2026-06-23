@@ -1,9 +1,12 @@
 import { Head, Html, Main, NextScript } from 'next/document'
+import { ASSETS } from '@/data/site'
 
 export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <link rel="icon" type="image/png" href={ASSETS.favicon} />
+        <link rel="apple-touch-icon" href={ASSETS.favicon} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link

@@ -32,7 +32,9 @@ export function Hero() {
             </span>
             <span className="hero-line">
               <b>
-                <img className="hero-mark" src={ASSETS.heroMark} alt="Humans First" />
+                <span className="hero-mark-wrap">
+                  <img className="hero-mark" src={ASSETS.heroMark} alt="Humans First" />
+                </span>
               </b>
             </span>
           </h1>
