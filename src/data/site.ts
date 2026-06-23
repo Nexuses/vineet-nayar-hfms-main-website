@@ -47,7 +47,7 @@ const MANIFESTO_NAV: NavLinkItem[] = FEATURES.manifesto
   : []
 
 const BOOK_NAV: NavLinkItem[] = FEATURES.bookPage
-  ? [{ href: '/book', label: 'The book', isRoute: true, side: 'left' }]
+  ? [{ href: '/book', label: 'More Books', isRoute: true, side: 'left' }]
   : []
 
 export const NAV_LINKS: NavLinkItem[] = [

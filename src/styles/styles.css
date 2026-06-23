@@ -564,12 +564,23 @@ main {
 }
 
 .hero h1 .hero-line:nth-child(2) b {
-  animation-delay: 110ms;
+  animation: none;
+  opacity: 1;
+  transform: none;
 }
 
 .hero-mark {
   width: min(72vw, 900px);
   margin: clamp(-14px, -1vw, -6px) auto 0;
+  display: block;
+  clip-path: inset(0 100% 0 0);
+  animation: hero-mark-wipe 1.15s cubic-bezier(0.16, 1, 0.3, 1) 110ms forwards;
+}
+
+@keyframes hero-mark-wipe {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
 }
 
 @keyframes hero-rise {
