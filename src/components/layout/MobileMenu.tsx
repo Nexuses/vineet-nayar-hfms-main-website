@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import { NAV_EXPLORE_ITEMS, NAV_LINKS } from '@/data/site'
 import { resolveNavHref } from '@/utils/nav'
 
@@ -10,10 +11,15 @@ interface MobileMenuProps {
 
 export function MobileMenu({ open, onClose }: MobileMenuProps) {
   const router = useRouter()
+  const [exploreOpen, setExploreOpen] = useState(false)
   const citiesHref = resolveNavHref(
     { href: '#cities-cards', sectionId: 'cities-cards' },
     router.pathname,
   )
+
+  useEffect(() => {
+    if (!open) setExploreOpen(false)
+  }, [open])
 
   return (
     <div className={`mobile-menu${open ? ' open' : ''}`} id="mobileMenu" aria-hidden={!open}>
@@ -35,21 +41,32 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             </a>
           ),
         )}
-        <p className="mobile-menu-group-label">Explore</p>
-        {NAV_EXPLORE_ITEMS.map((item) => (
-          <a
-            key={item.sectionId}
-            className="mobile-menu-sublink"
-            href={resolveNavHref(item, router.pathname)}
-            data-mobile-link
-            data-section-link={item.sectionId}
-            onClick={onClose}
-          >
-            {item.label}
-          </a>
-        ))}
+        <button
+          type="button"
+          className="mobile-menu-explore"
+          aria-expanded={exploreOpen}
+          onClick={() => setExploreOpen((value) => !value)}
+        >
+          Explore
+        </button>
+        {exploreOpen ? (
+          <div className="mobile-menu-sub">
+            {NAV_EXPLORE_ITEMS.map((item) => (
+              <a
+                key={item.sectionId}
+                className="mobile-menu-sublink"
+                href={resolveNavHref(item, router.pathname)}
+                data-mobile-link
+                data-section-link={item.sectionId}
+                onClick={onClose}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        ) : null}
         <a
-          className="btn"
+          className="btn mobile-menu-cta"
           href={citiesHref}
           data-mobile-link
           data-section-link="cities-cards"
