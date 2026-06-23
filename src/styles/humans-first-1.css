@@ -591,6 +591,8 @@
   line-height: 1.22;
   color: #111;
   max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .hf-book-anim .hf-panel-quote .hand-highlight {
@@ -627,6 +629,8 @@
   line-height: 1.55;
   color: #5c5c5c;
   max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .hf-book-anim .hf-hero-cap {
@@ -929,10 +933,11 @@
     right: auto;
     order: 3;
     width: 100%;
-    max-width: none;
+    max-width: 100%;
+    min-width: 0;
     height: auto;
     max-height: none;
-    padding: clamp(20px, 5vh, 36px) var(--hf-gutter);
+    padding: clamp(20px, 5vh, 36px) 0;
     overflow-x: clip;
     overflow-y: visible;
     pointer-events: auto;
@@ -954,6 +959,8 @@
     align-items: center;
     justify-content: flex-start;
     width: 100%;
+    min-width: 0;
+    max-width: 100%;
     opacity: 0;
     transform: translateY(12px);
     margin-bottom: 0;
@@ -975,6 +982,7 @@
   .hf-book-anim .hf-panel-stack {
     padding-top: 0;
     min-height: 0;
+    min-width: 0;
     width: 100%;
     max-width: 100%;
     padding-left: 0;
@@ -1006,15 +1014,21 @@
 
   .hf-book-anim .hf-panel-title {
     width: 100%;
+    max-width: 100%;
     margin: 0;
     text-align: center;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   .hf-book-anim .hf-panel-quote,
   .hf-book-anim .hf-panel-body {
     width: 100%;
+    max-width: 100%;
     margin-inline: 0;
     text-align: center;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   .hf-book-anim .hf-panel-quote {
@@ -1024,11 +1038,14 @@
   }
 
   .hf-book-anim .hf-panel-quote .hand-highlight {
-    display: inline-block;
+    display: inline;
     width: auto;
     max-width: 100%;
     margin-inline: auto;
     text-align: center;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   .hf-book-anim .hf-tap-hint {

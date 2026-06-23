@@ -536,6 +536,29 @@
     line-height: 0.92;
   }
 
+  .hf-book-anim .hf-copy {
+    min-width: 0;
+    max-width: 100%;
+    padding-inline: 0;
+    overflow-x: clip;
+  }
+
+  .hf-book-anim .hf-panel,
+  .hf-book-anim .hf-panel.active,
+  .hf-book-anim .hf-panel-stack {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .hf-book-anim .hf-panel-title,
+  .hf-book-anim .hf-panel-quote,
+  .hf-book-anim .hf-panel-body,
+  .hf-book-anim .hf-panel-num,
+  .hf-book-anim .hf-panel-band span {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
   .hf-book-anim {
     --hf-panel-title-size: clamp(2rem, 9vw + 0.5rem, 3.25rem);
     --hf-panel-num-size: clamp(3.75rem, 20vw, 6.5rem);
@@ -557,6 +580,8 @@
     padding-top: 0;
     padding-left: 0;
     padding-right: 0;
+    min-width: 0;
+    max-width: 100%;
     align-items: center;
     text-align: center;
     gap: clamp(12px, 3.5vw, 20px);
@@ -576,9 +601,11 @@
   }
 
   .hf-book-anim .hf-panel-quote .hand-highlight {
-    display: inline-block;
+    display: inline;
+    max-width: 100%;
     margin-inline: auto;
     text-align: center;
+    white-space: normal;
   }
 
   .hf-book-anim .hf-panel-body {
