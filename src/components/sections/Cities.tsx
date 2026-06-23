@@ -32,7 +32,14 @@ export function Cities() {
                   {getEventDayOfWeek(city.isoDate)} · {city.dateDisplay}
                 </p>
                 <p className="city-card-venue">
-                  {city.venue} — {city.city}
+                  <span className="city-card-venue-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
+                    </svg>
+                  </span>
+                  <span>
+                    {city.venue}, {city.city}
+                  </span>
                 </p>
                 <p className="city-card-theme">{city.theme}</p>
                 <CityCardCountdown isoDate={city.isoDate} />
