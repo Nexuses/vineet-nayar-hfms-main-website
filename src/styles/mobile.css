@@ -717,6 +717,72 @@
   .manifesto-line.active em {
     color: rgba(255, 255, 255, 0.88);
   }
+
+  /* Book page — phone layout */
+  .book-page {
+    --book-heading-content-gap: clamp(16px, 4vw, 24px);
+  }
+
+  .book-page-hero {
+    padding-top: calc(var(--header) + clamp(36px, 6.5vw, 52px));
+    padding-bottom: clamp(18px, 3.5vw, 28px);
+  }
+
+  .book-page-hero.hero h1.book-page-hero-lead {
+    margin-top: clamp(10px, 2vw, 14px);
+  }
+
+  .book-page-hero-highlight {
+    margin-top: 2px;
+  }
+
+  .book-page-hero-visual {
+    margin-top: clamp(18px, 4vw, 24px);
+  }
+
+  .book-page-opening {
+    padding-top: clamp(18px, 3.5vw, 28px);
+  }
+
+  .book-page-opening-title {
+    margin-bottom: clamp(14px, 3.5vw, 20px);
+  }
+
+  .book-page-opening-title .hand-highlight {
+    margin-top: 4px;
+  }
+
+  .book-page-opening .book-page-lede + .book-page-lede {
+    margin-top: clamp(12px, 3vw, 16px);
+  }
+
+  .book-cta-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .book-cta-eyebrow {
+    width: 100%;
+    text-align: center;
+  }
+
+  .book-cta-title .hand-highlight {
+    margin-inline: auto;
+  }
+
+  .book-cta-title .hand-highlight::before {
+    transform: translate(-50%, -50%);
+  }
+
+  .book-cta-description {
+    text-align: center;
+  }
+
+  .book-cta-form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 @media (max-width: 720px) {
