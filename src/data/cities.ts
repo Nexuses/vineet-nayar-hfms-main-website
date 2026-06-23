@@ -29,7 +29,7 @@ export const CITIES: City[] = [
     venue: 'Dr Ambedkar International Centre',
     theme: 'Will Average People Still Matter?',
     cardImage: unsplash('1587474260584-136574528ed5'),
-    registerUrl: 'https://vineetnayar-events.vercel.app/events/evt_1781527463423_h2wxif9',
+    registerUrl: 'https://events.hfmsbook.com/events/evt_1782204507893_yu1e3jh',
   },
   {
     city: 'Mumbai',
@@ -38,7 +38,7 @@ export const CITIES: City[] = [
     venue: 'NSE',
     theme: 'The Human Advantage',
     cardImage: unsplash('1570168007204-dfb528c6958f'),
-    registerUrl: 'https://vineetnayar-events.vercel.app/events/evt_1781772429820_uxuusi0',
+    registerUrl: 'https://events.hfmsbook.com/events/evt_1782206616842_rdumm5m',
   },
   {
     city: 'Bengaluru',
@@ -47,7 +47,7 @@ export const CITIES: City[] = [
     venue: 'Bhartiya Vidya Bhawan',
     theme: 'What AI Cannot Replace',
     cardImage: unsplash('1596176530529-78163a4f7af2'),
-    registerUrl: 'https://vineetnayar-events.vercel.app/events/evt_1781772567415_emjy44w',
+    registerUrl: 'https://events.hfmsbook.com/events/evt_1782206784481_37gn7y8',
   },
   {
     city: 'Hyderabad',
@@ -56,7 +56,7 @@ export const CITIES: City[] = [
     venue: 'ISB',
     theme: 'Why Human Potential Still Wins',
     cardImage: unsplash('1551161242-b5af797b7233'),
-    registerUrl: 'https://vineetnayar-events.vercel.app/events/evt_1781772675328_3a2ebk4',
+    registerUrl: 'https://events.hfmsbook.com/events/evt_1782206956504_6kep5s6',
   },
   {
     city: 'Chennai',
@@ -65,7 +65,7 @@ export const CITIES: City[] = [
     venue: 'Anna Library',
     theme: 'Stay Curious. Stay Inspired.',
     cardImage: unsplash('1582510003544-4d00b7f74220'),
-    registerUrl: 'https://vineetnayar-events.vercel.app/events/evt_1781772780484_u9hmy0b',
+    registerUrl: 'https://events.hfmsbook.com/events/evt_1782207095662_7wo2iav',
   },
   {
     city: 'Kolkata',
@@ -74,6 +74,6 @@ export const CITIES: City[] = [
     venue: 'Tollygunge Club',
     theme: 'What Part of Being Human Will You Never Give Up?',
     cardImage: unsplash('1677307816181-1446ab18913e'),
-    registerUrl: 'https://vineetnayar-events.vercel.app/events/evt_1781772877547_zjbwzho',
+    registerUrl: 'https://events.hfmsbook.com/events/evt_1782207229198_xl03tt1',
   },
 ]
