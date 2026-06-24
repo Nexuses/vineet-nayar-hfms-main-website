@@ -50,7 +50,7 @@ export const CONTACT_CTA = {
   eyebrow: 'Ready to begin?',
   heading: 'Be part of something bigger than the book.',
   body: 'Six cities. One conversation. Join the movement in person or start with the book.',
-  primaryLabel: 'Register for your city',
+  primaryLabel: 'Register to meet Vineet Nayar',
   secondaryLabel: 'Buy on Amazon',
   amazonUrl: BOOK_AVAILABILITY.amazonUrl,
   videoPoster:

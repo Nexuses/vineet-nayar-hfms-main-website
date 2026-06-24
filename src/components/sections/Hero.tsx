@@ -44,7 +44,7 @@ export function Hero() {
 
         <div className="hero-actions">
           <a className="btn magnetic" href={citiesHref} data-section-link="cities-cards">
-            Register for your city
+            Register to meet Vineet Nayar
           </a>
           <a
             className="btn secondary magnetic"
