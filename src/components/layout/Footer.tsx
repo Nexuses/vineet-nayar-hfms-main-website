@@ -22,7 +22,24 @@ export function Footer() {
           <div>
             <h4>Quick Links</h4>
             {FOOTER_LINKS.explore.map((link) =>
-              link.isRoute ? (
+              link.isExternal ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={link.labelHighlight ? 'footer-link-has-highlight' : undefined}
+                >
+                  {link.labelHighlight ? (
+                    <>
+                      {link.labelPrefix}{' '}
+                      <span className="footer-link-name">{link.labelHighlight}</span>
+                    </>
+                  ) : (
+                    link.label
+                  )}
+                </a>
+              ) : link.isRoute ? (
                 <Link key={link.href} href={link.href}>
                   {link.label}
                 </Link>

@@ -57,7 +57,11 @@ export const NAV_LINKS: NavLinkItem[] = [
   { href: '#wall', label: 'The Wall', sectionId: 'wall', side: 'right' },
 ]
 
-export type FooterNavLink = Pick<NavLinkItem, 'href' | 'label' | 'sectionId' | 'isRoute'>
+export type FooterNavLink = Pick<NavLinkItem, 'href' | 'label' | 'sectionId' | 'isRoute'> & {
+  isExternal?: boolean
+  labelPrefix?: string
+  labelHighlight?: string
+}
 
 export const FOOTER_QUICK_LINKS: FooterNavLink[] = [
   ...NAV_LINKS.filter((link) => link.side === 'left').map(({ href, label, sectionId, isRoute }) => ({
@@ -77,6 +81,13 @@ export const FOOTER_QUICK_LINKS: FooterNavLink[] = [
     sectionId,
     isRoute,
   })),
+  {
+    href: 'https://vineetnayar.com/about-us/',
+    label: 'Learn more about Vineet Nayar',
+    labelPrefix: 'Learn more about',
+    labelHighlight: 'Vineet Nayar',
+    isExternal: true,
+  },
 ]
 
 export const FOOTER_LINKS = {

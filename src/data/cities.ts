@@ -9,8 +9,8 @@ export interface City {
 }
 
 export const CITIES_HEADING = {
-  titleLead: 'Come Join the Movement',
-  titleHighlight: 'in Your City',
+  titleLead: 'Meet Vineet Nayar in your city',
+  titleHighlight: 'to join the movement',
 } as const
 
 export function getEventDayOfWeek(isoDate: string): string {

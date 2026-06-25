@@ -35,24 +35,6 @@ export const CITY_EVENTS_HEADING = {
 
 export const CITY_EVENTS: CityEvent[] = [
   {
-    id: 'new-york',
-    label: 'New York',
-    ariaLabel: 'New York — Coming soon',
-    // Demo image (Unsplash) — replace when final asset is ready:
-    // https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=900&q=80&auto=format&fit=crop
-    image: 'https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=900&q=80&auto=format&fit=crop',
-    colorLayer: EVENT_OVERLAY,
-    badge: COMING_SOON.badge,
-    overlayCity: 'New York',
-    date: COMING_SOON.date,
-    time: COMING_SOON.time,
-    entry: COMING_SOON.entry,
-    description: COMING_SOON.description,
-    registerCity: 'New York',
-    dotLabel: 'New York',
-    isOpen: false,
-  },
-  {
     id: 'paris',
     label: 'Paris',
     ariaLabel: 'Paris — Coming soon',
@@ -68,6 +50,24 @@ export const CITY_EVENTS: CityEvent[] = [
     description: COMING_SOON.description,
     registerCity: 'Paris',
     dotLabel: 'Paris',
+    isOpen: false,
+  },
+  {
+    id: 'new-york',
+    label: 'New York',
+    ariaLabel: 'New York — Coming soon',
+    // Demo image (Unsplash) — replace when final asset is ready:
+    // https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=900&q=80&auto=format&fit=crop
+    image: 'https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=900&q=80&auto=format&fit=crop',
+    colorLayer: EVENT_OVERLAY,
+    badge: COMING_SOON.badge,
+    overlayCity: 'New York',
+    date: COMING_SOON.date,
+    time: COMING_SOON.time,
+    entry: COMING_SOON.entry,
+    description: COMING_SOON.description,
+    registerCity: 'New York',
+    dotLabel: 'New York',
     isOpen: false,
   },
   {

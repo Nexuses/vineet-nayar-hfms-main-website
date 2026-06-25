@@ -637,6 +637,22 @@ main {
     transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.hero-actions .hero-register-btn {
+  flex-direction: column;
+  gap: 4px;
+  min-height: auto;
+  padding: 12px 28px;
+  line-height: 1.15;
+  white-space: normal;
+}
+
+.hero-register-btn-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
 .hero-enter .hero-actions .btn {
   opacity: 1;
   transform: none;
@@ -1337,6 +1353,70 @@ main > .promise {
   margin-top: 34px;
 }
 
+.promise-flip-btn {
+  display: inline-block;
+  margin-top: 34px;
+  border: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font);
+  perspective: 900px;
+}
+
+.promise-flip-btn.is-flipped {
+  cursor: default;
+  pointer-events: none;
+}
+
+.promise-flip-inner {
+  display: block;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  min-width: min(100%, 420px);
+}
+
+.promise-flip-btn.is-flipped .promise-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.promise-flip-face {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 46px;
+  border-radius: 999px;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  transition: box-shadow 220ms ease, transform 220ms ease;
+}
+
+.promise-flip-front {
+  position: relative;
+  background: var(--yellow);
+  color: #000;
+}
+
+.promise-flip-back {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  color: var(--yellow);
+  transform: rotateY(180deg);
+}
+
+.promise-flip-btn:not(.is-flipped):hover .promise-flip-front {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
 .footer {
   padding: clamp(76px, 9vw, 116px) 0 42px;
   background: #fff;
@@ -1410,7 +1490,7 @@ main > .promise {
   top: 50%;
   transform: translate(-50%, -50%);
   width: calc(100% + 1.4em);
-  height: 2em;
+  height: 2.55em;
   background-image: url("/assets/figma/Vector.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -1419,6 +1499,21 @@ main > .promise {
   transition: opacity 220ms ease;
   z-index: -1;
   pointer-events: none;
+}
+
+.footer-links a.footer-link-has-highlight::before {
+  left: -0.55em;
+  top: -0.35em;
+  right: -0.55em;
+  bottom: -0.35em;
+  width: auto;
+  height: auto;
+  min-height: 0;
+  transform: none;
+}
+
+.footer-links a .footer-link-name {
+  white-space: nowrap;
 }
 
 .footer-links a:hover,

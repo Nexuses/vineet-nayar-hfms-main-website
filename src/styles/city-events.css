@@ -167,6 +167,14 @@
   align-self: flex-start;
 }
 
+.ev-badge-coming-soon {
+  font-size: clamp(15px, 2vw, 20px);
+  letter-spacing: 0.12em;
+  padding: 8px 18px;
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
 .ev-overlay-city {
   font-size: clamp(28px, 4vw, 48px);
   font-weight: 900;

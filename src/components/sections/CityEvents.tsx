@@ -112,23 +112,31 @@ export function CityEvents() {
                 <span className="ev-city-label">{event.label}</span>
               </div>
               <div className="ev-overlay">
-                <span className={`ev-badge${event.isOpen ? '' : ' is-muted'}`}>{event.badge}</span>
+                {event.isOpen ? (
+                  <span className="ev-badge">{event.badge}</span>
+                ) : null}
                 <div className="ev-overlay-city">{event.overlayCity}</div>
-                <div className="ev-overlay-meta">
-                  <span className="ev-meta-item">
-                    <span className="ev-meta-dot" aria-hidden="true" />
-                    {event.date}
-                  </span>
-                  <span className="ev-meta-item">
-                    <span className="ev-meta-dot" aria-hidden="true" />
-                    {event.time}
-                  </span>
-                  <span className="ev-meta-item">
-                    <span className="ev-meta-dot" aria-hidden="true" />
-                    {event.entry}
-                  </span>
-                </div>
-                <p className="ev-overlay-desc">{event.description}</p>
+                {event.isOpen ? (
+                  <div className="ev-overlay-meta">
+                    <span className="ev-meta-item">
+                      <span className="ev-meta-dot" aria-hidden="true" />
+                      {event.date}
+                    </span>
+                    <span className="ev-meta-item">
+                      <span className="ev-meta-dot" aria-hidden="true" />
+                      {event.time}
+                    </span>
+                    <span className="ev-meta-item">
+                      <span className="ev-meta-dot" aria-hidden="true" />
+                      {event.entry}
+                    </span>
+                  </div>
+                ) : null}
+                {event.isOpen ? (
+                  <p className="ev-overlay-desc">{event.description}</p>
+                ) : (
+                  <span className="ev-badge ev-badge-coming-soon is-muted">{event.badge}</span>
+                )}
                 {event.isOpen ? (
                   <button
                     className="ev-register-btn"
