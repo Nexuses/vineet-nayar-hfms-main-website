@@ -31,10 +31,10 @@ export function HomePage() {
       <CityEvents />
       <AuthorHero />
       <Mosaic />
-      <Promise />
       {FEATURES.wallIframe && <WallIframe />}
       {FEATURES.faq && <Faq />}
       <WallWidget />
+      <Promise />
     </main>
   )
 }
