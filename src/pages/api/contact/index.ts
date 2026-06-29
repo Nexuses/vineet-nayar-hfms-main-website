@@ -97,17 +97,20 @@ export default async function handler(
   try {
     assertContactMailReady()
 
-    void saveContactSubmission(submission)
-    void sendContactEmails(submission).catch((error) => {
-      console.error('Contact email error:', error)
-    })
+    await saveContactSubmission(submission)
+    await sendContactEmails(submission)
 
     return res.status(200).json({ ok: true })
   } catch (error) {
     console.error('Contact API error:', error)
     const messageText = error instanceof Error ? error.message : 'Failed to send your message.'
     const status =
-      messageText.includes('Missing SMTP') || messageText.includes('CONTACT_NOTIFY_EMAIL') ? 503 : 500
+      messageText.includes('Missing SendClean') ||
+      messageText.includes('Missing SMTP_FROM_EMAIL') ||
+      messageText.includes('CONTACT_NOTIFY_EMAIL') ||
+      messageText.includes('SendClean failed')
+        ? 503
+        : 500
     return res.status(status).json({ error: messageText })
   }
 }

@@ -1,5 +1,3 @@
-import nodemailer from 'nodemailer'
-import type { Transporter } from 'nodemailer'
 import { buildAdminJoinEmail, buildUserThankYouEmail, type JoinSubmission } from './joinEmailTemplates'
 import {
   buildAdminContactEmail,
@@ -9,49 +7,61 @@ import {
 
 export type { JoinSubmission, ContactSubmission }
 
-function getSmtpConfig() {
-  const host = process.env.SMTP_HOST
-  const port = Number(process.env.SMTP_PORT || 587)
-  const user = process.env.SMTP_USER
-  const pass = process.env.SMTP_PASS
-
-  if (!host || !user || !pass) {
-    throw new Error('Missing SMTP configuration. Set SMTP_HOST, SMTP_USER, and SMTP_PASS in .env.local.')
-  }
-
-  return {
-    host,
-    port,
-    secure: port === 465,
-    auth: { user, pass },
-  }
+type SendCleanResponse = {
+  status?: string
+  message?: string
+  code?: number
+  type?: string
 }
 
-let transporter: Transporter | null = null
+type SendCleanMailInput = {
+  to: string | string[]
+  subject: string
+  text: string
+  html: string
+  replyTo?: string
+}
 
-export function getMailTransporter(): Transporter {
-  if (!transporter) {
-    transporter = nodemailer.createTransport(getSmtpConfig())
+function getSendCleanConfig() {
+  const ownerId = process.env.SENDCLEAN_OWNER_ID
+  const token = process.env.SENDCLEAN_TOKEN
+  const smtpUser = process.env.SENDCLEAN_SMTPUSER
+  const apiHost = process.env.SENDCLEAN_API_HOST || 'us1-mta1.sendclean.net'
+
+  if (!ownerId || !token || !smtpUser) {
+    throw new Error(
+      'Missing SendClean configuration. Set SENDCLEAN_OWNER_ID, SENDCLEAN_TOKEN, and SENDCLEAN_SMTPUSER in .env.local.',
+    )
   }
-  return transporter
+
+  return { ownerId, token, smtpUser, apiHost }
+}
+
+function parseRecipients(value: string): string[] {
+  return value
+    .split(',')
+    .map((email) => email.trim())
+    .filter(Boolean)
 }
 
 export function getSenderName(): string {
-  return process.env.SMTP_FROM_NAME || 'Humans First'
+  return process.env.SMTP_FROM_NAME || 'HFMS Book'
 }
 
-export function getMailFrom(): string {
-  const email = process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER
+export function getMailFromEmail(): string {
+  const email = process.env.SMTP_FROM_EMAIL
   if (!email) {
     throw new Error('Missing SMTP_FROM_EMAIL. Set the sender email address in .env.local.')
   }
+  return email
+}
 
-  const name = getSenderName()
-  return `"${name}" <${email}>`
+export function getReplyEmail(): string {
+  return process.env.SMTP_REPLY_EMAIL || getMailFromEmail()
 }
 
 export function getJoinNotifyEmail(): string {
-  return process.env.JOIN_NOTIFY_EMAIL || process.env.SMTP_USER || ''
+  return process.env.JOIN_NOTIFY_EMAIL || process.env.SMTP_REPLY_EMAIL || ''
 }
 
 export function getContactNotifyEmail(): string {
@@ -59,40 +69,74 @@ export function getContactNotifyEmail(): string {
 }
 
 export function assertJoinMailReady(): void {
-  getSmtpConfig()
-  getMailFrom()
+  getSendCleanConfig()
+  getMailFromEmail()
   if (!getJoinNotifyEmail()) {
     throw new Error('Missing JOIN_NOTIFY_EMAIL. Set the inbox that should receive seat reservations.')
   }
 }
 
 export function assertContactMailReady(): void {
-  getSmtpConfig()
-  getMailFrom()
+  getSendCleanConfig()
+  getMailFromEmail()
   if (!getContactNotifyEmail()) {
     throw new Error('Missing CONTACT_NOTIFY_EMAIL. Set the inbox that should receive contact form messages.')
   }
 }
 
+async function sendViaSendClean({ to, subject, text, html, replyTo }: SendCleanMailInput) {
+  const { ownerId, token, smtpUser, apiHost } = getSendCleanConfig()
+  const recipients = (Array.isArray(to) ? to : parseRecipients(to)).map((email) => ({
+    email,
+    type: 'to' as const,
+  }))
+
+  if (recipients.length === 0) {
+    throw new Error('No recipient email address provided.')
+  }
+
+  const response = await fetch(`https://api.${apiHost}/v1.0/messages/sendMail`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      owner_id: ownerId,
+      token,
+      smtp_user_name: smtpUser,
+      message: {
+        html,
+        text,
+        subject,
+        from_email: getMailFromEmail(),
+        from_name: getSenderName(),
+        to: recipients,
+        ...(replyTo ? { headers: { 'Reply-To': replyTo } } : {}),
+      },
+    }),
+  })
+
+  const data = (await response.json()) as SendCleanResponse
+  if (!response.ok || data.status === 'error') {
+    throw new Error(data.message || 'SendClean failed to send email.')
+  }
+}
+
 export async function sendJoinEmails(submission: JoinSubmission) {
   const notifyEmail = getJoinNotifyEmail()
-  const transporter = getMailTransporter()
-  const from = getMailFrom()
+  const replyEmail = getReplyEmail()
   const adminEmail = buildAdminJoinEmail(submission)
   const thankYouEmail = buildUserThankYouEmail(submission)
 
   await Promise.all([
-    transporter.sendMail({
-      from,
+    sendViaSendClean({
       to: notifyEmail,
       replyTo: submission.email,
       subject: `[Join] New seat reservation — ${submission.city}`,
       text: adminEmail.text,
       html: adminEmail.html,
     }),
-    transporter.sendMail({
-      from,
+    sendViaSendClean({
       to: submission.email,
+      replyTo: replyEmail,
       subject: 'Thank you — your seat is reserved | Humans First',
       text: thankYouEmail.text,
       html: thankYouEmail.html,
@@ -102,23 +146,21 @@ export async function sendJoinEmails(submission: JoinSubmission) {
 
 export async function sendContactEmails(submission: ContactSubmission) {
   const notifyEmail = getContactNotifyEmail()
-  const transporter = getMailTransporter()
-  const from = getMailFrom()
+  const replyEmail = getReplyEmail()
   const adminEmail = buildAdminContactEmail(submission)
   const thankYouEmail = buildUserContactThankYouEmail(submission)
 
   await Promise.all([
-    transporter.sendMail({
-      from,
+    sendViaSendClean({
       to: notifyEmail,
       replyTo: submission.email,
       subject: `[Contact] New message from ${submission.name}`,
       text: adminEmail.text,
       html: adminEmail.html,
     }),
-    transporter.sendMail({
-      from,
+    sendViaSendClean({
       to: submission.email,
+      replyTo: replyEmail,
       subject: 'We received your message | Humans First',
       text: thankYouEmail.text,
       html: thankYouEmail.html,

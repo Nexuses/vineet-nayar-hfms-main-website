@@ -11,6 +11,10 @@
   margin-bottom: clamp(48px, 6vw, 80px);
 }
 
+.cities-head .name-highlight {
+  color: #ECEC40;
+}
+
 .city-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

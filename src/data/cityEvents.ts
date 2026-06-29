@@ -30,7 +30,7 @@ export const CITY_EVENTS_HEADING = {
   titleLead: 'The World Tour',
   titleHighlight: 'A Global Movement',
   lede:
-    "This is more than a book tour. It's a global movement dedicated to celebrating and nurturing the qualities that make us uniquely human in the age of AI. Explore upcoming events, reserve your place and join the movement in your city.",
+    "This is more than a book tour. It's a global movement dedicated to celebrating and nurturing the qualities that make us uniquely human in the age of AI. Explore upcoming events, reserve your place, and join the movement in your city.",
 } as const
 
 export const CITY_EVENTS: CityEvent[] = [

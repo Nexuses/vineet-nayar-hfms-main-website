@@ -8,7 +8,22 @@ export function Cities() {
       <div className="wrap">
         <div className="cities-head reveal reveal-from-bottom">
           <h2 className="display">
-            {CITIES_HEADING.titleLead}
+            {(() => {
+              const lead = CITIES_HEADING.titleLead
+              const name = 'Vineet Nayar'
+              if (lead.includes(name)) {
+                const parts = lead.split(name)
+                return (
+                  <>
+                    {parts[0]}
+                    <span className="name-highlight">{name}</span>
+                    {parts[1]}
+                  </>
+                )
+              }
+
+              return lead
+            })()}
             <span className="hand-highlight">{CITIES_HEADING.titleHighlight}</span>
           </h2>
         </div>

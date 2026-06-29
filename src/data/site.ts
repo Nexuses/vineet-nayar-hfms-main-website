@@ -52,7 +52,6 @@ const BOOK_NAV: NavLinkItem[] = FEATURES.bookPage
 
 export const NAV_LINKS: NavLinkItem[] = [
   ...MANIFESTO_NAV,
-  { href: '#cities-cards', label: 'Join Us', sectionId: 'cities-cards', side: 'left' },
   ...BOOK_NAV,
   { href: '#wall', label: 'The Wall', sectionId: 'wall', side: 'right' },
 ]
@@ -95,6 +94,7 @@ export const FOOTER_LINKS = {
   social: [
     { href: 'https://www.linkedin.com/in/vineetnayar?originalSubdomain=in', label: 'LinkedIn' },
     { href: 'https://www.instagram.com/vn.nayar/?hl=en', label: 'Instagram' },
+    { href: 'https://www.youtube.com/@VineetNayar7/', label: 'YouTube' },
     { href: 'https://x.com/vineetnayar', label: 'X' },
     { href: 'https://www.facebook.com/VineetNayar.EmployeesFirst', label: 'Facebook' },
   ],

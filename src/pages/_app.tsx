@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 import { AppShell } from '@/components/layout/AppShell'
 import { ModalProvider } from '@/context/ModalContext'
 import { SITE } from '@/data/site'
@@ -25,6 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>{SITE.title}</title>
         <meta name="description" content={SITE.description} />
       </Head>
+      <GoogleAnalytics />
       <AppShell>
         <Component {...pageProps} />
       </AppShell>

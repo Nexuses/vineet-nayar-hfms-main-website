@@ -1,10 +1,7 @@
-import { useState } from 'react'
 import { ASSETS } from '../../data/site'
 import { revealDelay } from '../../utils/reveal'
 
 export function Promise() {
-  const [accepted, setAccepted] = useState(false)
-
   return (
     <section className="promise post-scroll-reveal" id="promise">
       <video className="promise-video" autoPlay muted loop playsInline preload="auto">
@@ -21,18 +18,6 @@ export function Promise() {
           A student. A colleague. A child. A stranger. You do not have to tell them about the movement. You do not
           have to tell them about the book. Just help them see themselves a little differently.
         </p>
-        <button
-          className={`promise-flip-btn reveal reveal-from-bottom magnetic${accepted ? ' is-flipped' : ''}`}
-          type="button"
-          aria-pressed={accepted}
-          onClick={() => setAccepted(true)}
-          style={revealDelay(210)}
-        >
-          <span className="promise-flip-inner">
-            <span className="promise-flip-face promise-flip-front">I accept the promise</span>
-            <span className="promise-flip-face promise-flip-back">You Are Now Part of the Movement</span>
-          </span>
-        </button>
       </div>
     </section>
   )

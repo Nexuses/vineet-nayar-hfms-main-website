@@ -25,7 +25,7 @@ export const CITIES: City[] = [
   {
     city: 'Delhi',
     isoDate: '2026-07-25',
-    dateDisplay: '25 July 2026',
+    dateDisplay: '25 Jul 2026',
     venue: 'Dr Ambedkar International Centre',
     theme: 'Will Average People Still Matter?',
     cardImage: unsplash('1587474260584-136574528ed5'),
@@ -34,8 +34,8 @@ export const CITIES: City[] = [
   {
     city: 'Mumbai',
     isoDate: '2026-08-08',
-    dateDisplay: '8th August 2026',
-    venue: 'NSE',
+    dateDisplay: '8 Aug 2026',
+    venue: 'National Stock Exchange',
     theme: 'The Human Advantage',
     cardImage: unsplash('1570168007204-dfb528c6958f'),
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782206616842_rdumm5m',
@@ -43,7 +43,7 @@ export const CITIES: City[] = [
   {
     city: 'Bengaluru',
     isoDate: '2026-08-22',
-    dateDisplay: '22nd August 2026',
+    dateDisplay: '22 Aug 2026',
     venue: 'Bhartiya Vidya Bhawan',
     theme: 'What AI Cannot Replace',
     cardImage: unsplash('1596176530529-78163a4f7af2'),
@@ -52,7 +52,7 @@ export const CITIES: City[] = [
   {
     city: 'Hyderabad',
     isoDate: '2026-09-05',
-    dateDisplay: '5th Sept 2026',
+    dateDisplay: '5 Sep 2026',
     venue: 'ISB',
     theme: 'Why Human Potential Still Wins',
     cardImage: unsplash('1551161242-b5af797b7233'),
@@ -61,7 +61,7 @@ export const CITIES: City[] = [
   {
     city: 'Chennai',
     isoDate: '2026-09-19',
-    dateDisplay: '19th Sept 2026',
+    dateDisplay: '19 Sep 2026',
     venue: 'Anna Library',
     theme: 'Stay Curious. Stay Inspired.',
     cardImage: unsplash('1582510003544-4d00b7f74220'),
@@ -70,7 +70,7 @@ export const CITIES: City[] = [
   {
     city: 'Kolkata',
     isoDate: '2026-10-09',
-    dateDisplay: '9th Oct 2026',
+    dateDisplay: '9 Oct 2026',
     venue: 'Tollygunge Club',
     theme: 'What Part of Being Human Will You Never Give Up?',
     cardImage: unsplash('1677307816181-1446ab18913e'),

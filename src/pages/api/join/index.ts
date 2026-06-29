@@ -87,16 +87,20 @@ export default async function handler(
   try {
     assertJoinMailReady()
 
-    void saveJoinSubmission(submission)
-    void sendJoinEmails(submission).catch((error) => {
-      console.error('Join email error:', error)
-    })
+    await saveJoinSubmission(submission)
+    await sendJoinEmails(submission)
 
     return res.status(200).json({ ok: true })
   } catch (error) {
     console.error('Join API error:', error)
     const message = error instanceof Error ? error.message : 'Failed to send reservation email.'
-    const status = message.includes('Missing SMTP') || message.includes('JOIN_NOTIFY_EMAIL') ? 503 : 500
+    const status =
+      message.includes('Missing SendClean') ||
+      message.includes('Missing SMTP_FROM_EMAIL') ||
+      message.includes('JOIN_NOTIFY_EMAIL') ||
+      message.includes('SendClean failed')
+        ? 503
+        : 500
     return res.status(status).json({ error: message })
   }
 }
