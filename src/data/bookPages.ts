@@ -54,7 +54,7 @@ export const BOOK_PANELS: BookPanel[] = [
     title: 'Empower',
     subtitle: 'Belief, not permission',
     quote: 'Not permission. Belief.',
-    body: 'AI works best when people are invited to co-create with it, not just use it. That means making it safe to question, adapt and act boldly—so people start owning what comes next instead of sitting on the sidelines.',
+    body: 'AI works best when people are invited to co-create with it, not just use it. That means making it safe to question, adapt, and act boldly—so people start owning what comes next instead of sitting on the sidelines.',
   },
   {
     index: 3,
@@ -63,7 +63,7 @@ export const BOOK_PANELS: BookPanel[] = [
     title: 'Amplify',
     subtitle: 'Make people more, not less',
     quote: 'AI should make humans more brilliant, not redundant.',
-    body: "AI won't replace great leadership, but it will expose weak leadership fast. In the AI era, mediocre teams crumble under pressure. The ones who win are the ones who amplify curiosity, agility and purpose at every level.",
+    body: "AI won't replace great leadership, but it will expose weak leadership fast. In the AI era, mediocre teams crumble under pressure. The ones who win are the ones who amplify curiosity, agility, and purpose at every level.",
   },
   {
     index: 4,

@@ -88,6 +88,8 @@ export function CityEvents() {
           </h2>
           <p className="lede ev-head-lede reveal reveal-from-bottom" style={revealDelay(40)}>
             {CITY_EVENTS_HEADING.lede}
+            <br />
+            {CITY_EVENTS_HEADING.ledeMore}
           </p>
         </div>
 

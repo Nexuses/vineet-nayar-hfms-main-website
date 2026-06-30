@@ -29,8 +29,8 @@ const COMING_SOON = {
 export const CITY_EVENTS_HEADING = {
   titleLead: 'The World Tour',
   titleHighlight: 'A Global Movement',
-  lede:
-    "This is more than a book tour. It's a global movement dedicated to celebrating and nurturing the qualities that make us uniquely human in the age of AI. Explore upcoming events, reserve your place, and join the movement in your city.",
+  lede: "This is more than a book tour. It's a global movement dedicated to celebrating and nurturing the qualities that make us uniquely human in the age of AI.",
+  ledeMore: 'Explore upcoming events, reserve your place, and join the movement in your city.',
 } as const
 
 export const CITY_EVENTS: CityEvent[] = [
@@ -39,8 +39,8 @@ export const CITY_EVENTS: CityEvent[] = [
     label: 'Paris',
     ariaLabel: 'Paris — Coming soon',
     // Demo image (Unsplash) — replace when final asset is ready:
-    // https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=900&q=80&auto=format&fit=crop
-    image: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=900&q=80&auto=format&fit=crop',
+    // https://images.unsplash.com/photo-1502602898657-3e91760cbb34
+    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=900&q=80&auto=format&fit=crop',
     colorLayer: EVENT_OVERLAY,
     badge: COMING_SOON.badge,
     overlayCity: 'Paris',
