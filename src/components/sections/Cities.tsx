@@ -64,7 +64,7 @@ export function Cities() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Register Now
+                  Apply to Attend
                 </a>
               </div>
             </article>

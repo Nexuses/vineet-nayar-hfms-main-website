@@ -149,7 +149,7 @@ export function CityEvents() {
                       openJoin()
                     }}
                   >
-                    Register Now &rarr;
+                    Apply to Attend &rarr;
                   </button>
                 ) : null}
               </div>
