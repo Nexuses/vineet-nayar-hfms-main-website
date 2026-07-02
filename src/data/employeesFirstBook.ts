@@ -197,14 +197,16 @@ export const EFC_BOOK_RECOGNITIONS: EfcRecognition[] = [
 export const EFC_BOOK_VIDEO = {
   youtubeId: 'HmV9dmG1XdY',
   embedUrl: 'https://www.youtube.com/embed/HmV9dmG1XdY',
+  titleLead: 'The Employees First,',
+  titleHighlight: 'Customers Second Transformation Journey',
   title: 'The Employees First, Customers Second Transformation Journey',
   thumbnail: 'https://img.youtube.com/vi/HmV9dmG1XdY/maxresdefault.jpg',
 } as const
 
 export const EFC_BOOK_CTA = {
-  eyebrow: 'Be part of the movement',
+  eyebrow: 'Be part of movement',
   titleLead: 'What Part of Being Human Will You',
-  titleHighlight: 'Never Give Up',
+  titleHighlight: 'Never Give Up?',
   descriptionEmphasis: 'Humans First, Machines Second',
   descriptionBody:
     'is a conversation about winning in the age of AI without losing what makes us human. This is where it begins. Find your city, take your seat, and bring your answer to the room.',

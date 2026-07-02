@@ -71,14 +71,8 @@ export const FOOTER_QUICK_LINKS: FooterNavLink[] = [
   })),
   ...NAV_EXPLORE_ITEMS.map(({ href, label, sectionId }) => ({
     href,
-    label,
+    label: sectionId === 'mosaic' ? 'Humans First Conversation' : label,
     sectionId,
-  })),
-  ...NAV_LINKS.filter((link) => link.side === 'right').map(({ href, label, sectionId, isRoute }) => ({
-    href,
-    label,
-    sectionId,
-    isRoute,
   })),
   {
     href: 'https://vineetnayar.com/about-us/',

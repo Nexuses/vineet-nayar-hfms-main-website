@@ -17,6 +17,10 @@ export function EfcBookVideo() {
   return (
     <section className="book-video-section" aria-label="Book video">
       <div className="wrap book-video-wrap">
+        <h2 className="display book-page-opening-title book-video-title reveal">
+          <span className="heading-lead">{EFC_BOOK_VIDEO.titleLead}</span>
+          <span className="hand-highlight">{EFC_BOOK_VIDEO.titleHighlight}</span>
+        </h2>
         <button
           type="button"
           className="book-video-embed book-video-trigger reveal"

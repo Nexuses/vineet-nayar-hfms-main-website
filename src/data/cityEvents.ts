@@ -76,7 +76,7 @@ export const CITY_EVENTS: CityEvent[] = [
     ariaLabel: 'London — Coming soon',
     // Demo image (Unsplash) — replace when final asset is ready:
     // https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=900&q=80&auto=format&fit=crop
-    image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=900&q=80&auto=format&fit=crop',
+    image: 'https://hfms-book.s3.us-east-2.amazonaws.com/1105_1782994426419_y93w.jpg',
     colorLayer: EVENT_OVERLAY,
     badge: COMING_SOON.badge,
     overlayCity: 'London',
@@ -94,7 +94,7 @@ export const CITY_EVENTS: CityEvent[] = [
     ariaLabel: 'Singapore — Coming soon',
     // Demo image (Unsplash) — replace when final asset is ready:
     // https://images.unsplash.com/photo-1548919973-5cef591cdbc9?w=900&q=80&auto=format&fit=crop
-    image: 'https://images.unsplash.com/photo-1548919973-5cef591cdbc9?w=900&q=80&auto=format&fit=crop',
+    image: 'https://hfms-book.s3.us-east-2.amazonaws.com/666_1782994531190_sr8n.jpg',
     colorLayer: EVENT_OVERLAY,
     badge: COMING_SOON.badge,
     overlayCity: 'Singapore',

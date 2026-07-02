@@ -55,5 +55,5 @@ export const BOOK_AVAILABILITY = {
   ctaBody: 'Join Vineet at The Humans First Series in a city near you.',
   ctaLabel: 'Register to Meet Vineet Nayar',
   amazonLabel: 'Available on Amazon',
-  amazonUrl: 'https://www.amazon.in/s?k=Humans+First+Machines+Second+Vineet+Nayar',
+  amazonUrl: 'https://amzn.in/d/0cVSW4Hy',
 } as const

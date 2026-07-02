@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
 import {
   WALL_SEED,
-  WALL_WORDS,
+  WALL_WORD_MAX_LENGTH,
   createSeedNotes,
   createWallNoteFromDb,
   type WallNote,
@@ -173,47 +173,28 @@ export function WallWidget() {
           <span className="hand-highlight">will you never give up?</span>
         </h2>
         <p className="hf-wall-intro reveal reveal-from-bottom" style={revealDelay(120)}>
-          You probably already know. Add it to the wall, beside hundreds who felt the same.
+          You probably already know. Write your answer and add it to the wall, beside hundreds who felt the same.
         </p>
-        <div className="hf-wall-chip-row reveal reveal-from-bottom" data-hf-wall-chips style={revealDelay(180)}>
-          {WALL_WORDS.map((chip) => (
-            <button
-              key={chip}
-              type="button"
-              className="hf-wall-chip"
-              onClick={() => {
-                setWord(chip)
-              }}
-            >
-              {chip}
-            </button>
-          ))}
-        </div>
 
-        <div className="whiteboard reveal reveal-from-bottom" ref={boardRef} data-hf-wall-board style={revealDelay(240)}>
+        <div className="whiteboard reveal reveal-from-bottom" ref={boardRef} data-hf-wall-board style={revealDelay(180)}>
           {notes.map((note) => (
             <DraggableNote key={note.id} note={note} boardRef={boardRef} onMove={moveNote} />
           ))}
 
           <form className="wall-input" data-hf-wall-form onSubmit={handleSubmit}>
-            <select
+            <input
               className="hf-wall-word"
               data-hf-wall-word
-              aria-label="Choose your word"
+              type="text"
+              maxLength={WALL_WORD_MAX_LENGTH}
+              placeholder="Your answer…"
+              aria-label="What will you never give up?"
               value={word}
               onChange={(e) => setWord(e.target.value)}
+              onKeyDown={handleKeyDown}
               disabled={submitting}
               required
-            >
-              <option value="" disabled>
-                Choose your word…
-              </option>
-              {WALL_WORDS.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
+            />
             <input
               className="hf-wall-name"
               data-hf-wall-name

@@ -1,3 +1,5 @@
+export const WALL_WORD_MAX_LENGTH = 60
+
 export const WALL_WORDS = [
   'Curiosity',
   'Courage',

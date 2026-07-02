@@ -21,8 +21,7 @@ export function EfcBookRecognitions() {
     <section className="book-recognitions" aria-label="Book recognitions">
       <div className="wrap book-page-opening-wrap">
         <h2 className="display book-page-opening-title book-recognitions-title reveal">
-          <span className="heading-lead">Awards &</span>
-          <span className="hand-highlight">Recognitions</span>
+          Awards &amp; Recognitions
         </h2>
       </div>
       <div className="book-recognitions-carousel">

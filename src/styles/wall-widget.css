@@ -156,9 +156,12 @@
   color: var(--hf-wall-ink);
   font-family: var(--hf-wall-hand);
   font-weight: 700;
-  font-size: clamp(24px, 2.4vw, 34px);
-  line-height: 1;
+  font-size: clamp(16px, 2.4vw, 34px);
+  line-height: 1.1;
   letter-spacing: var(--hf-wall-hand-letter-spacing);
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .hf-wall-widget .sticky-note .author {
@@ -218,8 +221,13 @@
 }
 
 .hf-wall-widget .wall-input .hf-wall-word {
-  min-width: 150px;
+  min-width: 180px;
   font-weight: 600;
+}
+
+.hf-wall-widget .wall-input .hf-wall-word::placeholder {
+  color: #8a8a8a;
+  font-weight: 500;
 }
 
 .hf-wall-widget .wall-input .hf-wall-name {

@@ -11,7 +11,7 @@ export function Promise() {
       <div className="wrap">
         <p className="eyebrow reveal reveal-from-bottom">The Humans First Promise</p>
         <h2 className="display reveal reveal-from-bottom promise-title" style={revealDelay(70)}>
-          <span className="heading-lead">Help two people believe</span>
+          <span className="heading-lead">Help people believe</span>
           <span className="hand-highlight">they are capable of more than they think.</span>
         </h2>
         <p className="reveal reveal-from-bottom" style={revealDelay(140)}>

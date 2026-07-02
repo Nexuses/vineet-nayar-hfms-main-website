@@ -112,7 +112,6 @@ export function ContactModal() {
         <button className="modal-close" type="button" aria-label="Close" onClick={handleClose}>
           ×
         </button>
-        <p className="eyebrow">Connect with us</p>
         <h2 id="contactModalTitle" className="join-title">
           Contact Us
         </h2>

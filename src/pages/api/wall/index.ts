@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getDb, WALL_COLLECTION } from '@/lib/mongodb'
-import { WALL_WORDS } from '@/data/wall'
+import { WALL_WORD_MAX_LENGTH } from '@/data/wall'
 
 export type WallSubmissionResponse = {
   id: string
@@ -25,8 +25,7 @@ type ErrorResponse = {
 function normalizeWord(value: unknown): string | null {
   if (typeof value !== 'string') return null
   const trimmed = value.trim()
-  if (!trimmed || trimmed.length > 22) return null
-  if (!(WALL_WORDS as readonly string[]).includes(trimmed)) return null
+  if (!trimmed || trimmed.length > WALL_WORD_MAX_LENGTH) return null
   return trimmed
 }
 
@@ -65,7 +64,7 @@ export default async function handler(
     if (req.method === 'POST') {
       const word = normalizeWord(req.body?.word)
       if (!word) {
-        return res.status(400).json({ error: 'Please choose a word from the list.' })
+        return res.status(400).json({ error: `Please enter your answer (up to ${WALL_WORD_MAX_LENGTH} characters).` })
       }
 
       const name = normalizeName(req.body?.name)
