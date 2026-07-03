@@ -15,6 +15,9 @@ const HERO_VIDEO = {
   thumbnail: 'https://img.youtube.com/vi/uToRdEeLfw8/maxresdefault.jpg',
 }
 
+/** Set to true when ready to show the hero video again. */
+const SHOW_HERO_VIDEO = false
+
 export function Hero() {
   const router = useRouter()
   const [entered, setEntered] = useState(false)
@@ -68,28 +71,30 @@ export function Hero() {
           </a>
         </div>
 
-        <div className="hero-video-wrap">
-          <button
-            type="button"
-            className="hero-video-trigger reveal reveal-from-bottom"
-            style={revealDelay(90)}
-            onClick={() => openYoutubeVideo(HERO_VIDEO.youtubeId, HERO_VIDEO.title)}
-            aria-label={`Play ${HERO_VIDEO.title}`}
-          >
-            <img
-              src={HERO_VIDEO.thumbnail}
-              alt={`Watch ${HERO_VIDEO.title}`}
-              className="hero-video-thumb"
-              loading="lazy"
-            />
-            <span className="hero-video-play" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </span>
-            <span className="hero-video-label">Watch the video</span>
-          </button>
-        </div>
+        {SHOW_HERO_VIDEO ? (
+          <div className="hero-video-wrap">
+            <button
+              type="button"
+              className="hero-video-trigger reveal reveal-from-bottom"
+              style={revealDelay(90)}
+              onClick={() => openYoutubeVideo(HERO_VIDEO.youtubeId, HERO_VIDEO.title)}
+              aria-label={`Play ${HERO_VIDEO.title}`}
+            >
+              <img
+                src={HERO_VIDEO.thumbnail}
+                alt={`Watch ${HERO_VIDEO.title}`}
+                className="hero-video-thumb"
+                loading="lazy"
+              />
+              <span className="hero-video-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </span>
+              <span className="hero-video-label">Watch the video</span>
+            </button>
+          </div>
+        ) : null}
       </div>
     </section>
   )

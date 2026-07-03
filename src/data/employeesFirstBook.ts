@@ -204,7 +204,7 @@ export const EFC_BOOK_VIDEO = {
 } as const
 
 export const EFC_BOOK_CTA = {
-  eyebrow: 'Be part of movement',
+  eyebrow: 'Be a part of the movement',
   titleLead: 'What Part of Being Human Will You',
   titleHighlight: 'Never Give Up?',
   descriptionEmphasis: 'Humans First, Machines Second',

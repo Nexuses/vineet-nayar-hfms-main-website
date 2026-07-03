@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
 import {
   WALL_SEED,
-  WALL_WORD_MAX_LENGTH,
+  WALL_WORDS,
   createSeedNotes,
   createWallNoteFromDb,
+  placeWallNote,
+  scatterWallNotes,
   type WallNote,
 } from '../../data/wall'
 import { revealDelay } from '../../utils/reveal'
@@ -78,7 +80,7 @@ function DraggableNote({ note, boardRef, onMove }: DraggableNoteProps) {
 
 export function WallWidget() {
   const boardRef = useRef<HTMLDivElement>(null)
-  const [notes, setNotes] = useState<WallNote[]>(() => createSeedNotes())
+  const [notes, setNotes] = useState<WallNote[]>(() => scatterWallNotes(createSeedNotes()))
   const [count, setCount] = useState(WALL_SEED.length)
   const [word, setWord] = useState('')
   const [name, setName] = useState('')
@@ -99,11 +101,11 @@ export function WallWidget() {
 
         if (cancelled) return
 
-        const dbNotes = data.submissions.map((submission, index) =>
-          createWallNoteFromDb(submission.id, submission.word, submission.name, index),
+        const dbNotes = data.submissions.map((submission) =>
+          createWallNoteFromDb(submission.id, submission.word, submission.name),
         )
 
-        setNotes([...dbNotes, ...createSeedNotes()])
+        setNotes(scatterWallNotes([...dbNotes, ...createSeedNotes()]))
         setCount(WALL_SEED.length + data.total)
       } catch {
         // Keep seed notes if the API is unavailable.
@@ -140,8 +142,13 @@ export function WallWidget() {
         submission: { id: string; word: string; name: string }
       }
 
-      const note = createWallNoteFromDb(data.submission.id, data.submission.word, data.submission.name, 0)
-      setNotes((prev) => [note, ...prev])
+      setNotes((prev) => {
+        const placed = placeWallNote(
+          createWallNoteFromDb(data.submission.id, data.submission.word, data.submission.name),
+          prev,
+        )
+        return [placed, ...prev]
+      })
       setCount((c) => c + 1)
       setWord('')
       setName('')
@@ -173,28 +180,47 @@ export function WallWidget() {
           <span className="hand-highlight">will you never give up?</span>
         </h2>
         <p className="hf-wall-intro reveal reveal-from-bottom" style={revealDelay(120)}>
-          You probably already know. Write your answer and add it to the wall, beside hundreds who felt the same.
+          You probably already know. Add it to the wall, beside hundreds who felt the same.
         </p>
+        <div className="hf-wall-chip-row reveal reveal-from-bottom" data-hf-wall-chips style={revealDelay(180)}>
+          {WALL_WORDS.map((chip) => (
+            <button
+              key={chip}
+              type="button"
+              className="hf-wall-chip"
+              onClick={() => {
+                setWord(chip)
+              }}
+            >
+              {chip}
+            </button>
+          ))}
+        </div>
 
-        <div className="whiteboard reveal reveal-from-bottom" ref={boardRef} data-hf-wall-board style={revealDelay(180)}>
+        <div className="whiteboard reveal reveal-from-bottom" ref={boardRef} data-hf-wall-board style={revealDelay(240)}>
           {notes.map((note) => (
             <DraggableNote key={note.id} note={note} boardRef={boardRef} onMove={moveNote} />
           ))}
 
           <form className="wall-input" data-hf-wall-form onSubmit={handleSubmit}>
-            <input
+            <select
               className="hf-wall-word"
               data-hf-wall-word
-              type="text"
-              maxLength={WALL_WORD_MAX_LENGTH}
-              placeholder="Your answer…"
-              aria-label="What will you never give up?"
+              aria-label="Choose your word"
               value={word}
               onChange={(e) => setWord(e.target.value)}
-              onKeyDown={handleKeyDown}
               disabled={submitting}
               required
-            />
+            >
+              <option value="" disabled>
+                Choose your word…
+              </option>
+              {WALL_WORDS.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
             <input
               className="hf-wall-name"
               data-hf-wall-name
