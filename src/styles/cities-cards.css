@@ -243,6 +243,19 @@
   transform: translateY(-2px);
 }
 
+.city-card-register--soon {
+  background: rgba(17, 17, 17, 0.1);
+  color: rgba(17, 17, 17, 0.42);
+  cursor: default;
+  pointer-events: none;
+}
+
+.city-card-register--soon:hover {
+  background: rgba(17, 17, 17, 0.1);
+  color: rgba(17, 17, 17, 0.42);
+  transform: none;
+}
+
 @media (max-width: 1050px) {
   .city-cards {
     grid-template-columns: repeat(2, 1fr);
