@@ -13,15 +13,6 @@ export const WALL_SEED: [string, string][] = [
   ['Empathy', 'Riya'],
   ['Imagination', 'Kabir'],
   ['Wonder', 'Sana'],
-  ['Courage', 'Dev'],
-  ['Kindness', 'Meera'],
-  ['Curiosity', 'Aarav'],
-  ['Hope', 'Priya'],
-  ['Forgiveness', 'Arjun'],
-  ['Curiosity', 'Neha'],
-  ['Courage', 'Rohan'],
-  ['Kindness', 'Ananya'],
-  ['Wonder', 'Ishaan'],
 ]
 
 export interface WallNote {
