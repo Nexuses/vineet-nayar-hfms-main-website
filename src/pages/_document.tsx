@@ -1,5 +1,6 @@
 import { Head, Html, Main, NextScript } from 'next/document'
 import { ASSETS } from '@/data/site'
+import { GA_GTAG_INIT_SCRIPT, GTAG_LOADER_ID } from '@/lib/analytics'
 
 export default function Document() {
   return (
@@ -17,6 +18,12 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap"
           rel="stylesheet"
         />
+        {GTAG_LOADER_ID ? (
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GTAG_LOADER_ID}`} />
+            <script dangerouslySetInnerHTML={{ __html: GA_GTAG_INIT_SCRIPT }} />
+          </>
+        ) : null}
       </Head>
       <body>
         <Main />

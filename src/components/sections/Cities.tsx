@@ -1,11 +1,4 @@
-import {
-  CITIES,
-  CITIES_HEADING,
-  INVITATION_OPEN_LABEL,
-  INVITATIONS_SOON_LABEL,
-  areInvitationsOpen,
-  getEventDayOfWeek,
-} from '../../data/cities'
+import { CITIES, CITIES_HEADING, getEventDayOfWeek } from '../../data/cities'
 import { revealStagger } from '../../utils/reveal'
 import { CityCardCountdown } from './CityCardCountdown'
 
@@ -65,20 +58,14 @@ export function Cities() {
                 </p>
                 <p className="city-card-theme">{city.theme}</p>
                 <CityCardCountdown isoDate={city.isoDate} />
-                {areInvitationsOpen(city.isoDate) ? (
-                  <a
-                    className="city-card-register"
-                    href={city.registerUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {INVITATION_OPEN_LABEL}
-                  </a>
-                ) : (
-                  <span className="city-card-register city-card-register--soon" aria-disabled="true">
-                    {INVITATIONS_SOON_LABEL}
-                  </span>
-                )}
+                <a
+                  className="city-card-register"
+                  href={city.registerUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Apply for an Invitation
+                </a>
               </div>
             </article>
           ))}

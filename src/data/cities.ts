@@ -13,23 +13,8 @@ export const CITIES_HEADING = {
   titleHighlight: 'to join the movement',
 } as const
 
-export const INVITATION_OPEN_DAYS_BEFORE = 20
-
-export const INVITATIONS_SOON_LABEL = 'Invitations Open Soon'
-
-export const INVITATION_OPEN_LABEL = 'Apply for an Invitation'
-
 export function getEventDayOfWeek(isoDate: string): string {
   return new Date(`${isoDate}T12:00:00`).toLocaleDateString('en-IN', { weekday: 'long' })
-}
-
-export function areInvitationsOpen(isoDate: string, now: Date = new Date()): boolean {
-  const eventDate = new Date(`${isoDate}T12:00:00`)
-  const invitationOpenDate = new Date(eventDate)
-  invitationOpenDate.setDate(invitationOpenDate.getDate() - INVITATION_OPEN_DAYS_BEFORE)
-
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0, 0)
-  return today.getTime() >= invitationOpenDate.getTime()
 }
 
 function unsplash(id: string) {
