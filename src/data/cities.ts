@@ -1,6 +1,7 @@
 export interface City {
   city: string
   isoDate: string
+  startIso: string
   dateDisplay: string
   venue: string
   theme: string
@@ -25,6 +26,7 @@ export const CITIES: City[] = [
   {
     city: 'Delhi',
     isoDate: '2026-07-25',
+    startIso: '2026-07-25T15:00:00+05:30',
     dateDisplay: '25 Jul 2026',
     venue: 'Bhim Hall, Dr.Ambedkar International Centre (DAIC)',
     theme: 'Will Average People Still Matter?',
@@ -34,6 +36,7 @@ export const CITIES: City[] = [
   {
     city: 'Mumbai',
     isoDate: '2026-08-08',
+    startIso: '2026-08-08T15:00:00+05:30',
     dateDisplay: '8 Aug 2026',
     venue: 'Atrium Hall, National Stock Exchange (NSE)',
     theme: 'The Human Advantage',
@@ -43,6 +46,7 @@ export const CITIES: City[] = [
   {
     city: 'Bengaluru',
     isoDate: '2026-08-22',
+    startIso: '2026-08-22T11:00:00+05:30',
     dateDisplay: '22 Aug 2026',
     venue: 'The Khincha Auditorium, Bharatiya Vidya Bhavan',
     theme: 'What AI Cannot Replace',
@@ -52,6 +56,7 @@ export const CITIES: City[] = [
   {
     city: 'Hyderabad',
     isoDate: '2026-09-05',
+    startIso: '2026-09-05T15:00:00+05:30',
     dateDisplay: '5 Sep 2026',
     venue: 'The Pearl Club, Mindspace Business Park',
     theme: 'Why Human Potential Still Wins',
@@ -61,6 +66,7 @@ export const CITIES: City[] = [
   {
     city: 'Chennai',
     isoDate: '2026-09-19',
+    startIso: '2026-09-19T15:00:00+05:30',
     dateDisplay: '19 Sep 2026',
     venue: 'Anna Centenary Library - Auditorium',
     theme: 'Stay Curious. Stay Inspired.',
@@ -70,6 +76,7 @@ export const CITIES: City[] = [
   {
     city: 'Kolkata',
     isoDate: '2026-10-09',
+    startIso: '2026-10-09T15:00:00+05:30',
     dateDisplay: '9 Oct 2026',
     venue: 'The Tollygunge Club',
     theme: 'What Part of Being Human Will You Never Give Up?',

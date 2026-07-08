@@ -546,6 +546,11 @@
     margin-inline: auto;
   }
 
+  main .hf-wall-widget .hf-wall-q .hf-wall-q-lead {
+    font-size: 32px;
+    white-space: normal;
+  }
+
   #cities .section-title .hand-highlight {
     margin-top: 12px;
   }

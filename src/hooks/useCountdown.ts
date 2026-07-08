@@ -8,9 +8,10 @@ export interface CountdownTime {
   expired: boolean
 }
 
-function getCountdown(isoDate: string): CountdownTime {
-  const target = new Date(`${isoDate}T00:00:00`).getTime()
-  const diff = target - Date.now()
+function getCountdown(target: string): CountdownTime {
+  // Accepts either a full ISO datetime (with offset) or a date-only string.
+  const targetMs = new Date(target.includes('T') ? target : `${target}T00:00:00`).getTime()
+  const diff = targetMs - Date.now()
 
   if (diff <= 0) {
     return { days: 0, hours: 0, minutes: 0, seconds: 0, expired: true }
@@ -24,18 +25,18 @@ function getCountdown(isoDate: string): CountdownTime {
   return { days, hours, minutes, seconds, expired: false }
 }
 
-export function useCountdown(isoDate: string): CountdownTime | null {
+export function useCountdown(target: string): CountdownTime | null {
   const [time, setTime] = useState<CountdownTime | null>(null)
 
   useEffect(() => {
-    const tick = () => setTime(getCountdown(isoDate))
+    const tick = () => setTime(getCountdown(target))
     const immediate = window.setTimeout(tick, 0)
     const id = window.setInterval(tick, 1000)
     return () => {
       window.clearTimeout(immediate)
       window.clearInterval(id)
     }
-  }, [isoDate])
+  }, [target])
 
   return time
 }

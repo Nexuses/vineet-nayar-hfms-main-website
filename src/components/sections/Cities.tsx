@@ -57,7 +57,7 @@ export function Cities() {
                   </span>
                 </p>
                 <p className="city-card-theme">{city.theme}</p>
-                <CityCardCountdown isoDate={city.isoDate} />
+                <CityCardCountdown startIso={city.startIso} />
                 <a
                   className="city-card-register"
                   href={city.registerUrl}

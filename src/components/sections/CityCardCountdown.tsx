@@ -46,8 +46,8 @@ function CountdownDisplay({
   )
 }
 
-export function CityCardCountdown({ isoDate }: { isoDate: string }) {
-  const time = useCountdown(isoDate)
+export function CityCardCountdown({ startIso }: { startIso: string }) {
+  const time = useCountdown(startIso)
 
   if (time === null) {
     return (

@@ -182,22 +182,8 @@ export function WallWidget() {
         <p className="hf-wall-intro reveal reveal-from-bottom" style={revealDelay(120)}>
           You probably already know. Add it to the wall, beside hundreds who felt the same.
         </p>
-        <div className="hf-wall-chip-row reveal reveal-from-bottom" data-hf-wall-chips style={revealDelay(180)}>
-          {WALL_WORDS.map((chip) => (
-            <button
-              key={chip}
-              type="button"
-              className="hf-wall-chip"
-              onClick={() => {
-                setWord(chip)
-              }}
-            >
-              {chip}
-            </button>
-          ))}
-        </div>
 
-        <div className="whiteboard reveal reveal-from-bottom" ref={boardRef} data-hf-wall-board style={revealDelay(240)}>
+        <div className="whiteboard reveal reveal-from-bottom" ref={boardRef} data-hf-wall-board style={revealDelay(180)}>
           {notes.map((note) => (
             <DraggableNote key={note.id} note={note} boardRef={boardRef} onMove={moveNote} />
           ))}
