@@ -278,6 +278,18 @@
     text-align: center;
   }
 
+  .city-card-venue {
+    display: block;
+    text-align: center;
+  }
+
+  .city-card-venue-icon {
+    display: inline-block;
+    vertical-align: -0.15em;
+    margin-top: 0;
+    margin-right: 4px;
+  }
+
   .city-card-countdown {
     justify-content: center;
   }
