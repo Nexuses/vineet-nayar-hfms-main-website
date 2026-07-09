@@ -1525,6 +1525,10 @@ main > .promise {
   align-items: start;
 }
 
+.footer-brand {
+  display: inline-block;
+}
+
 .footer-logo {
   width: 35%;
   max-width: none;

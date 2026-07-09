@@ -12,7 +12,9 @@ export function Footer() {
     <footer className="footer">
       <div className="wrap footer-grid">
         <div>
-          <img className="footer-logo" src={ASSETS.footerLogo} alt="Humans First" />
+          <Link href="/" className="footer-brand" aria-label="The Humans First Series home">
+            <img className="footer-logo" src={ASSETS.logo} alt="Humans First Series" />
+          </Link>
           <p className="lede footer-note">
             The Humans First Series is a live event platform built around the book Humans First, Machines
             Second by Vineet Nayar, published by Penguin Business.
