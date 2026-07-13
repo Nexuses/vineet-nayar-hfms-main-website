@@ -1,6 +1,11 @@
 import { Head, Html, Main, NextScript } from 'next/document'
 import { ASSETS } from '@/data/site'
-import { GA_GTAG_INIT_SCRIPT, GTAG_LOADER_ID } from '@/lib/analytics'
+import {
+  GA_GTAG_INIT_SCRIPT,
+  GTAG_LOADER_ID,
+  LINKEDIN_INSIGHT_SCRIPT,
+  LINKEDIN_PARTNER_ID,
+} from '@/lib/analytics'
 
 export default function Document() {
   return (
@@ -28,6 +33,16 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
+        <script dangerouslySetInnerHTML={{ __html: LINKEDIN_INSIGHT_SCRIPT }} />
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: 'none' }}
+            alt=""
+            src={`https://px.ads.linkedin.com/collect/?pid=${LINKEDIN_PARTNER_ID}&fmt=gif`}
+          />
+        </noscript>
       </body>
     </Html>
   )
