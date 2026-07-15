@@ -81,6 +81,11 @@ export const FOOTER_QUICK_LINKS: FooterNavLink[] = [
     labelHighlight: 'Vineet Nayar',
     isExternal: true,
   },
+  {
+    href: '/faq',
+    label: 'FAQ',
+    isRoute: true,
+  },
 ]
 
 export const FOOTER_LINKS = {

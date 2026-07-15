@@ -18,10 +18,6 @@ export function getEventDayOfWeek(isoDate: string): string {
   return new Date(`${isoDate}T12:00:00`).toLocaleDateString('en-IN', { weekday: 'long' })
 }
 
-function unsplash(id: string) {
-  return `https://images.unsplash.com/photo-${id}?w=640&q=80&auto=format&fit=crop`
-}
-
 export const CITIES: City[] = [
   {
     city: 'Delhi',
@@ -30,7 +26,7 @@ export const CITIES: City[] = [
     dateDisplay: '25 Jul 2026',
     venue: 'Bhim Hall, Dr.Ambedkar International Centre (DAIC)',
     theme: 'Will Average People Still Matter?',
-    cardImage: unsplash('1587474260584-136574528ed5'),
+    cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/Delhi_1784029961401_c28m.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782204507893_yu1e3jh',
   },
   {
@@ -40,7 +36,7 @@ export const CITIES: City[] = [
     dateDisplay: '8 Aug 2026',
     venue: 'Atrium Hall, National Stock Exchange (NSE)',
     theme: 'The Human Advantage',
-    cardImage: unsplash('1570168007204-dfb528c6958f'),
+    cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/mumbai_1784029961402_nhbs.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782206616842_rdumm5m',
   },
   {
@@ -50,7 +46,7 @@ export const CITIES: City[] = [
     dateDisplay: '22 Aug 2026',
     venue: 'The Khincha Auditorium, Bharatiya Vidya Bhavan',
     theme: 'What AI Cannot Replace',
-    cardImage: unsplash('1596176530529-78163a4f7af2'),
+    cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/bengaluru_1784029961400_9ck4.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782206784481_37gn7y8',
   },
   {
@@ -60,7 +56,7 @@ export const CITIES: City[] = [
     dateDisplay: '5 Sep 2026',
     venue: 'The Pearl Club, Mindspace Business Park',
     theme: 'Why Human Potential Still Wins',
-    cardImage: unsplash('1551161242-b5af797b7233'),
+    cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/hyderabad_1784029961401_f4er.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782206956504_6kep5s6',
   },
   {
@@ -70,7 +66,7 @@ export const CITIES: City[] = [
     dateDisplay: '19 Sep 2026',
     venue: 'Anna Centenary Library - Auditorium',
     theme: 'Stay Curious. Stay Inspired.',
-    cardImage: unsplash('1582510003544-4d00b7f74220'),
+    cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/chennai_1784029961401_7yjt.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782207095662_7wo2iav',
   },
   {
@@ -80,7 +76,7 @@ export const CITIES: City[] = [
     dateDisplay: '9 Oct 2026',
     venue: 'The Tollygunge Club',
     theme: 'What Part of Being Human Will You Never Give Up?',
-    cardImage: unsplash('1677307816181-1446ab18913e'),
+    cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/kolkata_1784029961401_1rk3.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782207229198_xl03tt1',
   },
 ]

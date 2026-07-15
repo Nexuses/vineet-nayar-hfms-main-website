@@ -17,6 +17,7 @@ import '@/styles/city-events.css'
 import '@/styles/cities-cards.css'
 import '@/styles/author-hero.css'
 import '@/styles/scroll-reveal.css'
+import '@/styles/faq-page.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
