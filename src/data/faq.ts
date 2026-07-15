@@ -11,7 +11,7 @@ export const FAQ_META = {
 } as const
 
 export const FAQ_HEADING = {
-  eyebrow: 'FAQ',
+  eyebrow: 'Frequently Asked Questions',
   titleLead: 'Before you join',
   titleHighlight: 'the room.',
   lede: 'A few clear answers, so the experience can stay simple, human and open.',

@@ -26,6 +26,7 @@ export function Cities() {
             })()}
             <span className="hand-highlight">{CITIES_HEADING.titleHighlight}</span>
           </h2>
+          <p className="cities-head-note">{CITIES_HEADING.subtitle}</p>
         </div>
 
         <div className="city-cards">
