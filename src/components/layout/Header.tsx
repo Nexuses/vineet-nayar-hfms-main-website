@@ -46,8 +46,11 @@ export function Header({ onToggleMenu, menuOpen }: HeaderProps) {
       <nav className="nav" aria-label="Primary navigation" data-nav>
         <span className="nav-orb" aria-hidden="true" />
         <div className="nav-group nav-left">
-          {leftLinks.map(renderNavLink)}
+          {leftLinks
+            .filter((link) => link.href !== '/faq')
+            .map(renderNavLink)}
           <NavExploreDropdown />
+          {leftLinks.filter((link) => link.href === '/faq').map(renderNavLink)}
         </div>
 
         <Link href="/" className="brand" aria-label="The Humans First Series home">

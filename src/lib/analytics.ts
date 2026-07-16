@@ -27,12 +27,15 @@ export const LINKEDIN_PARTNER_ID = '9627468'
 export const LINKEDIN_INSIGHT_SCRIPT = `
 _linkedin_partner_id = "${LINKEDIN_PARTNER_ID}";
 window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+if (window._linkedin_data_partner_ids.indexOf(_linkedin_partner_id) === -1) {
+  window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+}
 ;(function(l) {
   if (!l) {
     window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
     window.lintrk.q=[];
   }
+  if (document.querySelector('script[src*="li.lms-analytics/insight.min.js"]')) return;
   var s = document.getElementsByTagName("script")[0];
   var b = document.createElement("script");
   b.type = "text/javascript";

@@ -50,9 +50,12 @@ const BOOK_NAV: NavLinkItem[] = FEATURES.bookPage
   ? [{ href: '/book', label: 'More Books', isRoute: true, side: 'left' }]
   : []
 
+const FAQ_NAV: NavLinkItem[] = [{ href: '/faq', label: 'FAQ', isRoute: true, side: 'left' }]
+
 export const NAV_LINKS: NavLinkItem[] = [
   ...MANIFESTO_NAV,
   ...BOOK_NAV,
+  ...FAQ_NAV,
   { href: '#wall', label: 'The Wall', sectionId: 'wall', side: 'right' },
 ]
 
@@ -63,12 +66,14 @@ export type FooterNavLink = Pick<NavLinkItem, 'href' | 'label' | 'sectionId' | '
 }
 
 export const FOOTER_QUICK_LINKS: FooterNavLink[] = [
-  ...NAV_LINKS.filter((link) => link.side === 'left').map(({ href, label, sectionId, isRoute }) => ({
-    href,
-    label,
-    sectionId,
-    isRoute,
-  })),
+  ...NAV_LINKS.filter((link) => link.side === 'left' && link.href !== '/faq').map(
+    ({ href, label, sectionId, isRoute }) => ({
+      href,
+      label,
+      sectionId,
+      isRoute,
+    }),
+  ),
   ...NAV_EXPLORE_ITEMS.map(({ href, label, sectionId }) => ({
     href,
     label: sectionId === 'mosaic' ? 'Humans First Conversation' : label,

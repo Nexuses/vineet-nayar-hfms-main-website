@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { LINKEDIN_INSIGHT_SCRIPT, LINKEDIN_PARTNER_ID } from '@/lib/analytics'
 import { ASSETS, FOOTER_LINKS, SITE } from '../../data/site'
 import { useModal } from '../../context/ModalContext'
 import { resolveNavHref } from '../../utils/nav'
@@ -71,6 +72,19 @@ export function Footer() {
       </div>
       <img className="footer-graphic" src={SITE.footerGraphicUrl} alt="Humans First footer graphic" />
       <p className="footer-copyright">{SITE.copyright}</p>
+      <script
+        // LinkedIn Insight Tag — also kept before </body> in _document.tsx
+        dangerouslySetInnerHTML={{ __html: LINKEDIN_INSIGHT_SCRIPT }}
+      />
+      <noscript>
+        <img
+          height="1"
+          width="1"
+          style={{ display: 'none' }}
+          alt=""
+          src={`https://px.ads.linkedin.com/collect/?pid=${LINKEDIN_PARTNER_ID}&fmt=gif`}
+        />
+      </noscript>
     </footer>
   )
 }

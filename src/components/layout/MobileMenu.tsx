@@ -27,7 +27,7 @@ function MobileMenuContent({ onClose }: Pick<MobileMenuProps, 'onClose'>) {
 
   return (
     <nav className="mobile-menu-inner" aria-label="Mobile navigation">
-      {NAV_LINKS.map((link) =>
+      {NAV_LINKS.filter((link) => link.href !== '/faq').map((link) =>
         link.isRoute ? (
           <Link key={link.href} href={link.href} data-mobile-link onClick={onClose}>
             {link.label}
@@ -68,6 +68,11 @@ function MobileMenuContent({ onClose }: Pick<MobileMenuProps, 'onClose'>) {
           ))}
         </div>
       ) : null}
+      {NAV_LINKS.filter((link) => link.href === '/faq').map((link) => (
+        <Link key={link.href} href={link.href} data-mobile-link onClick={onClose}>
+          {link.label}
+        </Link>
+      ))}
       <a
         className="btn mobile-menu-cta"
         href={citiesHref}
