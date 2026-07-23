@@ -45,7 +45,9 @@ export function Cities() {
               </div>
               <div className="city-card-body">
                 <p className="city-card-date">
-                  {getEventDayOfWeek(city.isoDate)} · {city.dateDisplay}
+                  {city.comingSoon
+                    ? 'Coming Soon'
+                    : `${getEventDayOfWeek(city.isoDate)} · ${city.dateDisplay}`}
                 </p>
                 <p className="city-card-venue">
                   <span className="city-card-venue-icon" aria-hidden="true">
@@ -58,7 +60,7 @@ export function Cities() {
                   </span>
                 </p>
                 <p className="city-card-theme">{city.theme}</p>
-                <CityCardCountdown startIso={city.startIso} />
+                {city.comingSoon ? null : <CityCardCountdown startIso={city.startIso} />}
                 <a
                   className="city-card-register"
                   href={city.registerUrl}
