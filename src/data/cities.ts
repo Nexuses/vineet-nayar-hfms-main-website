@@ -7,8 +7,6 @@ export interface City {
   theme: string
   cardImage: string
   registerUrl: string
-  /** Show "Coming Soon" instead of the event date and countdown. */
-  comingSoon?: boolean
 }
 
 export const CITIES_HEADING = {
@@ -22,6 +20,16 @@ export function getEventDayOfWeek(isoDate: string): string {
 }
 
 export const CITIES: City[] = [
+  {
+    city: 'Delhi',
+    isoDate: '2026-08-02',
+    startIso: '2026-08-02T16:00:00+05:30',
+    dateDisplay: '2 Aug 2026',
+    venue: 'Bhim Hall, Dr.Ambedkar International Centre (DAIC)',
+    theme: 'Will Average People Still Matter?',
+    cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/Delhi_1784029961401_c28m.png',
+    registerUrl: 'https://events.hfmsbook.com/events/evt_1782204507893_yu1e3jh',
+  },
   {
     city: 'Mumbai',
     isoDate: '2026-08-08',
@@ -71,16 +79,5 @@ export const CITIES: City[] = [
     theme: 'What Part of Being Human Will You Never Give Up?',
     cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/kolkata_1784029961401_1rk3.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782207229198_xl03tt1',
-  },
-  {
-    city: 'Delhi',
-    isoDate: '2026-07-25',
-    startIso: '2026-07-25T16:00:00+05:30',
-    dateDisplay: '25 Jul 2026',
-    venue: 'Bhim Hall, Dr.Ambedkar International Centre (DAIC)',
-    theme: 'Will Average People Still Matter?',
-    cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/Delhi_1784029961401_c28m.png',
-    registerUrl: 'https://events.hfmsbook.com/events/evt_1782204507893_yu1e3jh',
-    comingSoon: true,
   },
 ]
