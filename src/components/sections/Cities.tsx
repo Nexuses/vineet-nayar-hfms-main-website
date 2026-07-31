@@ -59,25 +59,14 @@ export function Cities() {
                 </p>
                 <p className="city-card-theme">{city.theme}</p>
                 <CityCardCountdown startIso={city.startIso} />
-                {city.registrationClosed ? (
-                  <button
-                    className="city-card-register city-card-register--closed"
-                    type="button"
-                    disabled
-                    aria-disabled="true"
-                  >
-                    Registration Closed
-                  </button>
-                ) : (
-                  <a
-                    className="city-card-register"
-                    href={city.registerUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Apply for an Invitation
-                  </a>
-                )}
+                <a
+                  className="city-card-register"
+                  href={city.registerUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Apply for an Invitation
+                </a>
               </div>
             </article>
           ))}

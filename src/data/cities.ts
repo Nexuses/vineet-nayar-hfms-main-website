@@ -7,8 +7,6 @@ export interface City {
   theme: string
   cardImage: string
   registerUrl: string
-  /** Disable the register button and show "Registration Closed" instead. */
-  registrationClosed?: boolean
 }
 
 export const CITIES_HEADING = {
@@ -31,7 +29,6 @@ export const CITIES: City[] = [
     theme: 'Will Average People Still Matter?',
     cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/Delhi_1784029961401_c28m.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782204507893_yu1e3jh',
-    registrationClosed: true,
   },
   {
     city: 'Mumbai',
