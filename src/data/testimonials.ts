@@ -26,7 +26,7 @@ export const TESTIMONIALS_HEADING = {
 export const TESTIMONIAL_ROWS: TestimonialRow[] = [
   {
     id: 'row-1',
-    speed: '68s',
+    speed: '198s',
     direction: 'left',
     items: [
       {
@@ -69,13 +69,6 @@ export const TESTIMONIAL_ROWS: TestimonialRow[] = [
         role: 'Head of Learning, Manufacturing',
         initials: 'PD',
       },
-    ],
-  },
-  {
-    id: 'row-2',
-    speed: '52s',
-    direction: 'right',
-    items: [
       {
         id: 't6',
         quote:
@@ -116,13 +109,6 @@ export const TESTIMONIAL_ROWS: TestimonialRow[] = [
         role: 'Chief Strategy Officer, Healthcare',
         initials: 'ED',
       },
-    ],
-  },
-  {
-    id: 'row-3',
-    speed: '76s',
-    direction: 'left',
-    items: [
       {
         id: 't11',
         quote:
@@ -166,8 +152,8 @@ export const TESTIMONIAL_ROWS: TestimonialRow[] = [
     ],
   },
   {
-    id: 'row-4',
-    speed: '58s',
+    id: 'row-2',
+    speed: '132s',
     direction: 'right',
     items: [
       {
@@ -210,13 +196,6 @@ export const TESTIMONIAL_ROWS: TestimonialRow[] = [
         role: 'General Manager, Hospitality',
         initials: 'RM',
       },
-    ],
-  },
-  {
-    id: 'row-5',
-    speed: '72s',
-    direction: 'left',
-    items: [
       {
         id: 't21',
         quote:
