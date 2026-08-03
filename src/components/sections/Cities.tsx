@@ -58,15 +58,25 @@ export function Cities() {
                   </span>
                 </p>
                 <p className="city-card-theme">{city.theme}</p>
-                <CityCardCountdown startIso={city.startIso} />
-                <a
-                  className="city-card-register"
-                  href={city.registerUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Apply for an Invitation
-                </a>
+                {city.completed ? (
+                  <p className="city-card-wrap-up">
+                    <span className="city-card-wrap-up-title">{city.completed.headline}</span>
+                  </p>
+                ) : (
+                  <CityCardCountdown startIso={city.startIso} />
+                )}
+                {city.completed ? (
+                  <p className="city-card-closed-note">{city.completed.note}</p>
+                ) : (
+                  <a
+                    className="city-card-register"
+                    href={city.registerUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Apply for an Invitation
+                  </a>
+                )}
               </div>
             </article>
           ))}

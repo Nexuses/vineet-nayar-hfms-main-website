@@ -7,6 +7,11 @@ export interface City {
   theme: string
   cardImage: string
   registerUrl: string
+  /** Set once the event has happened — replaces the countdown and the register link. */
+  completed?: {
+    headline: string
+    note: string
+  }
 }
 
 export const CITIES_HEADING = {
@@ -29,6 +34,10 @@ export const CITIES: City[] = [
     theme: 'Will Average People Still Matter?',
     cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/Delhi_1784029961401_c28m.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782204507893_yu1e3jh',
+    completed: {
+      headline: 'Delhi event was a blast',
+      note: 'Registration for this city has closed.',
+    },
   },
   {
     city: 'Mumbai',
