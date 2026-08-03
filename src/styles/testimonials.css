@@ -1,0 +1,203 @@
+.tm-section {
+  position: relative;
+  z-index: 10;
+  background: #fff;
+  padding-top: clamp(56px, 6vw, 88px);
+  padding-bottom: clamp(48px, 5.5vw, 76px);
+  overflow: hidden;
+  scroll-margin-top: calc(var(--header) + 28px);
+}
+
+.tm-head {
+  text-align: center;
+  padding: 0 var(--gutter);
+  margin-bottom: clamp(32px, 4vw, 52px);
+}
+
+/* Mirrors the shared section-heading treatment used by .cities-head / .mosaic-heading. */
+.tm-head h2 {
+  font-size: var(--section-display-size);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+.tm-head .hand-highlight {
+  display: table;
+  margin: 10px auto 0;
+  font-size: var(--section-display-highlight-size);
+  text-transform: none;
+}
+
+.tm-head .lede {
+  margin: clamp(16px, 2.2vw, 22px) auto 0;
+  max-width: 56ch;
+}
+
+.tm-rows {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2.2vw, 28px);
+}
+
+.tm-row {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 9%,
+    #000 91%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
+}
+
+.tm-track {
+  display: flex;
+  width: max-content;
+  animation: tm-scroll var(--tm-duration, 60s) linear infinite;
+}
+
+.tm-track--reverse {
+  animation-name: tm-scroll-reverse;
+}
+
+.tm-row:hover .tm-track,
+.tm-row:focus-within .tm-track {
+  animation-play-state: paused;
+}
+
+.tm-group {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+  padding-right: 24px;
+}
+
+.tm-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  flex-shrink: 0;
+  width: clamp(280px, 74vw, 372px);
+  margin: 0;
+  padding: 24px 24px 22px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.06);
+}
+
+.tm-quote-mark {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 0.5;
+  color: var(--yellow);
+  margin-top: 8px;
+}
+
+.tm-quote {
+  margin: 0;
+  flex: 1;
+  font-family: var(--font);
+  font-size: clamp(15px, 1.15vw, 17px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.tm-person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.tm-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: var(--yellow);
+  color: #000;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.tm-person-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.tm-name {
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.tm-role {
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: rgba(36, 36, 36, 0.52);
+}
+
+@keyframes tm-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes tm-scroll-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 720px) {
+  .tm-card {
+    padding: 20px 20px 18px;
+  }
+
+  .tm-group {
+    gap: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tm-row {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tm-track {
+    animation: none;
+    width: auto;
+  }
+
+  .tm-track .tm-group[aria-hidden='true'] {
+    display: none;
+  }
+}

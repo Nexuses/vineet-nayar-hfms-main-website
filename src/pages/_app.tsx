@@ -16,6 +16,7 @@ import '@/styles/mosaic.css'
 import '@/styles/city-events.css'
 import '@/styles/cities-cards.css'
 import '@/styles/author-hero.css'
+import '@/styles/testimonials.css'
 import '@/styles/scroll-reveal.css'
 import '@/styles/faq-page.css'
 

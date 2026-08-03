@@ -3,6 +3,7 @@ import type { CSSProperties } from 'react'
 /** Sections that follow the book scroll experience — reveal only once scrolled into view. */
 export const POST_BOOK_REVEAL_SELECTORS = [
   '#cities-cards',
+  '#testimonials',
   '#cities-events',
   '#wall',
   '#author-hero',

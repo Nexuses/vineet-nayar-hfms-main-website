@@ -8,6 +8,10 @@ main > .post-scroll-reveal .reveal {
   --reveal-section-offset: 40ms;
 }
 
+#testimonials.post-scroll-reveal {
+  --reveal-section-offset: 40ms;
+}
+
 #cities-events.post-scroll-reveal {
   --reveal-section-offset: 0ms;
 }
