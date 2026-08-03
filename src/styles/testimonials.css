@@ -8,7 +8,34 @@
   scroll-margin-top: calc(var(--header) + 28px);
 }
 
+/* Soft blurred yellow wash sitting behind the cards. */
+.tm-glow {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  background: var(--yellow);
+  filter: blur(110px);
+  opacity: 0.34;
+  pointer-events: none;
+}
+
+.tm-glow--left {
+  top: 34%;
+  left: -8%;
+  width: clamp(300px, 42vw, 620px);
+  aspect-ratio: 1;
+}
+
+.tm-glow--right {
+  bottom: -6%;
+  right: -10%;
+  width: clamp(280px, 38vw, 560px);
+  aspect-ratio: 1;
+}
+
 .tm-head {
+  position: relative;
+  z-index: 1;
   text-align: center;
   padding: 0 var(--gutter);
   margin-bottom: clamp(32px, 4vw, 52px);
@@ -34,6 +61,8 @@
 }
 
 .tm-rows {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: clamp(18px, 2.2vw, 28px);

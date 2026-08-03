@@ -49,6 +49,9 @@ function TestimonialTrack({ row }: { row: TestimonialRow }) {
 export function Testimonials() {
   return (
     <section className="tm-section post-scroll-reveal" id="testimonials" aria-label="Testimonials">
+      <span className="tm-glow tm-glow--left" aria-hidden="true" />
+      <span className="tm-glow tm-glow--right" aria-hidden="true" />
+
       <div className="tm-head">
         <h2 className="display reveal reveal-from-bottom">
           <span className="heading-lead">{TESTIMONIALS_HEADING.titleLead}</span>

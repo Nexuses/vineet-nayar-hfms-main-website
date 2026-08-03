@@ -165,4 +165,98 @@ export const TESTIMONIAL_ROWS: TestimonialRow[] = [
       },
     ],
   },
+  {
+    id: 'row-4',
+    speed: '58s',
+    direction: 'right',
+    items: [
+      {
+        id: 't16',
+        quote:
+          'We stopped asking which roles to cut and started asking which ones to grow. That shift came from this room.',
+        name: 'Imran Qureshi',
+        role: 'Chief Operating Officer, Insurance',
+        initials: 'IQ',
+      },
+      {
+        id: 't17',
+        quote:
+          'No slides full of predictions. Just hard questions and the space to sit with them.',
+        name: 'Laura Jensen',
+        role: 'Board Advisor, Private Equity',
+        initials: 'LJ',
+      },
+      {
+        id: 't18',
+        quote:
+          'My most cynical engineer came up afterwards and said he had been wrong. That never happens.',
+        name: 'Vikram Shetty',
+        role: 'CTO, Enterprise Software',
+        initials: 'VS',
+      },
+      {
+        id: 't19',
+        quote:
+          'The framing of trust as infrastructure rather than sentiment stayed with me all week.',
+        name: 'Aisha Bello',
+        role: 'Head of Culture, Media Group',
+        initials: 'AB',
+      },
+      {
+        id: 't20',
+        quote:
+          'I have sat through a lot of leadership events. This one actually changed a decision we made.',
+        name: 'Rahul Menon',
+        role: 'General Manager, Hospitality',
+        initials: 'RM',
+      },
+    ],
+  },
+  {
+    id: 'row-5',
+    speed: '72s',
+    direction: 'left',
+    items: [
+      {
+        id: 't21',
+        quote:
+          'It made the business case for humanity without ever getting sentimental about it.',
+        name: 'Chen Wei',
+        role: 'Regional Director, Supply Chain',
+        initials: 'CW',
+      },
+      {
+        id: 't22',
+        quote:
+          'Our graduates left with more clarity about their careers than any campus talk has given them.',
+        name: 'Nandini Rao',
+        role: 'Dean, Business School',
+        initials: 'NR',
+      },
+      {
+        id: 't23',
+        quote:
+          'The honesty about what went wrong at HCL was worth the trip on its own.',
+        name: 'Peter Lindqvist',
+        role: 'Group CEO, Industrial Services',
+        initials: 'PL',
+      },
+      {
+        id: 't24',
+        quote:
+          'I expected a book promotion. I got a working session on how we actually run our company.',
+        name: 'Shreya Joshi',
+        role: 'Head of Talent, Consumer Brands',
+        initials: 'SJ',
+      },
+      {
+        id: 't25',
+        quote:
+          'Two weeks later our managers are still using the language from that evening.',
+        name: 'Marcus Hale',
+        role: 'Director of People, Logistics Tech',
+        initials: 'MH',
+      },
+    ],
+  },
 ]
