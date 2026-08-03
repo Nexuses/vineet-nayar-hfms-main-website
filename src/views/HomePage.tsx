@@ -29,7 +29,7 @@ export function HomePage() {
       {FEATURES.sparks && <Sparks />}
       {FEATURES.experience && <Experience />}
       <Cities />
-      <Testimonials />
+      {FEATURES.testimonials && <Testimonials />}
       <CityEvents />
       <AuthorHero />
       <Mosaic />

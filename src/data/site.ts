@@ -20,6 +20,7 @@ export const FEATURES = {
   experience: false,
   faq: false,
   wallIframe: false,
+  testimonials: false,
   bookPage: true,
 } as const
 
