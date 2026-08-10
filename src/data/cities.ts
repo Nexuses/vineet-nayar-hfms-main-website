@@ -48,6 +48,10 @@ export const CITIES: City[] = [
     theme: 'The Human Advantage',
     cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/mumbai_1784029961402_nhbs.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782206616842_rdumm5m',
+    completed: {
+      headline: 'The Mumbai event was a blast!',
+      note: 'Registration for this city has been closed.',
+    },
   },
   {
     city: 'Bengaluru',
