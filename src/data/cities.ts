@@ -55,12 +55,12 @@ export const CITIES: City[] = [
   },
   {
     city: 'Bengaluru',
-    isoDate: '2026-08-22',
-    startIso: '2026-08-22T11:00:00+05:30',
-    dateDisplay: '22 Aug 2026',
-    venue: 'The Khincha Auditorium, Bharatiya Vidya Bhavan',
+    isoDate: '2026-09-06',
+    startIso: '2026-09-06T15:00:00+05:30',
+    dateDisplay: '6 Sep 2026',
+    venue: 'MLR Convention, J.P Nagar',
     theme: 'What AI Cannot Replace',
-    cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/bengaluru_1784029961400_9ck4.png',
+    cardImage: 'https://hfms-book.s3.us-east-2.amazonaws.com/image__1__1786626438803_zj47.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782206784481_37gn7y8',
   },
   {
