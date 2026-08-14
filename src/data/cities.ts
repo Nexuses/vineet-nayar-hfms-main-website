@@ -35,7 +35,7 @@ export const CITIES: City[] = [
     cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/Delhi_1784029961401_c28m.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782204507893_yu1e3jh',
     completed: {
-      headline: 'Delhi event was a blast',
+      headline: 'Delhi event was a blast!',
       note: 'Registration for this city has closed.',
     },
   },
@@ -49,7 +49,7 @@ export const CITIES: City[] = [
     cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/mumbai_1784029961402_nhbs.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782206616842_rdumm5m',
     completed: {
-      headline: 'Mumbai event was a blast',
+      headline: 'Mumbai event was a blast!',
       note: 'Registration for this city has been closed.',
     },
   },
