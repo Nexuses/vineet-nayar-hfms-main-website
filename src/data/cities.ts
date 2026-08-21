@@ -56,7 +56,7 @@ export const CITIES: City[] = [
   {
     city: 'Bengaluru',
     isoDate: '2026-09-06',
-    startIso: '2026-09-06T15:00:00+05:30',
+    startIso: '2026-09-06T16:00:00+05:30',
     dateDisplay: '6 Sep 2026',
     venue: 'MLR Convention, J.P Nagar',
     theme: 'What AI Cannot Replace',
@@ -75,9 +75,9 @@ export const CITIES: City[] = [
   },
   {
     city: 'Hyderabad',
-    isoDate: '2026-09-26',
-    startIso: '2026-09-26T16:00:00+05:30',
-    dateDisplay: '26 Sep 2026',
+    isoDate: '2026-09-27',
+    startIso: '2026-09-27T16:00:00+05:30',
+    dateDisplay: '27 Sep 2026',
     venue: 'The Pearl Club, Mindspace Business Park',
     theme: 'Why Human Potential Still Wins',
     cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/hyderabad_1784029961401_f4er.png',
