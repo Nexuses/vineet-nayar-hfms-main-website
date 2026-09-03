@@ -64,6 +64,7 @@ export const CITIES: City[] = [
     cardImage: 'https://hfms-book.s3.us-east-2.amazonaws.com/image__1__1786626438803_zj47.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782206784481_37gn7y8',
     completed: {
+      headline: 'Bengaluru event was a blast!',
       note: 'Registration for this city has been closed.',
     },
   },
