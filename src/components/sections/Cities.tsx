@@ -58,7 +58,7 @@ export function Cities() {
                   </span>
                 </p>
                 <p className="city-card-theme">{city.theme}</p>
-                {city.completed ? (
+                {city.completed?.headline ? (
                   <p className="city-card-wrap-up">
                     <span className="city-card-wrap-up-title">{city.completed.headline}</span>
                   </p>

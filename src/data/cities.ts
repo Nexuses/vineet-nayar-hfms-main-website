@@ -7,9 +7,10 @@ export interface City {
   theme: string
   cardImage: string
   registerUrl: string
-  /** Set once the event has happened — replaces the countdown and the register link. */
+  /** Registration is shut for this city — replaces the register link with a notice. */
   completed?: {
-    headline: string
+    /** Wrap-up line shown in place of the countdown. Add only once the event has happened. */
+    headline?: string
     note: string
   }
 }
@@ -62,6 +63,9 @@ export const CITIES: City[] = [
     theme: 'What AI Cannot Replace',
     cardImage: 'https://hfms-book.s3.us-east-2.amazonaws.com/image__1__1786626438803_zj47.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782206784481_37gn7y8',
+    completed: {
+      note: 'Registration for this city has been closed.',
+    },
   },
   {
     city: 'Chennai',
