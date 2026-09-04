@@ -99,14 +99,19 @@ export const CITIES: City[] = [
   },
 ]
 
+/** A city counts as done once it has a wrap-up headline, not merely closed registrations. */
+function hasTakenPlace(city: City): boolean {
+  return Boolean(city.completed?.headline)
+}
+
 /**
- * Display order for the city grid: cities still taking registrations come first,
- * soonest event first, with closed cities below them in the same date order.
- * Sorting on the closed flag and the ISO date keeps this stable between server
- * and client renders.
+ * Display order for the city grid: events still to come lead with the soonest
+ * first, and events that have already happened sit below them in the same date
+ * order. A city whose registrations have shut but whose event is still ahead
+ * stays up top. Sorting on static fields only, so server and client agree.
  */
 export const ORDERED_CITIES: City[] = [...CITIES].sort((a, b) => {
-  const closed = Number(Boolean(a.completed)) - Number(Boolean(b.completed))
-  if (closed !== 0) return closed
+  const done = Number(hasTakenPlace(a)) - Number(hasTakenPlace(b))
+  if (done !== 0) return done
   return a.isoDate.localeCompare(b.isoDate)
 })
