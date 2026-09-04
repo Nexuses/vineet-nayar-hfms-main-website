@@ -1,4 +1,4 @@
-import { CITIES, CITIES_HEADING, getEventDayOfWeek } from '../../data/cities'
+import { CITIES_HEADING, ORDERED_CITIES, getEventDayOfWeek } from '../../data/cities'
 import { revealStagger } from '../../utils/reveal'
 import { CityCardCountdown } from './CityCardCountdown'
 
@@ -30,7 +30,7 @@ export function Cities() {
         </div>
 
         <div className="city-cards">
-          {CITIES.map((city, index) => (
+          {ORDERED_CITIES.map((city, index) => (
             <article
               key={city.city}
               className="city-card tilt-card reveal reveal-from-bottom"

@@ -98,3 +98,15 @@ export const CITIES: City[] = [
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782207229198_xl03tt1',
   },
 ]
+
+/**
+ * Display order for the city grid: cities still taking registrations come first,
+ * soonest event first, with closed cities below them in the same date order.
+ * Sorting on the closed flag and the ISO date keeps this stable between server
+ * and client renders.
+ */
+export const ORDERED_CITIES: City[] = [...CITIES].sort((a, b) => {
+  const closed = Number(Boolean(a.completed)) - Number(Boolean(b.completed))
+  if (closed !== 0) return closed
+  return a.isoDate.localeCompare(b.isoDate)
+})
