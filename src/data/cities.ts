@@ -64,6 +64,7 @@ export const CITIES: City[] = [
     cardImage: 'https://hfms-book.s3.us-east-2.amazonaws.com/image__1__1786626438803_zj47.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782206784481_37gn7y8',
     completed: {
+      headline: 'Bengaluru event was a blast!',
       note: 'Registration for this city has been closed.',
     },
   },
@@ -106,12 +107,15 @@ function hasTakenPlace(city: City): boolean {
 
 /**
  * Display order for the city grid: events still to come lead with the soonest
- * first, and events that have already happened sit below them in the same date
- * order. A city whose registrations have shut but whose event is still ahead
+ * first, and events that have already happened sit below them, latest first.
+ * A city whose registrations have shut but whose event is still ahead
  * stays up top. Sorting on static fields only, so server and client agree.
  */
 export const ORDERED_CITIES: City[] = [...CITIES].sort((a, b) => {
   const done = Number(hasTakenPlace(a)) - Number(hasTakenPlace(b))
   if (done !== 0) return done
-  return a.isoDate.localeCompare(b.isoDate)
+  // Upcoming events count down towards us; past ones lead with the latest.
+  return hasTakenPlace(a)
+    ? b.isoDate.localeCompare(a.isoDate)
+    : a.isoDate.localeCompare(b.isoDate)
 })
