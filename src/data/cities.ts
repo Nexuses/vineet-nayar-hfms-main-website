@@ -77,6 +77,10 @@ export const CITIES: City[] = [
     theme: 'Stay Curious. Stay Inspired.',
     cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/chennai_1784029961401_7yjt.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782207095662_7wo2iav',
+    completed: {
+      headline: 'Chennai event was a blast!',
+      note: 'Registration for this city has been closed.',
+    },
   },
   {
     city: 'Hyderabad',
