@@ -104,13 +104,6 @@ export const CITIES: City[] = [
     cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/kolkata_1784029961401_1rk3.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782207229198_xl03tt1',
   },
-  {
-    city: 'Pune',
-    venue: 'Pune',
-    theme: 'A live conversation on curiosity, courage and what stays human in the age of AI.',
-    cardImage: 'https://hfms-book.s3.us-east-2.amazonaws.com/pune_1790156378424_res9.jpg',
-    comingSoon: true,
-  },
 ]
 
 /** A city counts as done once it has a wrap-up headline, not merely closed registrations. */
