@@ -48,7 +48,11 @@ export function EventRecapPage({ recap }: EventRecapPageProps) {
                   <span className="event-recap-title-event">Event</span>
                 </h1>
                 <p className="event-recap-meta">{metaLine}</p>
-                {city?.theme ? <p className="event-recap-question">{city.theme}</p> : null}
+                {city?.theme ? (
+                  <p className="event-recap-question">
+                    <span className="hand-highlight">&ldquo;{city.theme}&rdquo;</span>
+                  </p>
+                ) : null}
                 <p className="event-recap-note">{recap.recapNote}</p>
               </div>
               <EventRecapSlideshow city={recap.city} images={slideshowImages} />

@@ -37,11 +37,17 @@
 }
 
 .event-recap-eyebrow {
+  display: inline-flex;
+  align-items: center;
   margin: 0;
-  color: #8a8550;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--yellow);
+  color: #111;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1;
   text-transform: uppercase;
 }
 
@@ -119,27 +125,33 @@
 }
 
 .event-recap-question {
-  position: relative;
   margin: 22px 0 0;
   max-width: 22em;
   padding: 0;
   border: 0;
   background: none;
-  color: var(--ink);
-  font-family: var(--font);
-  font-size: clamp(20px, 1.8vw, 26px);
-  font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: -0.025em;
 }
 
-.event-recap-question::after {
-  content: "";
-  display: block;
-  width: 42px;
-  height: 4px;
-  margin-top: 16px;
-  background: var(--yellow);
+.event-recap-hero-copy .event-recap-question .hand-highlight {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 0.02em 0.16em;
+  color: #000;
+  font-family: "Caveat", cursive;
+  font-size: clamp(24px, 2vw, 32px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: var(--hand-letter-spacing);
+  text-transform: none;
+  z-index: 2;
+}
+
+.event-recap-hero-copy .event-recap-question .hand-highlight::before {
+  width: calc(100% + 0.35em);
+  height: 1.28em;
 }
 
 .event-recap-note {
@@ -447,8 +459,7 @@
   }
 
   .event-recap-eyebrow {
-    text-align: left;
-    font-size: 14px;
+    font-size: 11px;
   }
 
   .event-recap-top-row-spacer {
