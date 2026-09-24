@@ -1,4 +1,6 @@
+import Link from 'next/link'
 import { CITIES_HEADING, ORDERED_CITIES, getEventDayOfWeek } from '../../data/cities'
+import { getEventRecapByCity } from '../../data/eventRecaps'
 import { revealStagger } from '../../utils/reveal'
 import { CityCardCountdown } from './CityCardCountdown'
 
@@ -30,56 +32,82 @@ export function Cities() {
         </div>
 
         <div className="city-cards">
-          {ORDERED_CITIES.map((city, index) => (
-            <article
-              key={city.city}
-              className="city-card tilt-card reveal reveal-from-bottom"
-              data-city={city.city}
-              style={revealStagger(index, 55, 80)}
-            >
-              <div className="city-card-img">
-                <img src={city.cardImage} alt={city.city} loading="lazy" />
-                <div className="city-card-img-overlay">
-                  <span className="city-card-name hand-highlight">{city.city}</span>
+          {ORDERED_CITIES.map((city, index) => {
+            const recap = getEventRecapByCity(city.city)
+
+            return (
+              <article
+                key={city.city}
+                className="city-card tilt-card reveal reveal-from-bottom"
+                data-city={city.city}
+                style={revealStagger(index, 55, 80)}
+              >
+                <div className="city-card-img">
+                  <img src={city.cardImage} alt={city.city} loading="lazy" />
+                  <div className="city-card-img-overlay">
+                    <span className="city-card-name hand-highlight">{city.city}</span>
+                  </div>
                 </div>
-              </div>
-              <div className="city-card-body">
-                <p className="city-card-date">
-                  {getEventDayOfWeek(city.isoDate)} · {city.dateDisplay}
-                </p>
-                <p className="city-card-venue">
-                  <span className="city-card-venue-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
-                    </svg>
-                  </span>
-                  <span>
-                    {city.venue}, {city.city}
-                  </span>
-                </p>
-                <p className="city-card-theme">{city.theme}</p>
-                {city.completed?.headline ? (
-                  <p className="city-card-wrap-up">
-                    <span className="city-card-wrap-up-title">{city.completed.headline}</span>
+                <div className="city-card-body">
+                  {city.comingSoon ? (
+                    <p className="city-card-date">Date To Be Announced</p>
+                  ) : (
+                    <p className="city-card-date">
+                      {city.isoDate && city.dateDisplay
+                        ? `${getEventDayOfWeek(city.isoDate)} · ${city.dateDisplay}`
+                        : city.dateDisplay}
+                    </p>
+                  )}
+                  <p className="city-card-venue">
+                    <span className="city-card-venue-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
+                      </svg>
+                    </span>
+                    <span>
+                      {city.comingSoon
+                        ? city.city
+                        : city.venue
+                          ? `${city.venue}, ${city.city}`
+                          : city.city}
+                    </span>
                   </p>
-                ) : (
-                  <CityCardCountdown startIso={city.startIso} />
-                )}
-                {city.completed ? (
-                  <p className="city-card-closed-note">{city.completed.note}</p>
-                ) : (
-                  <a
-                    className="city-card-register"
-                    href={city.registerUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Apply for an Invitation
-                  </a>
-                )}
-              </div>
-            </article>
-          ))}
+                  {city.theme ? <p className="city-card-theme">{city.theme}</p> : <p className="city-card-theme" />}
+                  {city.comingSoon ? (
+                    <p className="city-card-wrap-up">
+                      <span className="city-card-wrap-up-title">Invitations open soon</span>
+                    </p>
+                  ) : city.completed?.headline ? (
+                    <p className="city-card-wrap-up">
+                      <span className="city-card-wrap-up-title">{city.completed.headline}</span>
+                    </p>
+                  ) : city.startIso ? (
+                    <CityCardCountdown startIso={city.startIso} />
+                  ) : null}
+                  {city.comingSoon ? (
+                    <span className="city-card-register city-card-register--soon" aria-disabled="true">
+                      Coming Soon
+                    </span>
+                  ) : recap ? (
+                    <Link className="city-card-register" href={`/events/${recap.slug}`}>
+                      {recap.buttonLabel}
+                    </Link>
+                  ) : city.completed ? (
+                    <p className="city-card-closed-note">{city.completed.note}</p>
+                  ) : city.registerUrl ? (
+                    <a
+                      className="city-card-register"
+                      href={city.registerUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Apply for an Invitation
+                    </a>
+                  ) : null}
+                </div>
+              </article>
+            )
+          })}
         </div>
       </div>
     </section>

@@ -1,12 +1,14 @@
 export interface City {
   city: string
-  isoDate: string
-  startIso: string
-  dateDisplay: string
-  venue: string
-  theme: string
+  isoDate?: string
+  startIso?: string
+  dateDisplay?: string
+  venue?: string
+  theme?: string
   cardImage: string
-  registerUrl: string
+  registerUrl?: string
+  /** City is announced but date and registration are not open yet. */
+  comingSoon?: boolean
   /** Registration is shut for this city — replaces the register link with a notice. */
   completed?: {
     /** Wrap-up line shown in place of the countdown. Add only once the event has happened. */
@@ -102,6 +104,13 @@ export const CITIES: City[] = [
     cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/kolkata_1784029961401_1rk3.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782207229198_xl03tt1',
   },
+  {
+    city: 'Pune',
+    venue: 'Pune',
+    theme: 'A live conversation on curiosity, courage and what stays human in the age of AI.',
+    cardImage: 'https://hfms-book.s3.us-east-2.amazonaws.com/pune_1790156378424_res9.jpg',
+    comingSoon: true,
+  },
 ]
 
 /** A city counts as done once it has a wrap-up headline, not merely closed registrations. */
@@ -109,17 +118,24 @@ function hasTakenPlace(city: City): boolean {
   return Boolean(city.completed?.headline)
 }
 
+function cityRank(city: City): number {
+  if (hasTakenPlace(city)) return 2
+  if (city.comingSoon) return 1
+  return 0
+}
+
 /**
- * Display order for the city grid: events still to come lead with the soonest
- * first, and events that have already happened sit below them, latest first.
- * A city whose registrations have shut but whose event is still ahead
- * stays up top. Sorting on static fields only, so server and client agree.
+ * Display order for the city grid: dated upcoming events lead with the soonest
+ * first, announced-but-undated cities follow, and events that have already
+ * happened sit below them, latest first. A city whose registrations have shut
+ * but whose event is still ahead stays up top. Sorting on static fields only,
+ * so server and client agree.
  */
 export const ORDERED_CITIES: City[] = [...CITIES].sort((a, b) => {
-  const done = Number(hasTakenPlace(a)) - Number(hasTakenPlace(b))
-  if (done !== 0) return done
-  // Upcoming events count down towards us; past ones lead with the latest.
-  return hasTakenPlace(a)
-    ? b.isoDate.localeCompare(a.isoDate)
-    : a.isoDate.localeCompare(b.isoDate)
+  const rank = cityRank(a) - cityRank(b)
+  if (rank !== 0) return rank
+  if (hasTakenPlace(a)) {
+    return (b.isoDate ?? '').localeCompare(a.isoDate ?? '')
+  }
+  return (a.isoDate ?? '').localeCompare(b.isoDate ?? '')
 })
