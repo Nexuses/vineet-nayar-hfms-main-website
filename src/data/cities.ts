@@ -39,7 +39,7 @@ export const CITIES: City[] = [
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782204507893_yu1e3jh',
     completed: {
       headline: 'Delhi event was a blast!',
-      note: 'Registration for this city has closed.',
+      note: 'Registration for this city has been closed.',
     },
   },
   {

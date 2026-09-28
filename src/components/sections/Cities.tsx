@@ -1,6 +1,4 @@
-import Link from 'next/link'
 import { CITIES_HEADING, ORDERED_CITIES, getEventDayOfWeek } from '../../data/cities'
-import { getEventRecapByCity } from '../../data/eventRecaps'
 import { revealStagger } from '../../utils/reveal'
 import { CityCardCountdown } from './CityCardCountdown'
 
@@ -33,8 +31,6 @@ export function Cities() {
 
         <div className="city-cards">
           {ORDERED_CITIES.map((city, index) => {
-            const recap = getEventRecapByCity(city.city)
-
             return (
               <article
                 key={city.city}
@@ -88,10 +84,6 @@ export function Cities() {
                     <span className="city-card-register city-card-register--soon" aria-disabled="true">
                       Coming Soon
                     </span>
-                  ) : recap ? (
-                    <Link className="city-card-register" href={`/events/${recap.slug}`}>
-                      {recap.buttonLabel}
-                    </Link>
                   ) : city.completed ? (
                     <p className="city-card-closed-note">{city.completed.note}</p>
                   ) : city.registerUrl ? (
