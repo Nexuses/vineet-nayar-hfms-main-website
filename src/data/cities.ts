@@ -93,6 +93,10 @@ export const CITIES: City[] = [
     theme: 'Why Human Potential Still Wins',
     cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/hyderabad_1784029961401_f4er.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782206956504_6kep5s6',
+    completed: {
+      headline: 'Hyderabad event was a blast!',
+      note: 'Registration for this city has been closed.',
+    },
   },
   {
     city: 'Kolkata',
