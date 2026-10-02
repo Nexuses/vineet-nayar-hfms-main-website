@@ -37,7 +37,7 @@ export function Cities() {
 
             return (
               <article
-                key={`${city.city}-${city.startIso ?? city.isoDate ?? ''}`}
+                key={city.city}
                 className="city-card tilt-card reveal reveal-from-bottom"
                 data-city={city.city}
                 style={revealStagger(index, 55, 80)}
@@ -58,31 +58,19 @@ export function Cities() {
                         : city.dateDisplay}
                     </p>
                   )}
-                  {city.timeDisplay ? <p className="city-card-time">{city.timeDisplay}</p> : null}
                   <p className="city-card-venue">
                     <span className="city-card-venue-icon" aria-hidden="true">
                       <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
                       </svg>
                     </span>
-                    {city.venueUrl && !city.comingSoon ? (
-                      <a
-                        className="city-card-venue-link"
-                        href={city.venueUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {city.venue ? `${city.venue}, ${city.city}` : city.city}
-                      </a>
-                    ) : (
-                      <span>
-                        {city.comingSoon
-                          ? city.city
-                          : city.venue
-                            ? `${city.venue}, ${city.city}`
-                            : city.city}
-                      </span>
-                    )}
+                    <span>
+                      {city.comingSoon
+                        ? city.city
+                        : city.venue
+                          ? `${city.venue}, ${city.city}`
+                          : city.city}
+                    </span>
                   </p>
                   {city.theme ? <p className="city-card-theme">{city.theme}</p> : <p className="city-card-theme" />}
                   {city.comingSoon ? (
@@ -115,11 +103,7 @@ export function Cities() {
                     >
                       Apply for an Invitation
                     </a>
-                  ) : (
-                    <span className="city-card-register city-card-register--soon" aria-disabled="true">
-                      Registration opens soon
-                    </span>
-                  )}
+                  ) : null}
                 </div>
               </article>
             )

@@ -3,11 +3,7 @@ export interface City {
   isoDate?: string
   startIso?: string
   dateDisplay?: string
-  /** Optional session time shown under the date, e.g. "09:00–09:30 Paris time". */
-  timeDisplay?: string
   venue?: string
-  /** Optional link for the venue line, such as an agenda page. */
-  venueUrl?: string
   theme?: string
   cardImage: string
   registerUrl?: string
@@ -112,48 +108,11 @@ export const CITIES: City[] = [
     cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/kolkata_1784029961401_1rk3.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782207229198_xl03tt1',
   },
-  {
-    city: 'Paris',
-    isoDate: '2026-10-21',
-    startIso: '2026-10-21T09:00:00+02:00',
-    dateDisplay: '21 Oct 2026',
-    timeDisplay: '09:00–09:30 Paris time',
-    venue: 'UNLEASH World, Stage 3, Porte de Versailles',
-    venueUrl: 'https://www.unleash.ai/events/unleash-paris/agenda-schedule',
-    theme: 'Keynote and Q&A',
-    cardImage: '/assets/paris/unleash-world.jpg',
-  },
-  {
-    city: 'Paris',
-    isoDate: '2026-10-21',
-    startIso: '2026-10-21T15:30:00+02:00',
-    dateDisplay: '21 Oct 2026',
-    timeDisplay: '15:30–17:00 Paris time',
-    venue: 'Thales HQ',
-    theme: 'Conference and Q&A',
-    cardImage: '/assets/paris/thales-hq.jpg',
-  },
-  {
-    city: 'Paris',
-    isoDate: '2026-10-21',
-    startIso: '2026-10-21T19:00:00+02:00',
-    dateDisplay: '21 Oct 2026',
-    timeDisplay: '19:00–20:30 Paris time',
-    venue: 'HEC Paris Campus',
-    theme: 'Conference for MBA and EMBA students',
-    cardImage: '/assets/paris/hec-paris.jpg',
-  },
 ]
 
 /** A city counts as done once it has a wrap-up headline, not merely closed registrations. */
 function hasTakenPlace(city: City): boolean {
   return Boolean(city.completed?.headline)
-}
-
-/** Start instant for ordering; same-day sessions fall into time order. Undated cities sort last. */
-function startsAt(city: City): number {
-  const iso = city.startIso ?? city.isoDate
-  return iso ? Date.parse(iso) : Number.POSITIVE_INFINITY
 }
 
 function cityRank(city: City): number {
@@ -172,7 +131,8 @@ function cityRank(city: City): number {
 export const ORDERED_CITIES: City[] = [...CITIES].sort((a, b) => {
   const rank = cityRank(a) - cityRank(b)
   if (rank !== 0) return rank
-  const gap = startsAt(a) - startsAt(b)
-  if (Number.isNaN(gap)) return 0
-  return hasTakenPlace(a) ? -gap : gap
+  if (hasTakenPlace(a)) {
+    return (b.isoDate ?? '').localeCompare(a.isoDate ?? '')
+  }
+  return (a.isoDate ?? '').localeCompare(b.isoDate ?? '')
 })

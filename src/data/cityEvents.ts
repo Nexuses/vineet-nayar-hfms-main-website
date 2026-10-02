@@ -13,9 +13,6 @@ export interface CityEvent {
   registerCity: string
   dotLabel: string
   isOpen: boolean
-  /** When set, the open card links here instead of opening the join form. */
-  ctaHref?: string
-  ctaLabel?: string
 }
 
 const EVENT_OVERLAY =
@@ -40,23 +37,20 @@ export const CITY_EVENTS: CityEvent[] = [
   {
     id: 'paris',
     label: 'Paris',
-    ariaLabel: 'Paris — 21 Oct 2026, three sessions',
+    ariaLabel: 'Paris — Coming soon',
     // Demo image (Unsplash) — replace when final asset is ready:
     // https://images.unsplash.com/photo-1502602898657-3e91760cbb34
     image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=900&q=80&auto=format&fit=crop',
     colorLayer: EVENT_OVERLAY,
-    badge: 'Upcoming',
+    badge: COMING_SOON.badge,
     overlayCity: 'Paris',
-    date: '21 Oct 2026',
-    time: '09:00–20:30 Paris time',
-    entry: '3 sessions',
-    description:
-      'A keynote at UNLEASH World, a conference at Thales HQ, and an evening with HEC Paris MBA and EMBA students.',
+    date: COMING_SOON.date,
+    time: COMING_SOON.time,
+    entry: COMING_SOON.entry,
+    description: COMING_SOON.description,
     registerCity: 'Paris',
     dotLabel: 'Paris',
-    isOpen: true,
-    ctaHref: '#cities-cards',
-    ctaLabel: 'See the Paris sessions',
+    isOpen: false,
   },
   {
     id: 'new-york',
