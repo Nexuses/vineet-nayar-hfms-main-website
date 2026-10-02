@@ -20,6 +20,7 @@ import '@/styles/testimonials.css'
 import '@/styles/scroll-reveal.css'
 import '@/styles/faq-page.css'
 import '@/styles/event-recap.css'
+import '@/styles/paris-page.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
