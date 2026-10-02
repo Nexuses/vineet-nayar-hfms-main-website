@@ -135,7 +135,18 @@ export function CityEvents() {
                   </div>
                 ) : null}
                 {event.isOpen ? (
-                  <p className="ev-overlay-desc">{event.description}</p>
+                  event.descriptionList ? (
+                    <ul className="ev-overlay-list">
+                      {event.descriptionList.map((item) => (
+                        <li key={item}>
+                          <span className="ev-meta-dot" aria-hidden="true" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="ev-overlay-desc">{event.description}</p>
+                  )
                 ) : (
                   <span className="ev-badge ev-badge-coming-soon is-muted">{event.badge}</span>
                 )}

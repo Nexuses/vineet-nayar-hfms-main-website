@@ -10,6 +10,8 @@ export interface CityEvent {
   time: string
   entry: string
   description: string
+  /** Optional bullet points shown in place of the description paragraph. */
+  descriptionList?: string[]
   registerCity: string
   dotLabel: string
   isOpen: boolean
@@ -49,8 +51,8 @@ export const CITY_EVENTS: CityEvent[] = [
     date: '21 Oct 2026',
     time: '09:00–20:30 EST',
     entry: '3 sessions',
-    description:
-      'A keynote at UNLEASH World, a conference at Thales HQ, and an evening with HEC Paris MBA and EMBA students.',
+    description: 'Keynote at UNLEASH World, conference at Thales HQ and a talk session at HEC Paris.',
+    descriptionList: ['Keynote at UNLEASH World', 'Conference at Thales HQ', 'Talk Session at HEC Paris'],
     registerCity: 'Paris',
     dotLabel: 'Paris',
     isOpen: true,
