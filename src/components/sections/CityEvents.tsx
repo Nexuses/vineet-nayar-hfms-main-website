@@ -139,7 +139,16 @@ export function CityEvents() {
                 ) : (
                   <span className="ev-badge ev-badge-coming-soon is-muted">{event.badge}</span>
                 )}
-                {event.isOpen ? (
+                {event.isOpen && event.ctaHref ? (
+                  <a
+                    className="ev-register-btn"
+                    href={event.ctaHref}
+                    data-section-link="cities-cards"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {event.ctaLabel ?? 'See details'} &rarr;
+                  </a>
+                ) : event.isOpen ? (
                   <button
                     className="ev-register-btn"
                     type="button"
