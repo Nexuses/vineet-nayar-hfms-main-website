@@ -139,7 +139,7 @@ export function CityEvents() {
                 ) : (
                   <span className="ev-badge ev-badge-coming-soon is-muted">{event.badge}</span>
                 )}
-                {event.isOpen ? (
+                {event.isOpen && !event.hideCta ? (
                   <button
                     className="ev-register-btn"
                     type="button"
