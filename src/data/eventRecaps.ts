@@ -4,7 +4,8 @@ export interface EventRecap {
   buttonLabel: string
   youtubeId: string
   youtubeUrl: string
-  recapNote: string
+  /** Optional per-city hero paragraph; falls back to EVENT_RECAP_HEADING.heroNote. */
+  recapNote?: string
   gallery: string[]
 }
 
@@ -12,10 +13,12 @@ export const EVENT_RECAP_HEADING = {
   eyebrow: 'Event Recap',
   titleLead: 'Inside',
   titleHighlight: 'the event',
-  videoTitleLead: 'Watch The',
+  videoTitleLead: 'Watch the',
   videoTitleHighlight: 'Aftermovie',
   galleryTitleLead: 'Event',
   galleryTitleHighlight: 'Glimpses',
+  heroNote:
+    'The Humans First conversation brought together people from diverse walks of life to explore what it meant to thrive in the age of AI. Led by Vineet Nayar, the session went beyond technology to question, debate and reimagine how AI could be harnessed while strengthening the human qualities that would matter most in the future.',
   galleryEmpty: 'Photographs from this city will be added here soon.',
 } as const
 
@@ -26,8 +29,6 @@ export const EVENT_RECAPS: EventRecap[] = [
     buttonLabel: 'Inside Delhi Event',
     youtubeId: 'Eih2npEKX_E',
     youtubeUrl: 'https://youtu.be/Eih2npEKX_E',
-    recapNote:
-      'The Delhi evening brought leaders, builders and first-time guests into one room around a single question: will average people still matter? Vineet Nayar opened a live conversation on curiosity, courage and what stays human in the age of AI.',
     gallery: [
       'https://hfms-book.s3.us-east-2.amazonaws.com/DSC_1334_1790158068651_78ek.jpg',
       'https://hfms-book.s3.us-east-2.amazonaws.com/DSC_1366_1790158132355_7p01.jpg',
@@ -50,8 +51,6 @@ export const EVENT_RECAPS: EventRecap[] = [
     buttonLabel: 'Inside Mumbai Event',
     youtubeId: 'Gbt3fdPXyto',
     youtubeUrl: 'https://youtu.be/Gbt3fdPXyto',
-    recapNote:
-      'Mumbai gathered around The Human Advantage, a night of stories, questions and the reminder that people still move rooms machines cannot. The aftermovie and glimpses below hold the evening as it unfolded.',
     gallery: [
       'https://hfms-book.s3.us-east-2.amazonaws.com/5B7A0706_1790228096621_zt5q.jpg',
       'https://hfms-book.s3.us-east-2.amazonaws.com/5B7A0760_1790228135864_9nhu.jpg',
@@ -77,8 +76,6 @@ export const EVENT_RECAPS: EventRecap[] = [
     buttonLabel: 'Inside Bengaluru Event',
     youtubeId: '3q7hlLRxEeY',
     youtubeUrl: 'https://youtu.be/3q7hlLRxEeY',
-    recapNote:
-      'Bengaluru sat with What AI Cannot Replace. The room stayed with the work only people can do: judgement, care and the courage to stay curious. Watch the evening below, then move through the photographs from the night.',
     gallery: [
       'https://hfms-book.s3.us-east-2.amazonaws.com/VLC05857_1790229151312_lbu8.jpg',
       'https://hfms-book.s3.us-east-2.amazonaws.com/VLC05988_1790229151313_p046.jpg',

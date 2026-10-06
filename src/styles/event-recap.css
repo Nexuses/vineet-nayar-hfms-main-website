@@ -247,6 +247,37 @@
   background: var(--ink);
 }
 
+/* Keep "Inside <City> Event" and both section titles on a single line. */
+.event-recap-hero-copy {
+  container-type: inline-size;
+}
+
+/* Sized to the copy column so the longest city name ("Bengaluru") still fits;
+   the vw line is the fallback where container units are unsupported. */
+.event-recap-hero-copy .event-recap-title {
+  font-size: clamp(24px, 6.4vw, 54px);
+  font-size: clamp(22px, 9.2cqi, 54px);
+  white-space: nowrap;
+}
+
+.event-recap-title-event {
+  display: inline;
+}
+
+.event-recap-section-title {
+  white-space: nowrap;
+}
+
+.event-recap-section-title .event-recap-title-lead {
+  display: inline;
+}
+
+.event-recap-section-title .hand-highlight {
+  display: inline-block !important;
+  margin: 0 0 0 0.55em;
+  vertical-align: baseline;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .event-recap-slideshow-image,
   .event-recap-slideshow-image.is-active {

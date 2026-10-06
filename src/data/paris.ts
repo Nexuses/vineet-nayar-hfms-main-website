@@ -25,7 +25,7 @@ export const PARIS_PAGE = {
   backLabel: 'The World Tour',
   eyebrow: 'The World Tour',
   title: 'Paris',
-  tagline: 'Three sessions, one day',
+  tagline: 'Three Sessions in One Day',
   meta: ['Wednesday, 21 Oct 2026', '09:00–20:30 EST', '3 sessions'],
   lede: 'A keynote at UNLEASH World, a conference at Thales HQ, and an evening with HEC Paris MBA and EMBA students.',
   sessionsTitleLead: 'The Paris',

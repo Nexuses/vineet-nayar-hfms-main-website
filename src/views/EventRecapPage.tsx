@@ -44,7 +44,7 @@ export function EventRecapPage({ recap }: EventRecapPageProps) {
               <div className="event-recap-hero-copy">
                 <p className="event-recap-eyebrow">{EVENT_RECAP_HEADING.eyebrow}</p>
                 <h1 className="event-recap-title">
-                  {EVENT_RECAP_HEADING.titleLead} {recap.city}
+                  {EVENT_RECAP_HEADING.titleLead} {recap.city}{' '}
                   <span className="event-recap-title-event">Event</span>
                 </h1>
                 <p className="event-recap-meta">{metaLine}</p>
@@ -53,7 +53,7 @@ export function EventRecapPage({ recap }: EventRecapPageProps) {
                     <span className="hand-highlight">&ldquo;{city.theme}&rdquo;</span>
                   </p>
                 ) : null}
-                <p className="event-recap-note">{recap.recapNote}</p>
+                <p className="event-recap-note">{recap.recapNote ?? EVENT_RECAP_HEADING.heroNote}</p>
               </div>
               <EventRecapSlideshow city={recap.city} images={slideshowImages} />
             </div>
@@ -63,7 +63,7 @@ export function EventRecapPage({ recap }: EventRecapPageProps) {
         <section id="aftermovie" className="event-recap-section event-recap-video-section" aria-label={`${recap.city} aftermovie`}>
           <div className="event-recap-wrap">
             <h2 className="event-recap-section-title">
-              <span className="event-recap-title-lead">{EVENT_RECAP_HEADING.videoTitleLead}</span>
+              <span className="event-recap-title-lead">{EVENT_RECAP_HEADING.videoTitleLead}</span>{' '}
               <span className="hand-highlight">{EVENT_RECAP_HEADING.videoTitleHighlight}</span>
             </h2>
             <p className="event-recap-section-lede">
@@ -83,7 +83,7 @@ export function EventRecapPage({ recap }: EventRecapPageProps) {
         <section className="event-recap-section event-recap-gallery-section" aria-label={`${recap.city} event glimpses`}>
           <div className="event-recap-wrap event-recap-wrap--wide">
             <h2 className="event-recap-section-title">
-              <span className="event-recap-title-lead">{EVENT_RECAP_HEADING.galleryTitleLead}</span>
+              <span className="event-recap-title-lead">{EVENT_RECAP_HEADING.galleryTitleLead}</span>{' '}
               <span className="hand-highlight">{EVENT_RECAP_HEADING.galleryTitleHighlight}</span>
             </h2>
             {recap.gallery.length > 0 ? (
