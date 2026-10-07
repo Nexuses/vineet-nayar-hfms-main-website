@@ -94,6 +94,8 @@ export const EVENT_RECAPS: EventRecap[] = [
     slug: 'hyderabad',
     city: 'Hyderabad',
     buttonLabel: 'Inside Hyderabad Event',
+    youtubeId: 'jS_38eDvrEk',
+    youtubeUrl: 'https://youtu.be/jS_38eDvrEk',
     gallery: [
       'https://hfms-book.s3.us-east-2.amazonaws.com/DSC07121_1791358748986_qj24.jpg',
       'https://hfms-book.s3.us-east-2.amazonaws.com/DSC07078_1791358856302_v0pn.jpg',
