@@ -118,7 +118,6 @@ export const EVENT_RECAPS: EventRecap[] = [
     youtubeId: 'tdaYL7_4vFc',
     youtubeUrl: 'https://youtu.be/tdaYL7_4vFc',
     gallery: [
-      'https://hfms-book.s3.us-east-2.amazonaws.com/JMS_0058_1791361520785_me3i.jpg',
       'https://hfms-book.s3.us-east-2.amazonaws.com/JMS_0058_1791363712070_fq5b.jpg',
       'https://hfms-book.s3.us-east-2.amazonaws.com/JMS_0362_1791363731864_tfov.jpg',
       'https://hfms-book.s3.us-east-2.amazonaws.com/JMS_0334_-_Copy_1791363748810_gidr.jpg',
