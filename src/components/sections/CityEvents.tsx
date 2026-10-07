@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { CITY_EVENTS, CITY_EVENTS_HEADING } from '../../data/cityEvents'
 import { useModal } from '../../context/ModalContext'
@@ -114,7 +115,7 @@ export function CityEvents() {
                 <span className="ev-city-label">{event.label}</span>
               </div>
               <div className="ev-overlay">
-                {event.isOpen ? (
+                {event.isOpen && !event.hideBadge ? (
                   <span className="ev-badge">{event.badge}</span>
                 ) : null}
                 <div className="ev-overlay-city">{event.overlayCity}</div>
@@ -150,7 +151,15 @@ export function CityEvents() {
                 ) : (
                   <span className="ev-badge ev-badge-coming-soon is-muted">{event.badge}</span>
                 )}
-                {event.isOpen && !event.hideCta ? (
+                {event.detailsHref ? (
+                  <Link
+                    className="ev-register-btn ev-register-btn--details"
+                    href={event.detailsHref}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {event.ctaLabel ?? 'View Event Details'}
+                  </Link>
+                ) : event.isOpen && !event.hideCta ? (
                   <button
                     className="ev-register-btn"
                     type="button"

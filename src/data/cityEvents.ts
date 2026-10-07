@@ -17,6 +17,9 @@ export interface CityEvent {
   isOpen: boolean
   /** Show the details without the "Apply to Attend" button, e.g. while links are pending. */
   hideCta?: boolean
+  hideBadge?: boolean
+  detailsHref?: string
+  ctaLabel?: string
 }
 
 const EVENT_OVERLAY =
@@ -56,7 +59,9 @@ export const CITY_EVENTS: CityEvent[] = [
     registerCity: 'Paris',
     dotLabel: 'Paris',
     isOpen: true,
-    hideCta: true,
+    hideBadge: true,
+    detailsHref: '/paris',
+    ctaLabel: 'View Event Details',
   },
   {
     id: 'new-york',

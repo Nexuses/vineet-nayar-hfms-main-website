@@ -181,7 +181,7 @@
   color: #fff;
   letter-spacing: -0.03em;
   line-height: 1;
-  margin-bottom: 6px;
+  margin-bottom: 16px;
   text-transform: uppercase;
 }
 
@@ -250,11 +250,19 @@
   font-weight: 900;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  text-decoration: none;
   background: var(--yellow);
   color: #111;
   cursor: pointer;
   font-family: var(--font);
   transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.ev-register-btn--details {
+  min-height: 36px;
+  padding: 0 18px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
 }
 
 .ev-register-btn:hover {

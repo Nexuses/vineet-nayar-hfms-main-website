@@ -29,7 +29,11 @@ export function EventRecapPage({ recap }: EventRecapPageProps) {
         <title>{title}</title>
         <meta
           name="description"
-          content={`Recap of the Humans First Series event in ${recap.city}: aftermovie and event glimpses.`}
+          content={
+            recap.youtubeId
+              ? `Recap of the Humans First Series event in ${recap.city}: aftermovie and event glimpses.`
+              : `Recap of the Humans First Series event in ${recap.city}: event glimpses.`
+          }
         />
       </Head>
 
@@ -60,31 +64,31 @@ export function EventRecapPage({ recap }: EventRecapPageProps) {
           </div>
         </section>
 
-        <section id="aftermovie" className="event-recap-section event-recap-video-section" aria-label={`${recap.city} aftermovie`}>
-          <div className="event-recap-wrap">
-            <h2 className="event-recap-section-title">
-              <span className="event-recap-title-lead">{EVENT_RECAP_HEADING.videoTitleLead}</span>{' '}
-              <span className="hand-highlight">{EVENT_RECAP_HEADING.videoTitleHighlight}</span>
-            </h2>
-            <p className="event-recap-section-lede">
-              A short film from the {recap.city} evening.
-            </p>
-            <div className="event-recap-video-frame">
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${recap.youtubeId}?rel=0`}
-                title={`${recap.city} event aftermovie`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
+        {recap.youtubeId ? (
+          <section id="aftermovie" className="event-recap-section event-recap-video-section" aria-label={`${recap.city} aftermovie`}>
+            <div className="event-recap-wrap">
+              <h2 className="event-recap-section-title">
+                {EVENT_RECAP_HEADING.videoTitleLead} {EVENT_RECAP_HEADING.videoTitleHighlight}
+              </h2>
+              <p className="event-recap-section-lede">
+                A short film from the {recap.city} evening.
+              </p>
+              <div className="event-recap-video-frame">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${recap.youtubeId}?rel=0`}
+                  title={`${recap.city} event aftermovie`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        ) : null}
 
         <section className="event-recap-section event-recap-gallery-section" aria-label={`${recap.city} event glimpses`}>
           <div className="event-recap-wrap event-recap-wrap--wide">
             <h2 className="event-recap-section-title">
-              <span className="event-recap-title-lead">{EVENT_RECAP_HEADING.galleryTitleLead}</span>{' '}
-              <span className="hand-highlight">{EVENT_RECAP_HEADING.galleryTitleHighlight}</span>
+              {EVENT_RECAP_HEADING.galleryTitleLead} {EVENT_RECAP_HEADING.galleryTitleHighlight}
             </h2>
             {recap.gallery.length > 0 ? (
               <EventRecapGallery city={recap.city} images={recap.gallery} />
