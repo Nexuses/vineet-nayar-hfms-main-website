@@ -107,6 +107,10 @@ export const CITIES: City[] = [
     theme: 'What Part of Being Human Will You Never Give Up?',
     cardImage: 'https://nexuses.s3.us-east-2.amazonaws.com/kolkata_1784029961401_1rk3.png',
     registerUrl: 'https://events.hfmsbook.com/events/evt_1782207229198_xl03tt1',
+    completed: {
+      headline: 'Kolkata event was a blast!',
+      note: 'Registration for this city has been closed.',
+    },
   },
 ]
 
