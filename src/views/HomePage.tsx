@@ -29,13 +29,13 @@ export function HomePage() {
       {FEATURES.sparks && <Sparks />}
       {FEATURES.experience && <Experience />}
       <Cities />
-      {FEATURES.testimonials && <Testimonials />}
       <CityEvents />
       <AuthorHero />
       <Mosaic />
       {FEATURES.wallIframe && <WallIframe />}
       {FEATURES.faq && <Faq />}
       <WallWidget />
+      {FEATURES.testimonials && <Testimonials />}
       <Promise />
     </main>
   )
