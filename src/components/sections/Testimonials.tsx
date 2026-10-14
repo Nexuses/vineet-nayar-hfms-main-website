@@ -20,7 +20,6 @@ function TestimonialCard({ item }: { item: Testimonial }) {
         </span>
         <span className="tm-person-meta">
           <span className="tm-name">{item.name}</span>
-          <span className="tm-role">{item.role}</span>
         </span>
       </figcaption>
     </figure>
