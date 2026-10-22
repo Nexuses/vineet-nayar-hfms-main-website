@@ -133,6 +133,23 @@ export const EVENT_RECAPS: EventRecap[] = [
       'https://hfms-book.s3.us-east-2.amazonaws.com/JMS_0139_1791363875871_czzj.jpg',
     ],
   },
+  {
+    slug: 'kolkata',
+    city: 'Kolkata',
+    buttonLabel: 'Inside Kolkata Event',
+    gallery: [
+      'https://hfms-book.s3.us-east-2.amazonaws.com/WhatsApp_Image_2026-10-13_at_2.05.56_PM__1__1792653202059_x3af.jpeg',
+      'https://hfms-book.s3.us-east-2.amazonaws.com/WhatsApp_Image_2026-10-13_at_2.05.56_PM__2__1792653202059_pnj4.jpeg',
+      'https://hfms-book.s3.us-east-2.amazonaws.com/WhatsApp_Image_2026-10-13_at_2.05.56_PM__3__1792653202060_ts5s.jpeg',
+      'https://hfms-book.s3.us-east-2.amazonaws.com/WhatsApp_Image_2026-10-13_at_2.05.56_PM__4__1792653202060_s0o2.jpeg',
+      'https://hfms-book.s3.us-east-2.amazonaws.com/WhatsApp_Image_2026-10-13_at_2.05.56_PM__5__1792653202060_115a.jpeg',
+      'https://hfms-book.s3.us-east-2.amazonaws.com/WhatsApp_Image_2026-10-13_at_2.05.56_PM__6__1792653202060_963b.jpeg',
+      'https://hfms-book.s3.us-east-2.amazonaws.com/WhatsApp_Image_2026-10-13_at_2.05.56_PM__7__1792653202060_39oa.jpeg',
+      'https://hfms-book.s3.us-east-2.amazonaws.com/WhatsApp_Image_2026-10-13_at_2.05.56_PM_1792653202061_5ike.jpeg',
+      'https://hfms-book.s3.us-east-2.amazonaws.com/WhatsApp_Image_2026-10-13_at_3.35.03_PM__1__1792653202061_y23x.jpeg',
+      'https://hfms-book.s3.us-east-2.amazonaws.com/WhatsApp_Image_2026-10-13_at_3.35.03_PM_1792653202061_4gdm.jpeg',
+    ],
+  },
 ]
 
 export function getEventRecapBySlug(slug: string): EventRecap | undefined {
