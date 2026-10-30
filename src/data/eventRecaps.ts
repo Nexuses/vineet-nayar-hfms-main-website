@@ -137,6 +137,8 @@ export const EVENT_RECAPS: EventRecap[] = [
     slug: 'kolkata',
     city: 'Kolkata',
     buttonLabel: 'Inside Kolkata Event',
+    youtubeId: 'vo6CwwtgZKs',
+    youtubeUrl: 'https://youtu.be/vo6CwwtgZKs',
     gallery: [
       'https://hfms-book.s3.us-east-2.amazonaws.com/WhatsApp_Image_2026-10-13_at_2.05.56_PM__1__1792653202059_x3af.jpeg',
       'https://hfms-book.s3.us-east-2.amazonaws.com/WhatsApp_Image_2026-10-13_at_2.05.56_PM__2__1792653202059_pnj4.jpeg',
