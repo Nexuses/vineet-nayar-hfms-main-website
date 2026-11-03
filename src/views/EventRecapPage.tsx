@@ -19,9 +19,14 @@ export function EventRecapPage({ recap }: EventRecapPageProps) {
   const title = `Inside ${recap.city} Event — The Humans First Series`
   const slideshowImages = getSlideshowImages(recap)
   const city = CITIES.find((item) => item.city === recap.city)
-  const metaLine = [city?.dateDisplay, city?.venue ? `${city.venue}, ${recap.city}` : recap.city]
+  const dateDisplay = recap.dateDisplay ?? city?.dateDisplay
+  const venue = recap.venue ?? city?.venue
+  const theme = recap.theme ?? city?.theme
+  const metaLine = [dateDisplay, venue ? `${venue}, ${recap.city}` : recap.city]
     .filter(Boolean)
     .join(' · ')
+  const backHref = city ? '/#cities-cards' : '/#cities-events'
+  const backLabel = city ? 'All Cities' : 'The World Tour'
 
   return (
     <>
@@ -40,9 +45,9 @@ export function EventRecapPage({ recap }: EventRecapPageProps) {
       <main id="top" className="event-recap-page">
         <section className="event-recap-hero" aria-label={`${recap.city} event recap`}>
           <div className="event-recap-wrap event-recap-wrap--wide">
-            <Link href="/#cities-cards" className="event-recap-back">
+            <Link href={backHref} className="event-recap-back">
               <span aria-hidden="true">←</span>
-              All Cities
+              {backLabel}
             </Link>
             <div className="event-recap-hero-grid">
               <div className="event-recap-hero-copy">
@@ -52,9 +57,9 @@ export function EventRecapPage({ recap }: EventRecapPageProps) {
                   <span className="event-recap-title-event">Event</span>
                 </h1>
                 <p className="event-recap-meta">{metaLine}</p>
-                {city?.theme ? (
+                {theme ? (
                   <p className="event-recap-question">
-                    <span className="hand-highlight">&ldquo;{city.theme}&rdquo;</span>
+                    <span className="hand-highlight">&ldquo;{theme}&rdquo;</span>
                   </p>
                 ) : null}
                 <p className="event-recap-note">{recap.recapNote ?? EVENT_RECAP_HEADING.heroNote}</p>

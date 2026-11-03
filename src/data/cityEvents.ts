@@ -60,8 +60,8 @@ export const CITY_EVENTS: CityEvent[] = [
     dotLabel: 'Paris',
     isOpen: true,
     hideBadge: true,
-    detailsHref: '/paris',
-    ctaLabel: 'View Event Details',
+    detailsHref: '/events/paris',
+    ctaLabel: 'Inside Paris Event',
   },
   {
     id: 'new-york',

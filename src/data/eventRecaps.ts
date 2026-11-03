@@ -6,6 +6,9 @@ export interface EventRecap {
   youtubeUrl?: string
   /** Optional per-city hero paragraph; falls back to EVENT_RECAP_HEADING.heroNote. */
   recapNote?: string
+  dateDisplay?: string
+  venue?: string
+  theme?: string
   gallery: string[]
 }
 
@@ -150,6 +153,56 @@ export const EVENT_RECAPS: EventRecap[] = [
       'https://hfms-book.s3.us-east-2.amazonaws.com/WhatsApp_Image_2026-10-13_at_2.05.56_PM_1792653202061_5ike.jpeg',
       'https://hfms-book.s3.us-east-2.amazonaws.com/WhatsApp_Image_2026-10-13_at_3.35.03_PM__1__1792653202061_y23x.jpeg',
       'https://hfms-book.s3.us-east-2.amazonaws.com/WhatsApp_Image_2026-10-13_at_3.35.03_PM_1792653202061_4gdm.jpeg',
+    ],
+  },
+  {
+    slug: 'paris',
+    city: 'Paris',
+    buttonLabel: 'Inside Paris Event',
+    dateDisplay: '21 Oct 2026',
+    venue: 'UNLEASH World, Thales HQ and HEC Paris',
+    theme: 'Three Sessions in One Day',
+    gallery: [
+      'https://assets.nexuses.xyz/1_1793618403177_6vvm.jpeg',
+      'https://assets.nexuses.xyz/2_1793618403177_yeyp.jpeg',
+      'https://assets.nexuses.xyz/3_1793618403177_m416.jpeg',
+      'https://assets.nexuses.xyz/4_1793618403177_ncvi.jpeg',
+      'https://assets.nexuses.xyz/5_1793618403177_1tgm.jpeg',
+      'https://assets.nexuses.xyz/6_1793618403178_4rs9.jpeg',
+      'https://assets.nexuses.xyz/7_1793618403178_n9ng.jpeg',
+      'https://assets.nexuses.xyz/8_1793618403178_wme5.jpeg',
+      'https://assets.nexuses.xyz/9_1793618403178_fby2.jpeg',
+      'https://assets.nexuses.xyz/10_1793618403178_o6qj.jpeg',
+      'https://assets.nexuses.xyz/11_1793618437695_4o31.jpeg',
+      'https://assets.nexuses.xyz/12_1793618437695_1of6.jpeg',
+      'https://assets.nexuses.xyz/13_1793618437695_bh2z.jpeg',
+      'https://assets.nexuses.xyz/14_1793618437696_218v.jpeg',
+      'https://assets.nexuses.xyz/15_1793618437696_r3gw.jpeg',
+      'https://assets.nexuses.xyz/16_1793618437696_kge1.jpeg',
+      'https://assets.nexuses.xyz/17_1793618437696_ov2g.jpeg',
+      'https://assets.nexuses.xyz/18_1793618437696_fbwb.jpeg',
+      'https://assets.nexuses.xyz/19_1793618437696_bos2.jpeg',
+      'https://assets.nexuses.xyz/20_1793618437697_6h1z.jpeg',
+      'https://assets.nexuses.xyz/21_1793618468721_k7yg.jpeg',
+      'https://assets.nexuses.xyz/22_1793618468721_rjy0.jpeg',
+      'https://assets.nexuses.xyz/23_1793618468722_ott1.jpeg',
+      'https://assets.nexuses.xyz/24_1793618468735_oyd8.jpeg',
+      'https://assets.nexuses.xyz/25_1793618468735_2sl6.jpeg',
+      'https://assets.nexuses.xyz/26_1793618468735_ugmi.jpeg',
+      'https://assets.nexuses.xyz/27_1793618468735_k8lr.jpeg',
+      'https://assets.nexuses.xyz/28_1793618468735_y4tr.jpeg',
+      'https://assets.nexuses.xyz/29_1793618468735_t2no.jpeg',
+      'https://assets.nexuses.xyz/30_1793618468735_bazy.jpeg',
+      'https://assets.nexuses.xyz/31_1793618506741_f6b4.jpeg',
+      'https://assets.nexuses.xyz/32_1793618506741_eex9.jpeg',
+      'https://assets.nexuses.xyz/33_1793618506741_sjad.jpeg',
+      'https://assets.nexuses.xyz/34_1793618506741_m7ug.jpeg',
+      'https://assets.nexuses.xyz/35_1793618506741_d0w0.jpeg',
+      'https://assets.nexuses.xyz/36_1793618506741_1o0d.jpeg',
+      'https://assets.nexuses.xyz/37_1793618506741_4w9l.jpeg',
+      'https://assets.nexuses.xyz/38_1793618506741_hcdc.jpeg',
+      'https://assets.nexuses.xyz/39_1793618506741_civq.jpeg',
+      'https://assets.nexuses.xyz/40_1793618506741_4mdd.jpeg',
     ],
   },
 ]

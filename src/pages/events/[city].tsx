@@ -1,5 +1,4 @@
 import type { GetStaticPaths, GetStaticProps } from 'next'
-import { CITIES } from '@/data/cities'
 import { EVENT_RECAPS, getEventRecapBySlug, type EventRecap } from '@/data/eventRecaps'
 import { EventRecapPage } from '@/views/EventRecapPage'
 
@@ -21,9 +20,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<EventRecapRouteProps> = async ({ params }) => {
   const slug = typeof params?.city === 'string' ? params.city : ''
   const recap = getEventRecapBySlug(slug)
-  const city = recap ? CITIES.find((item) => item.city === recap.city) : undefined
 
-  if (!recap || !city) {
+  if (!recap) {
     return { notFound: true }
   }
 
