@@ -25,6 +25,156 @@ export const TESTIMONIAL_ROWS: TestimonialRow[] = [
     direction: 'left',
     items: [
           {
+                "id": "ln1",
+                "quote": "Vineet Nayar recently sent me an advance copy of his new book - Humans First, Machines Second - 30 sparks to reimagine winning in the age of AI. This is a richly tapestried book, building on his earlier (and proven) masterpiece - Employees First, Customer's Second. HFMS is a richly tapestried book and is, I believe, a must read for manager's and leaders to understand how their role shifts in the age of AI. However, this is not a book review. With Vineet, I always look for that disruptive, discontinuous idea in which magic lurks. And there is a big one in this book. As students of economics, we have grown up and grown professionally with an idea that is completely upended here. Vineet has called out the strategic devaluation of productivity - in fact, has painted a picture that productivity itself is about to get commoditised. This points to an interesting future. Commoditised productivity can without doubt lead to a massive improvement in quality of life, in fact creating abundance. But what about career, growth, aspiration and all those things that define success today ? And this is where the idea of \"Why\" is such a powerful call to action in the book. When Why becomes an economic cornerstone, it has to be human first. And purpose will redefine what good looks like. Beyond the management lesson, Vineet's book actually gives a glimpse of a better world - one we sorely need. A human world, made possible with AI.",
+                "name": "Krishnan Chatterjee",
+                "initials": "KC"
+          },
+          {
+                "id": "ln2",
+                "quote": "In The World Of AI where Organisations are Focusing on reducing Human intervention and Automate as much possible, I got my copy of an interesting book written by none other than Vineet Boss elaborating on the thought below; “ AI is the Great Equalizer because its remarkably powerful and available to all. The only True differentiator left ? PEOPLE.” Vineet Nayar",
+                "name": "Ankur Arora",
+                "initials": "AA"
+          },
+          {
+                "id": "ln3",
+                "quote": "Congratulations, Mr. Vineet Nayar, on the release of Humans First, Machines Second. I recently purchased the book and have just begun reading it. Even in the opening chapters, it's clear that this is a timely and thought-provoking perspective on leadership in the age of AI. You have been one of my strongest leadership role models ever since you championed the Employees First, Customers Second philosophy at HCL. Your belief that empowered employees create extraordinary value for customers has had a lasting influence on how I think about leadership and organizational culture. I have learned a great deal from your ideas over the years and I look forward to gaining many more insights from this new book. Thank you for continuing to inspire leaders to put people at the center of transformation. Wishing you and the book tremendous success",
+                "name": "Dayanand Kulkarni",
+                "initials": "DK"
+          },
+          {
+                "id": "ln4",
+                "quote": "Some leaders leave an impact far beyond the years you work with them. I recently bought Humans First, Machines Second by Vineet Nayar .It reminded me of the privilege of working with Vineet. The future is not about humans versus machines. It is about humans working with machines to achieve outcomes that neither could deliver alone. Looking forward to reading the book and reflecting on how leadership, culture and AI can come together to create lasting business impact.",
+                "name": "Dr. Pratap Arni Mallisetty",
+                "initials": "PM"
+          },
+          {
+                "id": "ln5",
+                "quote": "Impact on first sight! I ordered my HFMS book late last night at 10:30pm and got it by 7:30am today morning! My first impression of Humans First, Machines Second is strikingly positive. Even before engaging deeply with the content, I was captivated by the book's imaginative visual icons and punchy captions. They make complex ideas immediately accessible, memorable and thought-provoking. The design itself reinforces the central message: in the age of AI, technology may amplify possibilities, but it is human imagination, trust, empowerment and courage that will ultimately differentiate winners. A refreshing and creatively presented invitation to rethink leadership and success in an AI-driven world.",
+                "name": "Anand Pillai",
+                "initials": "AP"
+          },
+          {
+                "id": "ln6",
+                "quote": "Loved your chapter 7- Empathy+Intuition+Judgement = The Human Advantage Thank you Vineet! You should convert this book into a Leadership and Culture Change Program. Regards, VJ",
+                "name": "Dr. Vishwanath Joshi",
+                "initials": "VJ"
+          },
+          {
+                "id": "ln7",
+                "quote": "It was 2008. A town hall packed with about 1,000 employees. And out comes the CEO — dancing to the Bollywood number \"Mera Hi Jalwa.\" That CEO was Vineet Nayar. I was already a people manager by then, and \"Employees First, Customers Second\" was a phrase we heard constantly at HCL. The first time I heard it, it felt like chaos. Conventional wisdom always said the customer is king. Here was our CEO saying employees come first. It didn't make sense. When his book, EFCS, came out, we were all told to read it. Lazy me — I didn't. Fast forward to 2011. I was in the Netherlands as an SME, helping the sales team push a deal we were pursuing. Long meeting, I'd given my inputs, and now it was the sales team's turn to work on the presentation. Bored and waiting, I wandered into the next room — and there it was. EFCS, just sitting on a shelf. I picked it up. And that's when I actually understood what he meant. People are the cornerstone of business. He called it the \"value zone.\" It was never about literally putting the customer second — it was about empowering the people who actually talk to customers every day. Take care of them, and the customer experience takes care of itself. Fifteen years later, in the middle of the AI hype cycle, we're making the same mistake all over again — forgetting about people. Skills change. Business dynamics change. The one constant is people. That's exactly the thread Vineet Nayar picks up in his second book, \"Humans First, Machines Second.\" If you're picking either of these up: read EFCS first. The second book will make a lot more sense once you have.",
+                "name": "Vikas Kapoor",
+                "initials": "VK"
+          },
+          {
+                "id": "ln8",
+                "quote": "Sincere thanks for your book. It will be more impactful than your last one. You are a true thought leader who learns from people around to come up with a framework that is human and outstanding in its analysis. The appropriate technology use is the key message where humans will continue to matter. Starting to read. It is a masterclass. Will revert on completion. Just completed your incredible book. I could identify with every word in the book. You have inspired me to write on leadership and the human capability-trust can create wonders ! I will review your book for The Business Standard.",
+                "name": "Amarjeet Sinha",
+                "initials": "AS"
+          },
+          {
+                "id": "ln9",
+                "quote": "From \"Employees First, Customers Second\" in 2010 when I was in HCL Tech to \"Human First, Machine Second\" in 2026 where I am running my own venture. It couldn't be more relevant in today's AI-driven world. AI is transforming how we work, but it isn't replacing what makes us human. Technology can automate tasks, analyze data, and improve efficiency. But it cannot truly replicate empathy, purpose, judgment, creativity, or the ability to inspire people around a shared vision. Every meaningful transformation starts with people. Humans are the ones who: Create the vision. Challenge assumptions. Build trust. Adapt to uncertainty. Turn technology into real business value. The future isn't about Human vs. AI. It's about Humans empowered by AI. Organizations that put people first while embracing technology will build stronger cultures, make better decisions, and create lasting impact. Looking forward to Delhi event \"Human First, Machine Second.\" Congratulations to Vineet Nayar Sir on what promises to be another thought-provoking contribution to leadership in the AI era.",
+                "name": "Amit Mishra",
+                "initials": "AM"
+          },
+          {
+                "id": "ln10",
+                "quote": "People First and the Evolving Narrative Three books, thirty years apart, conveying a timeless intent: invert around who the system serves. This Sunday was for rearranging the bookshelf, a task that never stays contained to one shelf, because every book I pick up evokes a memory with it. Two of them kept resurfacing thoughts I have carried for years and would love to hear your take if you have read either. Back in college, our school gave prize winners vouchers to pick up books from a store near campus, a quaint little shop on one of the busiest roads in #Trichy, near Main Guard Gate, in the shadow of the #Rockfort temple. Getting through the crowd to reach it felt like an achievement in itself. Getting inside felt like stepping into another world. My curiosity for management and current affairs led me to one section, and one title stopped me: Putting People First, by Governor Clinton and Senator Gore. This was before search was democratized. You found books the way you found everything else then, by wandering until something made you stop. What struck me, as a student in 1994, was the range: economy, healthcare, education, crime, welfare, foreign policy, all argued from a single premise. People come first. I didn't have the vocabulary for it then, but that book was my first brush with a question I have kept running into since: who is the system for? Years later, I read Vineet Nayar's Employees First, Customers Second, the same idea, scaled down to one company. Nayar made management accountable to the people creating value, instead of the other way around , down to an electronic ticketing system where employees could file complaints against the CEO's own office, and only the employee could close the ticket. It wasn't metaphorical. It was a mechanism, and I saw it work and I was driving parts of that change myself, building the knowledge systems and enterprise collaboration strategy for people and systems to leverage the ecosystem. In 2019, right before Covid, I was part of an executive leadership program with Wharton and ISB Hyderabad. Prof. Ram Nidumolu. raised singularity, and we also spent a session on tempered radicalism from Adam Grant Originals deliberating with Dafna Eylon, Ph.D. We are now living inside a lot of what we speculated about that day. This month, Vineet Nayar released a new book: Humans First, Machines Second: 30 Sparks to Reimagine Winning in the Age of AI. Same instinct, new terrain. In 1994, people-centricity meant confronting bureaucracy. In 2010, it meant inverting the corporate hierarchy. In 2026, it is co-existing with machines. I will pick up a copy soon. In the meantime, how are you thinking about this inversion?",
+                "name": "Ambika Natarajan",
+                "initials": "AN"
+          },
+          {
+                "id": "ln11",
+                "quote": "My copy of \"Human First.machines second\" has finally arrived! After reading \"Employees First, Customers Second\", I had been eagerly waiting for Vineet Nayar's latest book. Delighted to finally have it in my hands and looking forward to the insights it has to offer. Even the book's blurb is thought-provoking: \"The greatest danger of the Artificial Intelligence (AI) age is not smarter machines. It is humans slowly losing belief in their own uniqueness. AI may change the rules. But only humans decide who wins.\" These words resonate deeply. As AI reshapes industries and the future of work, the real differentiator will continue to be the qualities that make us uniquely human-our empathy, creativity, judgment, values, and ability to inspire others. Looking forward to reading the book and reflecting on its ideas. Thanks Vineet Nayar !!",
+                "name": "Sonali Kodag (Bhoite)",
+                "initials": "SB"
+          },
+          {
+                "id": "ln12",
+                "quote": "Vineet Nayar's Humans First, Machines Second couldn't be timelier. At a moment when every boardroom conversation seems to start and end with AI, Mr Nayar, who built his reputation on flipping hierarchies with \"Employees First, Customers Second\"- delivers a much-needed reframe: technology should extend human judgment, not replace it. The book's 30 \"sparks\" offer sharp, practical provocations rather than abstract theory, pushing leaders to rethink what winning actually looks like when machines can execute but humans still have to decide, trust, and lead. It's a timely reminder that the organisations that will thrive in the AI era aren't the ones that automate fastest, but the ones that stay clearest on what only people can bring to the table. Thank you Vineet for sharing your experiences (including the lessons from your parents), your experiences throughout your career, including learnings - they were truly humbling and insightful!",
+                "name": "Rishi Rout",
+                "initials": "RR"
+          },
+          {
+                "id": "ln13",
+                "quote": "Feeling truly honoured and grateful to receive Best Seller Book Humans First, Machines Second. Thank you Sir for this thoughtful gift and for your inspiring leadership. I look forward to reading your insights on putting people first in an AI-driven world and applying these learnings in my journey with Sampark Foundation. Grateful for the opportunity to learn from your vision.",
+                "name": "Navin Dubey",
+                "initials": "ND"
+          },
+          {
+                "id": "ln14",
+                "quote": "Morning Vineet Read the book. Wow . Very very relevant and thought & action provoking ideas .. lot of learning for me personally to make me a better leader in the ai world Will Be lining up for getting a copy signed by you on 2nd :)",
+                "name": "Kunal Purohit",
+                "initials": "KP"
+          },
+          {
+                "id": "ln15",
+                "quote": "Just received the books! Bought one for a friend. Can't wait to dive in, thank you Sir!",
+                "name": "Leena Muzumdar",
+                "initials": "LM"
+          },
+          {
+                "id": "ln16",
+                "quote": "I finished reading the book humans first and machine second yesterday... vintage Vineet.. Direct and full of real world wisdom..I thoroughly enjoyed reading it and highly recommend the book to everyone",
+                "name": "Swaminathan Mani",
+                "initials": "SM"
+          },
+          {
+                "id": "ln17",
+                "quote": "Brilliant read .Well timed.I totally agree with points brought out by the author on the value of #human .Must read .Hope you leverage the sparks.",
+                "name": "Anil Kumar Chahar",
+                "initials": "AC"
+          },
+          {
+                "id": "ln18",
+                "quote": "What a lovely book !! Thank you Vineet Nayar Sir",
+                "name": "Sumon Kar",
+                "initials": "SK"
+          },
+          {
+                "id": "ln19",
+                "quote": "An interesting and thought provoking but also relaxing read, book Humans First machines second by Vineet Nayar . Easy to read and insightful with loads of views and experiences shared from real life interactions Vineet had from his career and recent events. Some very interesting graphics and illustrations added, divided into 30 quick read chapters. You are dealing with AI or not or just interacting with people, managing in any form, this will add value.",
+                "name": "Neeraj Sharma",
+                "initials": "NS"
+          },
+          {
+                "id": "ln20",
+                "quote": "I first heard the name Vineet Nayar during my college days. Prof. O. P. Singhal, my advisor, would often tell us stories about a former student of our college who had gone on to become the CEO of a company. His message was always the same: stop cribbing, make the most of the opportunities in front of you. In our third year, we finally got to meet Vineet in person when he visited our college for a session. It was one of those moments where the stories suddenly became real. A few years later, I joined HCL Technologies as my first company. Vineet was then leading HCL Comnet, and we often heard from friends about how different the culture there was. When he later became CEO of HCL Technologies, we experienced his leadership firsthand. While most interactions were through the famous Direction events, the energy he brought to the organization was unmistakable. Anyone who attended one would know exactly what I mean. Today, at the HFMS event, I experienced that same energy again. It's been years since Vineet stepped away from corporate leadership, yet his ability to inspire remains unchanged. His fingerprints were visible throughout the event—from the way it was conducted to the smallest design details. A special appreciation to the team behind the event and the book experience. The clean visual design, the thoughtful use of the yellow highlighter (perhaps a subtle Japan-inspired touch), and the powerful imagery accompanying each of the 30 stories made the experience even more memorable. Some moments are difficult to describe in words. They simply have to be experienced. My biggest takeaway from the day: Machines will always become better at doing what humans have already done. It is up to humans to imagine and create what machines cannot. Thank you, Vineet, for yet another reminder that leadership is not just about running organizations—it's about igniting possibilities in people. Also, to the work you are doing with Sampark Foundation.",
+                "name": "Amit Chaudhary",
+                "initials": "AC"
+          },
+          {
+                "id": "ln21",
+                "quote": "Humans First. Machines Second. An inspiring evening at the launch of #HumansFirst, Machines Second by Vineet Nayar at the Ambedkar International Center, New Delhi. Fifteen years after his iconic bestseller Employees First, Customers Second, the Former CEO of HCL is truly back with a bang. As someone deeply interested in leadership, technology, communities and the future of work, it was a privilege to be part of this timely conversation. And for every book lover, there's something uniquely special about returning home with a personally signed copy from the author. If there was one takeaway that captured the essence of the evening, it was this: The greatest danger of AI is not smarter machines; it is humans slowly losing belief in their own uniqueness. AI will undoubtedly transform industries, redefine jobs and rewrite the rules. But creativity, empathy, courage, judgment and purpose remain deeply human. Technology may change the game, but only humans decide who wins. The evening became even more memorable as my wife, Archana Garimella, an avid reader, had the opportunity to meet and interact with Vineet Sir and share her admiration. A masterclass on leadership, humanity and the future—one that left everyone with much to reflect upon. Here's to putting humans first. Always !",
+                "name": "M S Srikanth",
+                "initials": "MS"
+          },
+          {
+                "id": "ln22",
+                "quote": "It is always magical to meet and listen to Vineet. Value of his ability to think differently from the popular narrative and articulate it in the simplest possible way is immense. Same thing happened with \"Employees First and Customer Second\", 100,000 employees aligned to a common vision. This time it is not just about organization, this is about society and generation world over, and certainly organization too. I feel everyone should read this book. Biggest take away is Trust in one's own and Human potential in general will continue to be the source of differention and growth.",
+                "name": "Subrat Chakravarty",
+                "initials": "SC"
+          },
+          {
+                "id": "ln23",
+                "quote": "There is so much noise around AI today. Every conversation seems to revolve around one question: \"How many humans can AI replace?\" We celebrate autonomous agents, automation, and productivity gains. Somewhere along the way, the conversation risks becoming more about replacing people than empowering them. That's why reading Humans First, Machines Second by Vineet Nayar Sir has been so refreshing. It brings the discussion back to where it belongs—humans. One idea that stayed with me: \"The question isn't how many humans AI can replace. The better question is: how many humans can AI empower?\" That shift in perspective is profound. It reminds us that AI's greatest value is not in replacing human potential, but in amplifying it. Thank you Vineet Sir, for bringing clarity and humanity to one of the noisiest conversations of our time. I would strongly recommend this book to everyone building, leading, or simply curious about AI.",
+                "name": "Arvind Kumar Mishra",
+                "initials": "AM"
+          },
+          {
+                "id": "ln24",
+                "quote": "Over the last few days i have been reading one of my favorite authors/ leaders new book (though i have never met Vineet Nayar sir in person). His new book \"Humans First, Customers Second\" is a master class on how in the age of machines and AI, the human element is still so significant. I particularly enjoyed Chapter 25 \" When You Surprise Minds, You Cement Memories\", it resonated a lot with so many of the small things my colleagues at BOT have done for me and for mamy others during our 18 year jouney. I also loved the amazing story of how the confidence and conviction of the lady at the reception turned around and gave HCL a chance at $100 mn deal, showing the value of team work and the human element whether in life or in business. I would highly recommend this book to everyone. Read it for sure, it is sure to leave some impact on you and have a lesson or two to implement. Grateful to Anand Rajagopal for having told about Vineet Nayar sir's work at HCL and also Sampark Foundation , i am a big fan of the amazing impact Vineet Nayar sir and his team are having on lakhs of young students.",
+                "name": "Deepak Bohra",
+                "initials": "DB"
+          },
+          {
+                "id": "ln25",
+                "quote": "Having recently finished reading Humans First, Machines Second by Mr. Vineet Nayar (Former CEO of HCL Technologies), I found it to be a powerful and timely perspective on the evolving role of AI. This book offers a reassuring and practical framework for the future of artificial intelligence. As AI continues to spark widespread debate regarding job security across every sector, our author clearly articulates why human leadership, creativity, and empathy remain irreplaceable. By framing AI strictly as a tool to augment rather than eclipse human potential, the book serves as a vital foundation for building workplace confidence in the modern era. Sincere appreciation to Vineet Nayar for championing this \"Humans First machines second\" approach as a movement and equipping readers with the mindset needed to navigate technological change.",
+                "name": "Chandran Muthu",
+                "initials": "CM"
+          },
+          {
                 "id": "t1",
                 "quote": "\"Humans First, Machines Second\" is a remarkably apt title in the age of AI. Vineet has masterfully woven together his real-life experiences with the challenges and opportunities of the AI era. The book's 30 insightful \"sparks\" are built around personal stories that illustrate how he navigated complex situations and, more importantly, how a Humans First mindset can help us emerge victorious in a world increasingly driven by AI. Each chapter is engaging, thought-provoking, and concludes with three actionable ideas, which makes the book immensely valuable and readers can immediately apply while navigating the corporate world. Having had the privilege of working for Vineet at Comnet, I could relate to many of the experiences and principles he shares. Reading the book felt like revisiting those moments and reflecting on the leadership lessons they offered. It made the book all the more engaging and meaningful. Whether you're a corporate professional, business leader, entrepreneur, or someone simply curious about leading in the AI era, this book offers valuable insights and practical wisdom. It is an inspiring reminder that while technology will continue to evolve, people, empathy, trust, and purpose will always remain at the heart of great leadership and that lasting success will always be built on putting Humans First. A highly recommended read.",
                 "name": "Ivy",
