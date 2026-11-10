@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react'
+import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import {
   TESTIMONIALS_HEADING,
   TESTIMONIAL_ROWS,
@@ -8,12 +8,53 @@ import {
 import { revealDelay, revealStagger } from '../../utils/reveal'
 
 function TestimonialCard({ item }: { item: Testimonial }) {
+  const quoteRef = useRef<HTMLQuoteElement>(null)
+  const [showScrollHint, setShowScrollHint] = useState(false)
+
+  useEffect(() => {
+    const el = quoteRef.current
+    if (!el) return
+
+    const update = () => {
+      const overflow = el.scrollHeight > el.clientHeight + 1
+      const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 2
+      setShowScrollHint(overflow && !atBottom)
+    }
+
+    update()
+    const observer = new ResizeObserver(update)
+    observer.observe(el)
+    el.addEventListener('scroll', update, { passive: true })
+
+    return () => {
+      observer.disconnect()
+      el.removeEventListener('scroll', update)
+    }
+  }, [item.quote])
+
   return (
     <figure className="tm-card">
       <span className="tm-quote-mark" aria-hidden="true">
         &ldquo;
       </span>
-      <blockquote className="tm-quote">{item.quote}</blockquote>
+      <div className={`tm-quote-wrap${showScrollHint ? ' is-scrollable' : ''}`}>
+        <blockquote
+          ref={quoteRef}
+          className="tm-quote"
+          tabIndex={showScrollHint ? 0 : undefined}
+          aria-label={showScrollHint ? `Testimonial from ${item.name}, scroll for more` : undefined}
+        >
+          {item.quote}
+        </blockquote>
+        {showScrollHint ? (
+          <span className="tm-quote-scroll-hint" aria-hidden="true">
+            <span className="tm-quote-scroll-fade" />
+            <span className="tm-quote-scroll-cue">
+              <span className="tm-quote-scroll-chevron" />
+            </span>
+          </span>
+        ) : null}
+      </div>
       <figcaption className="tm-person">
         <span className="tm-avatar" aria-hidden="true">
           {item.initials}
