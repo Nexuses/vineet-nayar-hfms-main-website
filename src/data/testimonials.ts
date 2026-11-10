@@ -20,154 +20,10 @@ export const TESTIMONIALS_HEADING = {
 
 export const TESTIMONIAL_ROWS: TestimonialRow[] = [
   {
-    id: 'row-1',
-    speed: '360s',
+    id: "row-1",
+    speed: "360s",
     direction: 'left',
     items: [
-          {
-                "id": "ln1",
-                "quote": "Vineet Nayar recently sent me an advance copy of his new book - Humans First, Machines Second.",
-                "name": "Krishnan Chatterjee",
-                "initials": "KC"
-          },
-          {
-                "id": "ln2",
-                "quote": "In The World Of AI where Organisations are Focusing on reducing Human.",
-                "name": "Ankur Arora",
-                "initials": "AA"
-          },
-          {
-                "id": "ln3",
-                "quote": "Congratulations, Mr. Vineet Nayar, on the release of Humans First, Machines Second.",
-                "name": "Dayanand Kulkarni",
-                "initials": "DK"
-          },
-          {
-                "id": "ln4",
-                "quote": "Some leaders leave an impact far beyond the years you work with them.",
-                "name": "Dr. Pratap Arni Mallisetty",
-                "initials": "PM"
-          },
-          {
-                "id": "ln5",
-                "quote": "Impact on first sight!",
-                "name": "Anand Pillai",
-                "initials": "AP"
-          },
-          {
-                "id": "ln6",
-                "quote": "Loved your chapter 7.",
-                "name": "Dr. Vishwanath Joshi",
-                "initials": "VJ"
-          },
-          {
-                "id": "ln7",
-                "quote": "It was 2008. A town hall packed with about 1,000 employees. And out comes the",
-                "name": "Vikas Kapoor",
-                "initials": "VK"
-          },
-          {
-                "id": "ln8",
-                "quote": "From \"Employees First, Customers Second\" in 2010 when I was in HCL Tech to",
-                "name": "Amit Mishra",
-                "initials": "AM"
-          },
-          {
-                "id": "ln9",
-                "quote": "People First and the Evolving Narrative",
-                "name": "Ambika Natarajan",
-                "initials": "AN"
-          },
-          {
-                "id": "ln10",
-                "quote": "My copy of \"Human First, Machines Second\" has finally arrived!",
-                "name": "Sonali Kodag (Bhoite)",
-                "initials": "SK"
-          },
-          {
-                "id": "ln11",
-                "quote": "Vineet Nayar's Humans First, Machines Second couldn't be timelier. At a",
-                "name": "Rishi Rout",
-                "initials": "RR"
-          },
-          {
-                "id": "ln12",
-                "quote": "Feeling truly honoured and grateful to receive Best Seller Book Humans First, Machines Second.",
-                "name": "Navin Dubey",
-                "initials": "ND"
-          },
-          {
-                "id": "ln13",
-                "quote": "Morning Vineet",
-                "name": "Kunal Purohit",
-                "initials": "KP"
-          },
-          {
-                "id": "ln14",
-                "quote": "Just received the books! Bought one for a friend. Can't wait to dive in.",
-                "name": "Leena Muzumdar",
-                "initials": "LM"
-          },
-          {
-                "id": "ln15",
-                "quote": "I finished reading the book humans first and machines second yesterday... vintage",
-                "name": "Swaminathan Mani",
-                "initials": "SM"
-          },
-          {
-                "id": "ln16",
-                "quote": "#india #Indians #leaders #world #USA #schools #colleges #iim #iit #mdigurgaon",
-                "name": "Anil Kumar Chahar",
-                "initials": "AC"
-          },
-          {
-                "id": "ln17",
-                "quote": "What a lovely book !! Thank you Vineet Nayar Sir",
-                "name": "Sumon Kar",
-                "initials": "SK"
-          },
-          {
-                "id": "ln18",
-                "quote": "#Book Review.",
-                "name": "Neeraj Sharma",
-                "initials": "NS"
-          },
-          {
-                "id": "ln19",
-                "quote": "I first heard the name Vineet Nayar during my college days.",
-                "name": "Amit Chaudhary",
-                "initials": "AC"
-          },
-          {
-                "id": "ln20",
-                "quote": "Humans First. Machines Second.",
-                "name": "M S Srikanth",
-                "initials": "MS"
-          },
-          {
-                "id": "ln21",
-                "quote": "It is always magical to meet and listen to Vineet. Value of his ability to think",
-                "name": "Subrat Chakravarty",
-                "initials": "SC"
-          },
-          {
-                "id": "ln22",
-                "quote": "There is so much noise around AI today.",
-                "name": "Arvind Kumar Mishra",
-                "initials": "AM"
-          },
-          {
-                "id": "ln23",
-                "quote": "Over the last few days I have been reading one of my favorite authors/ leaders new",
-                "name": "Deepak Bohra",
-                "initials": "DB"
-          },
-          {
-                "id": "ln24",
-                "quote": "Having recently finished reading Humans First, Machines Second by Mr. Vineet",
-                "name": "Chandran Muthu",
-                "initials": "CM"
-          },
           {
                 "id": "t1",
                 "quote": "\"Humans First, Machines Second\" is a remarkably apt title in the age of AI. Vineet has masterfully woven together his real-life experiences with the challenges and opportunities of the AI era. The book's 30 insightful \"sparks\" are built around personal stories that illustrate how he navigated complex situations and, more importantly, how a Humans First mindset can help us emerge victorious in a world increasingly driven by AI. Each chapter is engaging, thought-provoking, and concludes with three actionable ideas, which makes the book immensely valuable and readers can immediately apply while navigating the corporate world. Having had the privilege of working for Vineet at Comnet, I could relate to many of the experiences and principles he shares. Reading the book felt like revisiting those moments and reflecting on the leadership lessons they offered. It made the book all the more engaging and meaningful. Whether you're a corporate professional, business leader, entrepreneur, or someone simply curious about leading in the AI era, this book offers valuable insights and practical wisdom. It is an inspiring reminder that while technology will continue to evolve, people, empathy, trust, and purpose will always remain at the heart of great leadership and that lasting success will always be built on putting Humans First. A highly recommended read.",
@@ -369,8 +225,8 @@ export const TESTIMONIAL_ROWS: TestimonialRow[] = [
     ],
   },
   {
-    id: 'row-2',
-    speed: '300s',
+    id: "row-2",
+    speed: "300s",
     direction: 'right',
     items: [
           {
@@ -456,12 +312,6 @@ export const TESTIMONIAL_ROWS: TestimonialRow[] = [
                 "quote": "I ordered my copy late last night at 10:30 pm and got it by 7:30 am next morning! My first impression of Humans First, Machines Second is extremely upbeat. The punchy visuals are striking. They make complex ideas immediately accessible, memorable and thought-provoking. Incredibly well compiled and doesn't get boring while reading even for readers like me. Well done Mr. Vineet Nayar. My best wishes.",
                 "name": "Vijay K Koul",
                 "initials": "VK"
-          },
-          {
-                "id": "t48",
-                "quote": "I ordered my HFMS book late last night at 10:30pm and got it by 7:30am today morning! My first impression of Humans First, Machines Second is strikingly positive. Even before engaging deeply with the content, I was captivated by the book's imaginative visual icons and punchy captions. They make complex ideas immediately accessible, memorable and thought-provoking. The design itself reinforces the central message: in the age of AI, technology may amplify possibilities, but it is human imagination, trust, empowerment and courage that will ultimately differentiate winners. A refreshing and creatively presented invitation to rethink leadership and success in an AI-driven world.",
-                "name": "Anand Pillai",
-                "initials": "AP"
           },
           {
                 "id": "t49",
@@ -572,5 +422,5 @@ export const TESTIMONIAL_ROWS: TestimonialRow[] = [
                 "initials": "AK"
           }
     ],
-  },
+  }
 ]
