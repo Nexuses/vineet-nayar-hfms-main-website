@@ -197,7 +197,6 @@ export const EVENT_RECAPS: EventRecap[] = [
       'https://assets.nexuses.xyz/37_1793618506741_4w9l.jpeg',
       'https://assets.nexuses.xyz/38_1793618506741_hcdc.jpeg',
       'https://assets.nexuses.xyz/39_1793618506741_civq.jpeg',
-      'https://assets.nexuses.xyz/40_1793618506741_4mdd.jpeg',
     ],
   },
 ]
