@@ -61,6 +61,7 @@ function TestimonialCard({ item }: { item: Testimonial }) {
         </span>
         <span className="tm-person-meta">
           <span className="tm-name">{item.name}</span>
+          {item.role ? <span className="tm-role">{item.role}</span> : null}
         </span>
       </figcaption>
     </figure>
