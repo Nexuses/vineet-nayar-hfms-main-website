@@ -90,6 +90,31 @@ export function EventRecapPage({ recap }: EventRecapPageProps) {
           </section>
         ) : null}
 
+        {recap.mediaCoverage && recap.mediaCoverage.length > 0 ? (
+          <section
+            className="event-recap-section event-recap-media-section"
+            aria-label={`${recap.city} media coverage`}
+          >
+            <div className="event-recap-wrap">
+              <h2 className="event-recap-section-title">{EVENT_RECAP_HEADING.mediaTitle}</h2>
+              <div className="event-recap-media-list">
+                {recap.mediaCoverage.map((item) => (
+                  <a
+                    key={item.url}
+                    className="event-recap-media-link"
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Read coverage in ${item.name}`}
+                  >
+                    <img src={item.logo} alt={item.name} className="event-recap-media-logo" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
+
         <section className="event-recap-section event-recap-gallery-section" aria-label={`${recap.city} event glimpses`}>
           <div className="event-recap-wrap event-recap-wrap--wide">
             <h2 className="event-recap-section-title">

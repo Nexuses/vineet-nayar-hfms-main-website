@@ -61,7 +61,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: 'Will there be events outside India too?',
     answer:
-      'Yes, a world tour is planned with events in Paris, New York, London, and Singapore, with dates yet to be announced. Follow Vineet on LinkedIn or visit hfmsbook.com for updates.',
+      'Yes, a world tour is planned with events in Paris, Dubai, New York, London, and Singapore. Follow Vineet on LinkedIn or visit hfmsbook.com for updates.',
   },
   {
     question: 'Do I need to read the book before attending?',

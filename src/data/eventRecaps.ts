@@ -1,3 +1,9 @@
+export interface EventMediaCoverage {
+  name: string
+  logo: string
+  url: string
+}
+
 export interface EventRecap {
   slug: string
   city: string
@@ -10,6 +16,7 @@ export interface EventRecap {
   venue?: string
   theme?: string
   gallery: string[]
+  mediaCoverage?: EventMediaCoverage[]
 }
 
 export const EVENT_RECAP_HEADING = {
@@ -18,6 +25,7 @@ export const EVENT_RECAP_HEADING = {
   titleHighlight: 'the event',
   videoTitleLead: 'Watch the',
   videoTitleHighlight: 'Aftermovie',
+  mediaTitle: 'Media Coverage',
   galleryTitleLead: 'Event',
   galleryTitleHighlight: 'Glimpses',
   heroNote:
@@ -197,6 +205,47 @@ export const EVENT_RECAPS: EventRecap[] = [
       'https://assets.nexuses.xyz/37_1793618506741_4w9l.jpeg',
       'https://assets.nexuses.xyz/38_1793618506741_hcdc.jpeg',
       'https://assets.nexuses.xyz/39_1793618506741_civq.jpeg',
+    ],
+  },
+  {
+    slug: 'dubai',
+    city: 'Dubai',
+    buttonLabel: 'Inside Dubai Event',
+    dateDisplay: '14 Nov 2026',
+    venue: 'Sharjah International Book Fair',
+    theme: 'Two Sessions in One Day',
+    mediaCoverage: [
+      {
+        name: 'Gulf Today',
+        logo: 'https://cdn-nexlink.s3.us-east-2.amazonaws.com/Gulf_Today_logo-NNN_1794912254478_come.svg',
+        url: 'https://www.gulftoday.ae/culture/2026/11/16/vineet-nayar-captivates-audience-at-45th-sharjah-international-book-fair',
+      },
+      {
+        name: 'Ahram Online',
+        logo: 'https://cdn-nexlink.s3.us-east-2.amazonaws.com/logo_1794912254478_kqna.webp',
+        url: 'https://english.ahram.org.eg/UI/Front/Inner.aspx?NewsContentID=582457',
+      },
+    ],
+    gallery: [
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_081852000_iOS_1_1794911983228_z9oo.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_081852000_iOS_1794911983228_uaz7.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_081853000_iOS_1_1794911983228_05qz.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_081853000_iOS_2_1794911983228_90l3.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_081853000_iOS_1794911983228_kx3g.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_081854000_iOS_1_1794911983229_gdx0.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_081854000_iOS_2_1794911983229_4da9.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_081854000_iOS_1794911983229_p1wm.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_081855000_iOS_1794911983229_m4ox.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_081856000_iOS_1_1794911983229_he0g.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_081856000_iOS_1794912028498_r3ep.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_081857000_iOS_1794912028499_kg1y.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_081858000_iOS_1794912028499_i2dk.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_082419000_iOS_1794912028499_ec9q.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_082423000_iOS_1794912028499_g7bd.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_082424000_iOS_1794912028499_slom.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_082433000_iOS_1794912028499_4hnn.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_082434000_iOS_1794912028499_95da.jpg',
+      'https://cdn-nexlink.s3.us-east-2.amazonaws.com/20261114_174803000_iOS_1794912028499_7rzj.jpg',
     ],
   },
 ]
