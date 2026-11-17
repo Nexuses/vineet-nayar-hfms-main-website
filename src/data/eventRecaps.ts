@@ -2,6 +2,10 @@ export interface EventMediaCoverage {
   name: string
   logo: string
   url: string
+  date: string
+  dateTime: string
+  headline: string
+  excerpt: string
 }
 
 export interface EventRecap {
@@ -219,11 +223,21 @@ export const EVENT_RECAPS: EventRecap[] = [
         name: 'Gulf Today',
         logo: 'https://cdn-nexlink.s3.us-east-2.amazonaws.com/Gulf_Today_logo-NNN_1794912254478_come.svg',
         url: 'https://www.gulftoday.ae/culture/2026/11/16/vineet-nayar-captivates-audience-at-45th-sharjah-international-book-fair',
+        date: '16 Nov 2026',
+        dateTime: '2026-11-16',
+        headline: 'Vineet Nayar captivates audience at 45th Sharjah International Book Fair',
+        excerpt:
+          'He spellbound the Sharjah audience with an engaging one-hour session at Forum 1 of the SIBF. His talk was so captivating that readers rushed to get their hands on his books, while Vineet signed copies and posed for selfies with admirers.',
       },
       {
         name: 'Ahram Online',
         logo: 'https://cdn-nexlink.s3.us-east-2.amazonaws.com/logo_1794912254478_kqna.webp',
         url: 'https://english.ahram.org.eg/UI/Front/Inner.aspx?NewsContentID=582457',
+        date: '14 Nov 2026',
+        dateTime: '2026-11-14',
+        headline: "'Humans first' is not a slogan, it is a survival strategy",
+        excerpt:
+          'In an interview at the Sharjah International Book Fair, Vineet Nayar reflects on leading HCL, lessons from rural classrooms, the future of work, and why putting people first remains a survival strategy in the age of AI.',
       },
     ],
     gallery: [

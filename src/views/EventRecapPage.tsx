@@ -95,19 +95,29 @@ export function EventRecapPage({ recap }: EventRecapPageProps) {
             className="event-recap-section event-recap-media-section"
             aria-label={`${recap.city} media coverage`}
           >
-            <div className="event-recap-wrap">
+            <div className="event-recap-wrap event-recap-wrap--wide">
               <h2 className="event-recap-section-title">{EVENT_RECAP_HEADING.mediaTitle}</h2>
               <div className="event-recap-media-list">
                 {recap.mediaCoverage.map((item) => (
                   <a
                     key={item.url}
-                    className="event-recap-media-link"
+                    className="event-recap-media-card"
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Read coverage in ${item.name}`}
                   >
-                    <img src={item.logo} alt={item.name} className="event-recap-media-logo" />
+                    <div className="event-recap-media-card-top">
+                      <img src={item.logo} alt="" className="event-recap-media-logo" />
+                      <time className="event-recap-media-date" dateTime={item.dateTime}>
+                        {item.date}
+                      </time>
+                    </div>
+                    <h3 className="event-recap-media-headline">{item.headline}</h3>
+                    <p className="event-recap-media-excerpt">{item.excerpt}</p>
+                    <span className="event-recap-media-cta">
+                      Read on {item.name}
+                      <span aria-hidden="true"> →</span>
+                    </span>
                   </a>
                 ))}
               </div>
