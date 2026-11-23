@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useModal } from '../../context/ModalContext'
 
 const LOADING_MS = 2000
@@ -9,6 +9,7 @@ export function ContactModal() {
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
+  const formOpenedAtRef = useRef(0)
 
   const handleClose = useCallback(() => {
     closeContact()
@@ -19,6 +20,7 @@ export function ContactModal() {
 
   useEffect(() => {
     if (!contactOpen) return
+    formOpenedAtRef.current = Date.now()
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') handleClose()
     }
@@ -61,6 +63,9 @@ export function ContactModal() {
     const email = String(formData.get('email') ?? '').trim()
     const phone = String(formData.get('phone') ?? '').trim()
     const message = String(formData.get('message') ?? '').trim()
+    const website = String(formData.get('website') ?? '')
+    const company = String(formData.get('company') ?? '')
+    const fax = String(formData.get('fax') ?? '')
     const startedAt = Date.now()
 
     setSubmitting(true)
@@ -71,7 +76,17 @@ export function ContactModal() {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ formType: 'contact', name, email, phone, message }),
+        body: JSON.stringify({
+          formType: 'contact',
+          name,
+          email,
+          phone,
+          message,
+          website,
+          company,
+          fax,
+          formOpenedAt: formOpenedAtRef.current,
+        }),
       })
 
       const contentType = response.headers.get('content-type') ?? ''
@@ -127,6 +142,20 @@ export function ContactModal() {
 
           {!submitting && !submitted ? (
             <form className="join-form" id="contactForm" noValidate onSubmit={handleSubmit}>
+              <div className="sr-only" aria-hidden="true">
+                <label>
+                  Website
+                  <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+                </label>
+                <label>
+                  Company
+                  <input type="text" name="company" tabIndex={-1} autoComplete="off" />
+                </label>
+                <label>
+                  Fax
+                  <input type="text" name="fax" tabIndex={-1} autoComplete="off" />
+                </label>
+              </div>
               <label>
                 Name
                 <input type="text" name="name" autoComplete="name" required placeholder="Full name" />

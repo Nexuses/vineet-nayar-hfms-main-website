@@ -1,5 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { saveContactSubmission } from '@/lib/formPersistence'
+import {
+  evaluateFormSpam,
+  getRequestIp,
+} from '@/lib/formSpamGuard'
 import { assertContactMailReady, sendContactEmails } from '@/lib/mailer'
 
 type SuccessResponse = {
@@ -90,6 +94,14 @@ export default async function handler(
 
   if (!message) {
     return res.status(400).json({ error: 'Please enter a message.' })
+  }
+
+  const spam = evaluateFormSpam(body, getRequestIp(req), name)
+  if (spam === 'silent_drop') {
+    return res.status(200).json({ ok: true })
+  }
+  if (spam === 'rate_limited') {
+    return res.status(429).json({ error: 'Too many requests. Please try again later.' })
   }
 
   const submission = { name, email, phone, message }

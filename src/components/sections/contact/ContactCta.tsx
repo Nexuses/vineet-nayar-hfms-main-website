@@ -1,9 +1,9 @@
-import { ASSETS } from '@/data/site'
+import { ASSETS, FEATURES } from '@/data/site'
 import { CONTACT_CTA } from '@/data/contact'
 import { useModal } from '@/context/ModalContext'
 
 export function ContactCta() {
-  const { openJoin } = useModal()
+  const { openJoin, openContact } = useModal()
 
   return (
     <section className="contact-cta-section" aria-label="Join the movement">
@@ -26,8 +26,12 @@ export function ContactCta() {
               <h2 className="contact-display contact-display-light">{CONTACT_CTA.heading}</h2>
               <p className="contact-lede contact-lede-light">{CONTACT_CTA.body}</p>
               <div className="contact-cta-actions">
-                <button className="contact-btn magnetic" type="button" onClick={openJoin}>
-                  {CONTACT_CTA.primaryLabel}
+                <button
+                  className="contact-btn magnetic"
+                  type="button"
+                  onClick={FEATURES.eventJoin ? openJoin : openContact}
+                >
+                  {FEATURES.eventJoin ? CONTACT_CTA.primaryLabel : 'Contact Us'}
                 </button>
                 <a
                   className="contact-btn contact-btn-outline magnetic"

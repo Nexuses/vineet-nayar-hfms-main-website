@@ -1,6 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { JOIN_CITY_OPTIONS } from '@/data/site'
+import { FEATURES, JOIN_CITY_OPTIONS } from '@/data/site'
 import { saveJoinSubmission } from '@/lib/formPersistence'
+import {
+  evaluateFormSpam,
+  getRequestIp,
+} from '@/lib/formSpamGuard'
 import { assertJoinMailReady, sendJoinEmails } from '@/lib/mailer'
 
 type SuccessResponse = {
@@ -56,6 +60,11 @@ export default async function handler(
     return res.status(405).json({ error: `Method ${req.method} not allowed` })
   }
 
+  // Event seat registration is not live — do not accept or email reservations.
+  if (!FEATURES.eventJoin) {
+    return res.status(503).json({ error: 'Event registration is not open right now.' })
+  }
+
   const body = (req.body ?? {}) as Record<string, unknown>
 
   if (normalizeFormType(body.formType) !== JOIN_FORM_TYPE) {
@@ -80,6 +89,14 @@ export default async function handler(
 
   if (!city) {
     return res.status(400).json({ error: 'Please choose a city.' })
+  }
+
+  const spam = evaluateFormSpam(body, getRequestIp(req), name)
+  if (spam === 'silent_drop') {
+    return res.status(200).json({ ok: true })
+  }
+  if (spam === 'rate_limited') {
+    return res.status(429).json({ error: 'Too many requests. Please try again later.' })
   }
 
   const submission = { name, email, city }

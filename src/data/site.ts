@@ -22,6 +22,8 @@ export const FEATURES = {
   wallIframe: false,
   testimonials: true,
   bookPage: true,
+  /** Seat reservation modal + /api/join. Keep off while event registration is not live. */
+  eventJoin: false,
 } as const
 
 export type NavLinkItem = {

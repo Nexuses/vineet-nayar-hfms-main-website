@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from 'react'
-import { JOIN_CITY_OPTIONS } from '../../data/site'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { FEATURES, JOIN_CITY_OPTIONS } from '../../data/site'
 import { useModal } from '../../context/ModalContext'
 
 const LOADING_MS = 2000
@@ -10,6 +10,7 @@ export function JoinModal() {
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
+  const formOpenedAtRef = useRef(0)
 
   const handleClose = useCallback(() => {
     closeJoin()
@@ -20,12 +21,17 @@ export function JoinModal() {
 
   useEffect(() => {
     if (!joinOpen) return
+    if (!FEATURES.eventJoin) {
+      closeJoin()
+      return
+    }
+    formOpenedAtRef.current = Date.now()
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') handleClose()
     }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [joinOpen, handleClose])
+  }, [joinOpen, handleClose, closeJoin])
 
   useEffect(() => {
     if (!submitted || !joinOpen) return
@@ -57,10 +63,18 @@ export function JoinModal() {
       return
     }
 
+    if (!FEATURES.eventJoin) {
+      setError('Event registration is not open right now.')
+      return
+    }
+
     const formData = new FormData(form)
     const name = String(formData.get('name') ?? '').trim()
     const email = String(formData.get('email') ?? '').trim()
     const city = String(formData.get('city') ?? '').trim()
+    const website = String(formData.get('website') ?? '')
+    const company = String(formData.get('company') ?? '')
+    const fax = String(formData.get('fax') ?? '')
     const startedAt = Date.now()
 
     setSubmitting(true)
@@ -71,7 +85,16 @@ export function JoinModal() {
       const response = await fetch('/api/join', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ formType: 'join', name, email, city }),
+        body: JSON.stringify({
+          formType: 'join',
+          name,
+          email,
+          city,
+          website,
+          company,
+          fax,
+          formOpenedAt: formOpenedAtRef.current,
+        }),
       })
 
       const contentType = response.headers.get('content-type') ?? ''
@@ -128,6 +151,20 @@ export function JoinModal() {
 
           {!submitting && !submitted ? (
             <form className="join-form" id="joinForm" noValidate onSubmit={handleSubmit}>
+              <div className="sr-only" aria-hidden="true">
+                <label>
+                  Website
+                  <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+                </label>
+                <label>
+                  Company
+                  <input type="text" name="company" tabIndex={-1} autoComplete="off" />
+                </label>
+                <label>
+                  Fax
+                  <input type="text" name="fax" tabIndex={-1} autoComplete="off" />
+                </label>
+              </div>
               <label>
                 Your name
                 <input type="text" name="name" autoComplete="name" required placeholder="Full name" />

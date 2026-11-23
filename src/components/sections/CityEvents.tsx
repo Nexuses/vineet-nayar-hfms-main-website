@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { CITY_EVENTS, CITY_EVENTS_HEADING } from '../../data/cityEvents'
+import { FEATURES } from '../../data/site'
 import { useModal } from '../../context/ModalContext'
 import { revealDelay } from '../../utils/reveal'
 
@@ -159,7 +160,7 @@ export function CityEvents() {
                   >
                     {event.ctaLabel ?? 'View Event Details'}
                   </Link>
-                ) : event.isOpen && !event.hideCta ? (
+                ) : event.isOpen && !event.hideCta && FEATURES.eventJoin ? (
                   <button
                     className="ev-register-btn"
                     type="button"
